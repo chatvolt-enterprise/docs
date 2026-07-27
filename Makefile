@@ -2,9 +2,15 @@ start:
 	docker compose up --build
 
 dev:
-	mintlify dev
+	npx mint dev
 
 install:
-	npm i -g mintlify
+	npm install
 
-.PHONY: start dev install
+lint:
+	npx mint validate
+
+broken-links:
+	npx mint broken-links
+
+.PHONY: start dev install lint
