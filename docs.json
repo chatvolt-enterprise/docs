@@ -172,12 +172,6 @@
                 ]
               },
               {
-                "group": "Formulários",
-                "pages": [
-                  "pages/forms/reference"
-                ]
-              },
-              {
                 "group": "Integrações",
                 "pages": [
                   "pages/integrations/reference"
