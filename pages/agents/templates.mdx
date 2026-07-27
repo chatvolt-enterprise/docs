@@ -1,0 +1,40 @@
+---
+title: 'Templates de Agente'
+description: 'Liste templates pré-prontos para criar agentes'
+openapi: 'GET /agent-templates/{organizationId}'
+---
+
+Retorna templates de agentes disponíveis para uma organização. Templates são configurações pré-definidas que aceleram a criação de novos agentes.
+
+## Endpoint
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/agent-templates/{organizationId}` | Listar templates da organização |
+
+## Listar Templates
+
+```bash
+curl -X GET https://api.chatvolt.ai/agent-templates/{organizationId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+O `organizationId` no path deve corresponder ao da sua chave de API.
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "tpl_abc123",
+      "name": "Suporte ao Cliente",
+      "description": "Template para atendimento ao cliente",
+      "modelName": "gpt-4o",
+      "temperature": 0.7
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

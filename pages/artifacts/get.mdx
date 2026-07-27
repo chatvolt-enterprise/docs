@@ -1,0 +1,30 @@
+---
+title: 'Obter Artefato'
+description: 'Recupere os detalhes de um artefato'
+openapi: 'GET /artifacts/{id}'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifacts/{artifactId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "art_abc123",
+    "title": "Relatório Mensal",
+    "type": "pdf",
+    "category": "Relatórios",
+    "contentUrl": "https://...",
+    "createdAt": "2026-07-23T10:00:00Z",
+    "updatedAt": "2026-07-23T12:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,36 @@
+---
+title: 'Deletar Artefato'
+description: 'Remova um artefato do sistema'
+openapi: 'DELETE /artifacts/{id}'
+---
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/artifacts/{artifactId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Deletar em Lote
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/artifacts \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "ids": ["art_1", "art_2", "art_3"]
+  }'
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "deleted": true,
+    "id": "art_abc123"
+  },
+  "success": true,
+  "error": null
+}
+```

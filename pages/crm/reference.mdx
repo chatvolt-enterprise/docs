@@ -1,0 +1,39 @@
+---
+title: 'Flux CRM'
+description: 'Gerencie cenários, etapas e logs do CRM'
+---
+
+O Flux CRM é o sistema de gestão de relacionamento com clientes do Chatvolt. Ele organiza conversas em cenários (pipelines) e etapas (steps), com logs de atividades.
+
+## Cenários (Scenarios)
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/crm/scenario` | Listar cenários |
+| `POST` | `/crm/scenario` | Criar cenário |
+| `PUT` | `/crm/scenario` | Atualizar cenário |
+| `DELETE` | `/crm/scenario` | Deletar cenário |
+| `GET` | `/crm/scenario/{id}/conversation` | Listar conversas do cenário |
+| `DELETE` | `/crm/scenario/{id}/conversation` | Remover conversa do cenário |
+
+## Etapas (Steps)
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/crm/step` | Listar etapas |
+| `POST` | `/crm/step` | Criar etapa |
+| `PUT` | `/crm/step` | Atualizar etapa |
+| `DELETE` | `/crm/step` | Deletar etapa |
+| `POST` | `/crm/step/conversation` | Adicionar conversa à etapa |
+| `POST` | `/crm/step/move` | Mover conversa entre etapas |
+
+## Logs de Conversa
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/crm/conversationLog` | Listar logs |
+| `POST` | `/crm/conversationLog` | Criar log |
+| `GET` | `/crm/conversationLog/{id}` | Obter log |
+| `PUT` | `/crm/conversationLog/{id}` | Atualizar log |
+| `PATCH` | `/crm/conversationLog/{id}` | Atualizar parcialmente |
+| `DELETE` | `/crm/conversationLog/{id}` | Deletar log |

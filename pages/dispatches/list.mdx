@@ -1,0 +1,31 @@
+---
+title: 'Listar Disparos'
+description: 'Liste todos os disparos cadastrados'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/dispatches \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "dispatch_abc123",
+      "name": "Campanha Julho",
+      "channel": "whatsapp",
+      "status": "sent",
+      "totalContacts": 150,
+      "sentCount": 150,
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

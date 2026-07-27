@@ -1,0 +1,27 @@
+---
+title: 'Deletar Datastore'
+description: 'Remova uma base de conhecimento'
+openapi: 'DELETE /datastores/{id}'
+---
+
+<Warning>A deleção é permanente. Todos os documentos e dados serão perdidos.</Warning>
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/datastores/{datastoreId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "ds_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```

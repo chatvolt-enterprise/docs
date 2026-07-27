@@ -1,0 +1,43 @@
+---
+title: 'Buscar Artefatos'
+description: 'Pesquise artefatos por texto'
+openapi: 'POST /artifacts/search'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifacts/search \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "relatório mensal",
+    "limit": 10
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `query` | string |  | Texto da busca |
+| `limit` | number |  | Máx. de resultados (padrão: 10) |
+| `categoryId` | string |  | Filtrar por categoria |
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "art_abc123",
+      "title": "Relatório Mensal",
+      "type": "pdf",
+      "category": "Relatórios",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

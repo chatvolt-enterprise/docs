@@ -1,0 +1,64 @@
+---
+title: 'Whitelist de WhatsApp'
+description: 'Gerencie a whitelist de números autorizados no WhatsApp'
+openapi: 'GET /agent-whitelist-whatsapp/{id}, POST /agent-whitelist-whatsapp, DELETE /agent-whitelist-whatsapp/{id}'
+---
+
+A whitelist do WhatsApp define quais números de telefone estão autorizados a interagir com o agente via WhatsApp. Fora da whitelist, as mensagens são ignoradas.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/agent-whitelist-whatsapp/{id}` | Obter whitelist |
+| `POST` | `/agent-whitelist-whatsapp` | Adicionar à whitelist |
+| `PATCH` | `/agent-whitelist-whatsapp/{id}` | Atualizar whitelist |
+| `DELETE` | `/agent-whitelist-whatsapp/{id}` | Remover da whitelist |
+
+## Listar Whitelist
+
+```bash
+curl -X GET https://api.chatvolt.ai/agent-whitelist-whatsapp/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Adicionar à Whitelist
+
+```bash
+curl -X POST https://api.chatvolt.ai/agent-whitelist-whatsapp \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511988887777"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string |  | ID do agente |
+| `phoneNumber` | string |  | Número a autorizar |
+
+## Remover da Whitelist
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/agent-whitelist-whatsapp/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "wl_abc123",
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511988887777",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

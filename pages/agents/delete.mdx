@@ -1,0 +1,27 @@
+---
+title: 'Deletar Agente'
+description: 'Remova um agente do sistema'
+openapi: 'DELETE /agents/{id}'
+---
+
+<Warning>A deleção é permanente. Todas as conversas e configurações do agente serão perdidas.</Warning>
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/agents/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "agent_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```

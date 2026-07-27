@@ -1,0 +1,27 @@
+---
+title: 'Deletar Conversa'
+description: 'Remova uma conversa do sistema'
+openapi: 'DELETE /conversation/{conversationId}'
+---
+
+<Warning>A deleção é permanente. Todas as mensagens da conversa serão perdidas.</Warning>
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/conversation/{conversationId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "conv_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```

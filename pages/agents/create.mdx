@@ -1,0 +1,45 @@
+---
+title: 'Criar Agente'
+description: 'Crie um novo agente de IA'
+openapi: 'POST /agents/create'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/agents/create \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Meu Agente",
+    "description": "Agente de suporte ao cliente",
+    "modelName": "gpt-4o",
+    "temperature": 0.7
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Nome do agente |
+| `description` | string |  | Descrição |
+| `modelName` | string |  | Modelo de IA (padrão: configurado no plano) |
+| `temperature` | number |  | 0.0 a 1.0 |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "agent_abc123",
+    "name": "Meu Agente",
+    "description": "Agente de suporte ao cliente",
+    "modelName": "gpt-4o",
+    "temperature": 0.7,
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

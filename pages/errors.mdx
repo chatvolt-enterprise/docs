@@ -1,0 +1,97 @@
+---
+title: 'Erros e Rate Limits'
+description: 'Códigos de erro, mensagens e limites da API'
+---
+
+## Códigos HTTP
+
+| Código | Significado | O que fazer |
+|--------|-------------|-------------|
+| `200` | Sucesso | A requisição foi processada corretamente |
+| `202` | Aceito | A requisição foi aceita e será processada de forma assíncrona (callback) |
+| `400` | Requisição inválida | Verifique os parâmetros enviados |
+| `401` | Não autorizado | Chave de API ausente ou inválida |
+| `402` | Pagamento necessário | Limite de uso atingido ou recurso premium |
+| `403` | Proibido | Chave não tem permissão para este recurso |
+| `404` | Não encontrado | O recurso solicitado não existe |
+| `429` | Muitas requisições | Rate limit excedido. Aguarde e tente novamente |
+| `500` | Erro interno | Erro no servidor. Tente novamente mais tarde |
+
+## Formato de Erro
+
+```json
+{
+  "data": null,
+  "success": false,
+  "error": {
+    "message": "Descrição amigável do erro",
+    "code": "ERROR_CODE_INTERNO"
+  }
+}
+```
+
+### Exemplo: 401 Não Autorizado
+
+```json
+{
+  "data": null,
+  "success": false,
+  "error": {
+    "message": "Chave de API inválida ou não fornecida",
+    "code": "UNAUTHORIZED"
+  }
+}
+```
+
+### Exemplo: 402 Pagamento Necessário
+
+```json
+{
+  "data": null,
+  "success": false,
+  "error": {
+    "message": "Limite de uso mensal atingido. Faça upgrade do seu plano.",
+    "code": "QUOTA_EXCEEDED"
+  }
+}
+```
+
+## Rate Limits
+
+A API possui limites de requisição para garantir estabilidade para todos os clientes.
+
+| Limite | Padrão |
+|--------|--------|
+| Requisições por minuto | 60 requisições/min |
+| Requisições por dia | 10.000 requisições/dia |
+| Tamanho máximo do payload | 1 MB |
+
+### Headers de Rate Limit
+
+As respostas incluem headers informativos:
+
+```
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 42
+X-RateLimit-Reset: 1625097600
+```
+
+### Quando exceder (HTTP 429)
+
+```json
+{
+  "data": null,
+  "success": false,
+  "error": {
+    "message": "Muitas requisições. Aguarde 30 segundos antes de tentar novamente.",
+    "code": "RATE_LIMIT_EXCEEDED",
+    "retryAfter": 30
+  }
+}
+```
+
+### Boas Práticas
+
+- Implemente **retry com backoff exponencial** para erros 429 e 500
+- Use o header `Retry-After` para saber quanto tempo esperar
+- Faça requisições com **streaming** (`streaming: true`) para queries longas em vez de polling

@@ -1,0 +1,39 @@
+---
+title: 'Mídia dos Artefatos'
+description: 'Gerencie arquivos de mídia dos artefatos'
+---
+
+## Listar Mídias
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifacts/media \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Upload de Mídia
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifacts/media/upload \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@documento.pdf" \
+  -F "artifactId=art_abc123"
+```
+
+## Atualizar Mídia
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "alt": "Descrição da imagem"
+  }'
+```
+
+## Deletar Mídia
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/artifacts/media/{mediaId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```

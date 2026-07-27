@@ -1,0 +1,46 @@
+---
+title: 'Agentes'
+description: 'Gerencie seus agentes de IA'
+---
+
+Agentes são a unidade principal do Chatvolt. Cada agente é um chatbot de IA personalizado, treinado com seus dados e configurado com ferramentas, canais e comportamentos específicos.
+
+## O que é possível fazer?
+
+<CardGroup cols={2}>
+  <Card title="Consultar" icon="message" href="/pages/agents/query">
+    Envie perguntas e receba respostas do seu agente
+  </Card>
+  <Card title="CRUD" icon="gear" href="/pages/agents/create">
+    Crie, liste, atualize e delete agentes
+  </Card>
+  <Card title="Webhook" icon="webhook" href="/pages/agents/webhook">
+    Configure webhooks para eventos do agente
+  </Card>
+  <Card title="Modelos" icon="brain" href="#">
+    Consulte os modelos de IA disponíveis
+  </Card>
+</CardGroup>
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/agents` | Listar agentes |
+| `POST` | `/agents/create` | Criar agente |
+| `GET` | `/agents/{id}` | Obter agente |
+| `PATCH` | `/agents/{id}` | Atualizar agente |
+| `DELETE` | `/agents/{id}` | Deletar agente |
+| `POST` | `/agents/{id}/query` | Enviar query (streaming ou JSON) |
+| `POST` | `/agents/{id}/webhook` | Configurar webhook |
+| `GET` | `/agents/models` | Listar modelos disponíveis |
+
+## Autenticação
+
+Todos os endpoints de agente exigem o header:
+
+```
+Authorization: Bearer SUA_CHAVE_API
+```
+
+[Saiba como obter sua chave](/authentication).

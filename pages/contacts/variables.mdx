@@ -1,0 +1,32 @@
+---
+title: 'Variáveis de Contato'
+description: 'Gerencie variáveis customizadas dos contatos'
+openapi: 'GET /contacts/variables'
+---
+
+## Listar Variáveis
+
+```bash
+curl -X GET https://api.chatvolt.ai/contacts/variables \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Criar Variável
+
+```bash
+curl -X POST https://api.chatvolt.ai/contacts/variables \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contactId": "contact_abc123",
+    "key": "cargo",
+    "value": "Gerente"
+  }'
+```
+
+## Listar Variáveis Disponíveis
+
+```bash
+curl -X GET https://api.chatvolt.ai/contacts/available-variables \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```

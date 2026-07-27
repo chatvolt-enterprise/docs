@@ -1,0 +1,32 @@
+---
+title: 'Criar Datastore'
+description: 'Crie uma nova base de conhecimento'
+openapi: 'POST /datastores'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/datastores \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Base de Conhecimento",
+    "description": "Documentos da empresa"
+  }'
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "ds_abc123",
+    "name": "Base de Conhecimento",
+    "description": "Documentos da empresa",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

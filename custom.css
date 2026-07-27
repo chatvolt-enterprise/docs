@@ -1,0 +1,46 @@
+/* Custom CSS for Chatvolt API Docs */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(97, 50, 169, 0.2);
+}
+
+/* Code block improvements */
+pre {
+  border-radius: 8px !important;
+}
+
+/* Card hover effects */
+.card-group .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-group .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(97, 50, 169, 0.1);
+}
+
+/* Primary color refinements */
+:root {
+  --primary-hover: #7b3fc7;
+}
+
+/* Improve table readability */
+table {
+  font-size: 0.9rem;
+}
+
+th {
+  font-weight: 600;
+}
+
+/* Sidebar active item */
+.sidebar-item-active {
+  background-color: rgba(97, 50, 169, 0.08);
+  border-right: 2px solid #6132A9;
+}

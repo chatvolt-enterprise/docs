@@ -1,0 +1,44 @@
+---
+title: 'Criar Contato'
+description: 'Crie um novo contato no sistema'
+openapi: 'POST /contacts'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/contacts \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "joao@exemplo.com",
+    "name": "João Silva",
+    "phone": "5511988887777"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `email` | string |  | Email do contato |
+| `name` | string |  | Nome completo |
+| `phone` | string |  | Telefone (com DDI) |
+| `organizationName` | string |  | Empresa |
+| `notes` | string |  | Observações |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "contact_abc123",
+    "email": "joao@exemplo.com",
+    "name": "João Silva",
+    "phone": "5511988887777",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,78 @@
+---
+title: 'WhatsApp'
+description: 'Envie mensagens e templates pelo WhatsApp'
+---
+
+A API de WhatsApp do Chatvolt permite enviar mensagens, templates e mensagens interativas (botões, listas, CTA) através da WhatsApp Official API.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/whatsapp/templates` | Listar templates |
+| `POST` | `/whatsapp/templates` | Criar template |
+| `POST` | `/whatsapp/{phoneNumberId}/template-message` | Enviar template message |
+| `POST` | `/messages/interactive/send-buttons` | Enviar botões |
+| `POST` | `/messages/interactive/send-lists` | Enviar lista interativa |
+| `POST` | `/messages/interactive/send-cta` | Enviar CTA |
+| `POST` | `/messages/interactive/send-location` | Enviar localização |
+| `POST` | `/messages/interactive/location-request` | Solicitar localização |
+| `POST` | `/messages/interactive/send-contact` | Enviar contato |
+| `GET` | `/whatsapp/conversion-tracking` | Tracking de conversão |
+
+## Enviar Contato
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-contact \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "name": "João Silva",
+    "phone": "5511988887777"
+  }'
+```
+
+## Tracking de Conversão
+
+```bash
+curl -X GET https://api.chatvolt.ai/whatsapp/conversion-tracking \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Exemplo: Enviar Template
+
+```bash
+curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "templateName": "boas_vindas",
+    "language": "pt_BR",
+    "components": [
+      {
+        "type": "body",
+        "parameters": [
+          { "type": "text", "text": "João" }
+        ]
+      }
+    ]
+  }'
+```
+
+## Exemplo: Botões Interativos
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "bodyText": "Escolha uma opção:",
+    "buttons": [
+      { "id": "btn_1", "title": "Sim" },
+      { "id": "btn_2", "title": "Não" }
+    ]
+  }'
+```

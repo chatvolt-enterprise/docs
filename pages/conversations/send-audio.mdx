@@ -1,0 +1,37 @@
+---
+title: 'Enviar Áudio'
+description: 'Envie uma mensagem de áudio em uma conversa'
+openapi: 'POST /conversations/{conversationId}/send-audio'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/{conversationId}/send-audio \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "audioUrl": "https://meusite.com/audio.mp3",
+    "duration": 30
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `audioUrl` | string |  | URL pública do arquivo de áudio |
+| `duration` | number |  | Duração em segundos |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "msg_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```

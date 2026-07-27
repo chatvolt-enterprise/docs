@@ -1,0 +1,42 @@
+---
+title: 'Atualizar Agente'
+description: 'Atualize as configurações de um agente'
+openapi: 'PATCH /agents/{id}'
+---
+
+## Request
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/agents/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Agente de Vendas",
+    "temperature": 0.5
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `name` | string | Novo nome |
+| `description` | string | Nova descrição |
+| `modelName` | string | Modelo de IA |
+| `temperature` | number | Temperatura (0.0 a 1.0) |
+| `visibility` | string | `private` ou `public` |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "agent_abc123",
+    "name": "Agente de Vendas",
+    "temperature": 0.5,
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,29 @@
+---
+title: 'Listar Artefatos'
+description: 'Liste todos os artefatos'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifacts \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "art_abc123",
+      "title": "Relatório Mensal",
+      "type": "pdf",
+      "category": "Relatórios",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

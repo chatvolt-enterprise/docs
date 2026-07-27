@@ -1,0 +1,132 @@
+---
+title: 'Consultar Agente'
+description: 'Envie uma pergunta para seu agente e receba uma resposta'
+openapi: 'POST /agents/{id}/query'
+---
+
+Envia uma pergunta para o agente. O agente processa a query com base no conhecimento e ferramentas configurados e retorna uma resposta.
+
+Você pode optar por **streaming** (SSE — Server-Sent Events) para receber a resposta em tempo real, ou **resposta completa** em JSON.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/agents/{agentId}/query \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Qual é o horário de funcionamento?",
+    "streaming": true,
+    "conversationId": "conv_abc123"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `query` | string |  | Texto da pergunta |
+| `streaming` | boolean |  | `true` para SSE stream, `false` para JSON (padrão) |
+| `conversationId` | string |  | ID da conversa existente. Se omitido, cria nova |
+| `visitorId` | string |  | ID do visitante. Se omitido, um novo é gerado |
+| `temperature` | number |  | Controla a criatividade (0.0 a 1.0) |
+| `modelName` | string |  | Sobrescreve o modelo configurado no agente |
+| `contactId` | string |  | ID de contato existente no sistema |
+| `contact` | object |  | Dados do contato para busca/criação automática |
+| `callbackURL` | string |  | URL para callback de processamento assíncrono |
+
+### Objeto `contact`
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `email` | string | Email do contato |
+| `phoneNumber` | string | Telefone (ex: 5511988887777) |
+| `firstName` | string | Nome |
+| `lastName` | string | Sobrenome |
+| `userId` | string | ID externo no seu sistema |
+
+### Exemplo com contato
+
+```bash
+curl -X POST https://api.chatvolt.ai/agents/{agentId}/query \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Meu pedido #12345 está atrasado",
+    "streaming": false,
+    "contact": {
+      "email": "cliente@exemplo.com",
+      "phoneNumber": "5511988887777",
+      "firstName": "João"
+    }
+  }'
+```
+
+## Resposta (JSON)
+
+```json
+{
+  "data": {
+    "content": "Olá! Seu pedido #12345 está a caminho. O prazo de entrega é até amanhã.",
+    "conversationId": "conv_abc123",
+    "sources": [
+      {
+        "name": "politica-de-entrega.pdf",
+        "url": "https://..."
+      }
+    ]
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Streaming (SSE)
+
+Para receber a resposta em tempo real, use `streaming: true` e um cliente SSE:
+
+```javascript
+import { fetchEventSource } from '@microsoft/fetch-event-source';
+
+const ctrl = new AbortController();
+
+await fetchEventSource(`https://api.chatvolt.ai/agents/${agentId}/query`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`,
+  },
+  body: JSON.stringify({
+    streaming: true,
+    query: "Qual o horário de funcionamento?",
+  }),
+  signal: ctrl.signal,
+
+  async onopen(response) {
+    if (response.status === 402) {
+      throw new Error('Limite de uso atingido');
+    }
+  },
+
+  onmessage(event) {
+    if (event.data === '[DONE]') return;
+    const data = JSON.parse(event.data);
+    // data.content contém o texto do chunk
+    console.log(data.content);
+  },
+
+  onclose() { console.log('Stream encerrado'); },
+  onerror(err) { throw err; },
+});
+```
+
+## Erros
+
+| Código | Significado |
+|--------|-------------|
+| `401` | Chave de API inválida |
+| `402` | Limite de uso mensal atingido |
+| `404` | Agente não encontrado |
+| `429` | Muitas requisições |
+
+[Veja todos os códigos de erro](/errors).

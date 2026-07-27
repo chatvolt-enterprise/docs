@@ -1,0 +1,61 @@
+---
+title: 'Webhooks'
+description: 'Receba e valide webhooks externos'
+openapi: 'POST /webhook/webhook, GET /webhook/validate'
+---
+
+Webhooks permitem que sistemas externos enviem dados para o Chatvolt em tempo real.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `POST` | `/webhook/webhook` | Receber payload de webhook externo |
+| `GET` | `/webhook/validate` | Validar configuração do webhook |
+
+## Receber Webhook
+
+Sistemas externos (n8n, Make, APIs próprias) enviam payloads para este endpoint.
+
+```bash
+curl -X POST https://api.chatvolt.ai/webhook/webhook \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Token: SEU_TOKEN" \
+  -d '{
+    "event": "order.created",
+    "data": {
+      "orderId": "12345",
+      "customer": "João Silva",
+      "total": 199.90
+    }
+  }'
+```
+
+### Headers
+
+| Header | Obrigatório | Descrição |
+|--------|:-----------:|-----------|
+| `Content-Type` |  | `application/json` |
+| `X-Webhook-Token` |  | Token configurado no dashboard para autenticar a origem |
+
+## Validar Webhook
+
+Usado para testar se a configuração do webhook está correta.
+
+```bash
+curl -X GET https://api.chatvolt.ai/webhook/validate \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Resposta
+
+```json
+{
+  "data": {
+    "valid": true,
+    "webhookUrl": "https://api.chatvolt.ai/webhook/webhook"
+  },
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,43 @@
+---
+title: 'Criar Artefato'
+description: 'Crie um novo artefato'
+openapi: 'POST /artifacts'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifacts \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Relatório Mensal",
+    "type": "pdf",
+    "categoryId": "cat_abc123",
+    "content": "base64_encoded_content..."
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `title` | string |  | Título do artefato |
+| `type` | string |  | Tipo (`pdf`, `image`, `text`, `html`) |
+| `categoryId` | string |  | ID da categoria |
+| `content` | string |  | Conteúdo codificado |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "art_abc123",
+    "title": "Relatório Mensal",
+    "type": "pdf",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

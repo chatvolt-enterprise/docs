@@ -1,0 +1,39 @@
+---
+title: 'Datastores'
+description: 'Gerencie suas bases de conhecimento'
+---
+
+Datastores são bases de conhecimento que alimentam seus agentes com informações específicas. Você pode fazer upload de arquivos, sincronizar fontes externas e consultar os dados programaticamente.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/datastores` | Listar datastores |
+| `POST` | `/datastores` | Criar datastore |
+| `GET` | `/datastores/{id}` | Obter datastore |
+| `PATCH` | `/datastores/{id}` | Atualizar datastore |
+| `DELETE` | `/datastores/{id}` | Deletar datastore |
+| `POST` | `/datastores/{id}/query` | Consultar knowledge base |
+| `POST` | `/datastores/{id}/upsert` | Inserir/atualizar dados |
+
+## Fontes de Dados (Datasources)
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/datasources/list` | Listar fontes |
+| `POST` | `/datasources` | Criar fonte |
+| `GET` | `/datasources/{id}` | Obter fonte |
+| `DELETE` | `/datasources/{id}` | Deletar fonte |
+
+## Exemplo: Consultar Datastore
+
+```bash
+curl -X POST https://api.chatvolt.ai/datastores/{datastoreId}/query \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Qual a política de devolução?",
+    "topK": 3
+  }'
+```

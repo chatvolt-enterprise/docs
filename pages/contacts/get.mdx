@@ -1,0 +1,31 @@
+---
+title: 'Obter Contato'
+description: 'Recupere os detalhes de um contato'
+openapi: 'GET /contacts/{id}'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/contacts/{contactId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "contact_abc123",
+    "email": "joao@exemplo.com",
+    "name": "João Silva",
+    "phone": "5511988887777",
+    "organizationName": "Empresa XYZ",
+    "notes": "Cliente desde 2025",
+    "createdAt": "2026-07-23T10:00:00Z",
+    "updatedAt": "2026-07-23T12:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

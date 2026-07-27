@@ -1,0 +1,48 @@
+---
+title: 'Enviar Mensagem'
+description: 'Envie uma mensagem para uma conversa por canal'
+openapi: 'POST /conversation/message/{type}/{value}'
+---
+
+Envia uma mensagem para uma conversa em um canal específico (WhatsApp, Telegram, webchat, etc.).
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversation/message/whatsapp/5511988887777 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Olá! Como posso ajudar?",
+    "type": "text"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `type` | Tipo do canal (`whatsapp`, `telegram`, `instagram`, `webchat`, etc.) |
+| `value` | Identificador do destinatário (telefone, user ID, etc.) |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `message` | string |  | Conteúdo da mensagem |
+| `type` | string |  | Tipo da mensagem (`text`, `image`, `file`). Padrão: `text` |
+| `agentId` | string |  | ID do agente para processar a resposta |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "msg_abc123",
+    "conversationId": "conv_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```

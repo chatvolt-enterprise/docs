@@ -1,0 +1,30 @@
+---
+title: 'Listar Datastores'
+description: 'Lista detalhada dos datastores'
+openapi: 'GET /datastores/list'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/datastores/list \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "ds_abc123",
+      "name": "Base de Conhecimento",
+      "description": "Documentos da empresa",
+      "documentCount": 42,
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,32 @@
+---
+title: 'Enviar Localização'
+description: 'Envie ou solicite localização pelo WhatsApp'
+openapi: 'POST /messages/interactive/send-location'
+---
+
+## Enviar Localização
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-location \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "latitude": -23.5505,
+    "longitude": -46.6333,
+    "name": "Escritório Chatvolt",
+    "address": "São Paulo, SP"
+  }'
+```
+
+## Solicitar Localização
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/location-request \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "bodyText": "Compartilhe sua localização"
+  }'
+```

@@ -1,0 +1,58 @@
+---
+title: 'Autenticação'
+description: 'Como obter e usar sua chave de API'
+---
+
+Todas as requisições à API do Chatvolt exigem autenticação via **Bearer Token** no header `Authorization`.
+
+```bash
+Authorization: Bearer SUA_CHAVE_API
+```
+
+## Obtendo sua Chave de API
+
+1. Acesse [app.chatvolt.ai/settings/api-keys](https://app.chatvolt.ai/settings/api-keys)
+2. Clique em **Criar chave**
+3. Dê um nome descritivo (ex: "Produção", "Homologação")
+4. Copie a chave gerada e guarde em local seguro
+
+<Warning>
+  A chave de API é exibida apenas uma vez. Se perdê-la, será necessário revogar e criar uma nova.
+</Warning>
+
+## Boas Práticas
+
+<Card>
+  * Armazene a chave em **variáveis de ambiente**, nunca no código
+  * Use chaves diferentes para cada ambiente (dev, staging, production)
+  * Revogue imediatamente chaves que vazaram ou não são mais usadas
+  * A Chatvolt **nunca** solicitará sua chave por email ou mensagem
+</Card>
+
+## Exemplo de Uso
+
+```bash
+# Lendo a chave de variável de ambiente
+curl -X GET https://api.chatvolt.ai/agents \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+```javascript
+// JavaScript (Node.js)
+const response = await fetch('https://api.chatvolt.ai/agents', {
+  headers: {
+    'Authorization': `Bearer ${process.env.CHATVOLT_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+});
+const data = await response.json();
+```
+
+## Erros de Autenticação
+
+| Código | Significado |
+|--------|-------------|
+| `401` | Chave não enviada, inválida ou revogada |
+| `403` | Chave não tem permissão para este recurso |
+
+[Veja todos os códigos de erro](/errors).

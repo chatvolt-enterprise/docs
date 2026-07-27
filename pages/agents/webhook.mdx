@@ -1,0 +1,38 @@
+---
+title: 'Webhook do Agente'
+description: 'Configure webhooks para eventos do agente'
+openapi: 'POST /agents/{id}/webhook'
+---
+
+Configura uma URL para receber notificações de eventos do agente (nova mensagem, conversa criada, etc.).
+
+## Request
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/agents/{agentId}/webhook \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "webhookUrl": "https://meusistema.com/webhook"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `webhookUrl` | string |  | URL para receber os eventos |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "agent_abc123",
+    "webhookUrl": "https://meusistema.com/webhook",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

@@ -1,0 +1,103 @@
+---
+title: 'Integrações'
+description: 'Envie mensagens por canais externos (Z-API, Zapper, Twilio, Mercado Livre)'
+---
+
+Endpoints para enviar mensagens através de provedores de terceiros integrados ao Chatvolt.
+
+## Z-API (WhatsApp)
+
+Envia mensagem WhatsApp via provedor Z-API.
+
+```bash
+curl -X POST https://api.chatvolt.ai/zapi/{instanceId}/{contactPhone}/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Olá! Como posso ajudar?"
+  }'
+```
+
+| Parâmetro | Local | Descrição |
+|-----------|-------|-----------|
+| `instanceId` | path | ID da instância Z-API |
+| `contactPhone` | path | Telefone do destinatário (com DDI) |
+
+## Zapper
+
+Envia mensagem via Zapper.
+
+```bash
+curl -X POST https://api.chatvolt.ai/zapper/instances/{instanceId}/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "message": "Olá! Como posso ajudar?"
+  }'
+```
+
+## Twilio (SMS)
+
+Envia SMS via Twilio.
+
+```bash
+curl -X POST https://api.chatvolt.ai/twilio/{ownerPhone}/{contactPhone}/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Seu código de verificação é 1234"
+  }'
+```
+
+| Parâmetro | Local | Descrição |
+|-----------|-------|-----------|
+| `ownerPhone` | path | Número do remetente (seu número Twilio) |
+| `contactPhone` | path | Telefone do destinatário |
+
+## Mercado Livre
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/mercadolivre/get-products` | Listar produtos (legado) |
+| `GET` | `/mercadolivre/products` | Listar produtos |
+| `GET` | `/mercadolivre/products/count` | Contar produtos |
+| `POST` | `/mercadolivre/products/sync` | Sincronizar produtos do ML |
+
+### Listar Produtos
+
+```bash
+curl -X GET https://api.chatvolt.ai/mercadolivre/products \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Contar Produtos
+
+```bash
+curl -X GET https://api.chatvolt.ai/mercadolivre/products/count \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Sincronizar Produtos
+
+```bash
+curl -X POST https://api.chatvolt.ai/mercadolivre/products/sync \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Resposta (produtos)
+
+```json
+{
+  "data": [
+    {
+      "id": "MLB123456",
+      "title": "Produto Exemplo",
+      "price": 99.90,
+      "status": "active"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

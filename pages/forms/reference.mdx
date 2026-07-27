@@ -1,0 +1,56 @@
+---
+title: 'Formulários'
+description: 'Capture leads e dados com formulários embedados'
+openapi: 'POST /forms/{formId}/chat'
+---
+
+Forms são formulários customizáveis que você cria no dashboard e embeda no seu site como widget. Quando alguém preenche, a submissão pode ser enviada para um agente ou para o CRM.
+
+> O **CRUD de forms** (criar, listar, editar) é feito pelo dashboard em `app.chatvolt.ai/forms`.  
+> A API pública expõe apenas o **endpoint de submissão** usado pelo widget.
+
+## Endpoint Público
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `POST` | `/forms/{formId}/chat` | Enviar submissão do form para o agente |
+
+## Submeter Formulário
+
+Este endpoint é chamado pelo widget quando o usuário preenche e envia o form. Pode ser usado também por integrações externas.
+
+```bash
+curl -X POST https://api.chatvolt.ai/forms/{formId}/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "form": {
+      "fields": [
+        { "label": "Nome", "value": "João Silva" },
+        { "label": "Email", "value": "joao@email.com" },
+        { "label": "Telefone", "value": "5511988887777" }
+      ]
+    }
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `form.fields` | array |  | Lista de campos preenchidos |
+| `form.fields[].label` | string |  | Nome do campo |
+| `form.fields[].value` | string |  | Valor preenchido |
+
+### Resposta
+
+```json
+{
+  "data": {
+    "submissionId": "sub_abc123",
+    "conversationId": "conv_abc123",
+    "message": "Obrigado! Em breve entraremos em contato."
+  },
+  "success": true,
+  "error": null
+}
+```

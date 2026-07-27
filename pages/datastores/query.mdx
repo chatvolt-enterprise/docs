@@ -1,0 +1,44 @@
+---
+title: 'Consultar Datastore'
+description: 'Faça uma consulta na base de conhecimento'
+openapi: 'POST /datastores/{id}/query'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/datastores/{datastoreId}/query \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Qual a política de devolução?",
+    "topK": 5
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `query` | string |  | Texto da consulta |
+| `topK` | number |  | Número de resultados (padrão: 3, máx: 20) |
+| `filter` | object |  | Filtros para refinar a busca |
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "text": "A política de devolução permite...",
+      "score": 0.95,
+      "source": "politica-devolucao.pdf",
+      "metadata": {
+        "page": 2
+      }
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

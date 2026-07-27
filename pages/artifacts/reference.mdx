@@ -1,0 +1,37 @@
+---
+title: 'Artefatos'
+description: 'Gerencie artefatos, mídia e categorias'
+---
+
+Artefatos são conteúdos gerados pelos agentes (imagens, documentos, relatórios) que podem ser armazenados, categorizados e pesquisados.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/artifacts` | Listar artefatos |
+| `POST` | `/artifacts` | Criar artefato |
+| `GET` | `/artifacts/{id}` | Obter artefato |
+| `PUT` | `/artifacts/{id}` | Atualizar artefato |
+| `DELETE` | `/artifacts/{id}` | Deletar artefato |
+| `POST` | `/artifacts/search` | Buscar artefatos |
+| `GET` | `/artifacts/media` | Listar mídias |
+| `POST` | `/artifacts/media/upload` | Upload de mídia |
+| `DELETE` | `/artifacts/media/{id}` | Deletar mídia |
+| `GET` | `/artifact-categories` | Listar categorias |
+| `POST` | `/artifact-categories` | Criar categoria |
+| `GET` | `/artifact-categories/{id}` | Obter categoria |
+| `PUT` | `/artifact-categories/{id}` | Atualizar categoria |
+| `DELETE` | `/artifact-categories/{id}` | Deletar categoria |
+
+## Exemplo: Buscar Artefatos
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifacts/search \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "relatório mensal",
+    "limit": 10
+  }'
+```

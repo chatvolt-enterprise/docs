@@ -1,0 +1,49 @@
+---
+title: 'Variáveis de Conversa'
+description: 'Gerencie variáveis customizadas das conversas'
+openapi: 'POST /variables'
+---
+
+Variáveis permitem armazenar dados contextuais em uma conversa (ex: nome do cliente, número do pedido, etc.).
+
+## Criar/Atualizar Variável
+
+```bash
+curl -X POST https://api.chatvolt.ai/variables \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "varName": "nome_cliente",
+    "varValue": "João Silva"
+  }'
+```
+
+## Listar Variáveis
+
+```bash
+curl -X GET https://api.chatvolt.ai/variables/{conversationId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Obter Variável Específica
+
+```bash
+curl -X GET https://api.chatvolt.ai/variables/{conversationId}/nome_cliente \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Deletar Variável
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/variables/{conversationId}/nome_cliente \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string |  | ID da conversa |
+| `varName` | string |  | Nome da variável (máx: 20 caracteres) |
+| `varValue` | string |  | Valor da variável (máx: 100 caracteres) |

@@ -1,0 +1,31 @@
+---
+title: 'Obter Agente'
+description: 'Recupere os detalhes de um agente'
+openapi: 'GET /agents/{id}'
+---
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/agents/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "agent_abc123",
+    "name": "Meu Agente",
+    "description": "Agente de suporte",
+    "modelName": "gpt-4o",
+    "temperature": 0.7,
+    "visibility": "private",
+    "createdAt": "2026-07-23T10:00:00Z",
+    "updatedAt": "2026-07-23T12:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

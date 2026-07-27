@@ -1,0 +1,41 @@
+---
+title: 'Enviar CTA'
+description: 'Envie mensagem com call-to-action pelo WhatsApp'
+openapi: 'POST /messages/interactive/send-cta'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-cta \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "bodyText": "Acesse nosso site!",
+    "ctaUrl": "https://chatvolt.ai",
+    "ctaText": "Saiba mais"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `to` | string |  | Telefone do destinatário |
+| `bodyText` | string |  | Texto da mensagem |
+| `ctaUrl` | string |  | URL do CTA |
+| `ctaText` | string |  | Texto do botão |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "wamid_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```

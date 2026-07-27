@@ -1,0 +1,31 @@
+---
+title: 'Atualizar Artefato'
+description: 'Atualize as informações de um artefato'
+openapi: 'PUT /artifacts/{id}'
+---
+
+## Request
+
+```bash
+curl -X PUT https://api.chatvolt.ai/artifacts/{artifactId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Relatório Atualizado",
+    "categoryId": "cat_xyz"
+  }'
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "art_abc123",
+    "title": "Relatório Atualizado",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

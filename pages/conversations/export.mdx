@@ -1,0 +1,42 @@
+---
+title: 'Exportar Conversas'
+description: 'Exporte conversas individuais ou em lote'
+openapi: 'GET /conversations/{conversationId}/export, GET /conversations/export, GET /conversations/history'
+---
+
+## Exportar Conversa Específica
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/{conversationId}/export \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Exportar em Lote
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/export \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "format": "json",
+    "dateFrom": "2026-01-01",
+    "dateTo": "2026-07-23",
+    "status": "closed"
+  }'
+```
+
+### Parâmetros (lote)
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `format` | string |  | `json` ou `csv` (padrão: json) |
+| `dateFrom` | string |  | Data inicial (ISO) |
+| `dateTo` | string |  | Data final (ISO) |
+| `status` | string |  | Filtrar por status |
+
+## Histórico de Conversas
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/history \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```

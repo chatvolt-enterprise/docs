@@ -1,0 +1,41 @@
+---
+title: 'Conversas'
+description: 'Gerencie conversas e mensagens dos seus agentes'
+---
+
+Conversas agrupam as trocas de mensagens entre usuários e agentes. Cada conversa pertence a um canal (WhatsApp, Telegram, Webchat, etc.) e contém o histórico completo de mensagens.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/conversations` | Listar conversas |
+| `GET` | `/conversation/{id}` | Obter conversa |
+| `DELETE` | `/conversation/{id}` | Deletar conversa |
+| `GET` | `/conversation/{id}/messages/{count}` | Obter mensagens |
+| `POST` | `/conversation/message/{type}/{value}` | Enviar mensagem |
+| `POST` | `/conversation/{id}/assign` | Atribuir conversa |
+| `POST` | `/conversation/{id}/unassign` | Desatribuir |
+| `POST` | `/conversation/{id}/set-status` | Definir status |
+| `POST` | `/conversation/{id}/set-priority` | Definir prioridade |
+| `POST` | `/conversation/{id}/set-ai-enabled` | Ativar/desativar IA |
+
+## Variáveis de Conversa
+
+Cada conversa pode ter variáveis customizadas para armazenar dados contextuais.
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `POST` | `/variables` | Criar/atualizar variável |
+| `GET` | `/variables/{id}` | Listar variáveis da conversa |
+| `GET` | `/variables/{id}/{varName}` | Obter variável |
+| `DELETE` | `/variables/{id}/{varName}` | Deletar variável |
+
+## Notas
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/conversation/{id}/notes` | Listar notas |
+| `POST` | `/conversation/{id}/notes` | Criar nota |
+| `PUT` | `/conversation/{id}/notes/{noteId}` | Atualizar nota |
+| `DELETE` | `/conversation/{id}/notes/{noteId}` | Deletar nota |

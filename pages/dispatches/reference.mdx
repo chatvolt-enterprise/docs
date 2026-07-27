@@ -1,0 +1,37 @@
+---
+title: 'Disparos (Dispatches)'
+description: 'Gerencie disparos em massa de mensagens'
+---
+
+Dispatches permitem enviar mensagens em massa para listas de contatos através de canais como WhatsApp e Telegram.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/dispatches` | Listar disparos |
+| `POST` | `/dispatches` | Criar disparo |
+| `GET` | `/dispatches/{id}` | Obter disparo |
+| `DELETE` | `/dispatches/{id}` | Deletar disparo |
+| `POST` | `/dispatches/{id}/populate-queue` | Popular fila do disparo |
+| `GET` | `/dispatches/contacts` | Listar contatos do disparo |
+| `POST` | `/dispatches/contacts` | Adicionar contatos |
+| `GET` | `/dispatches/contacts/lists` | Listar listas de contatos |
+| `POST` | `/dispatches/contacts/lists` | Criar lista |
+| `PUT` | `/dispatches/contacts/lists` | Atualizar lista |
+| `DELETE` | `/dispatches/contacts/lists` | Deletar lista |
+| `POST` | `/dispatches/contacts/link` | Vincular contato a disparo |
+
+## Exemplo: Criar Disparo
+
+```bash
+curl -X POST https://api.chatvolt.ai/dispatches \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Campanha Julho",
+    "channel": "whatsapp",
+    "message": "Olá! Temos uma promoção especial para você.",
+    "agentId": "agent_abc123"
+  }'
+```

@@ -1,0 +1,44 @@
+---
+title: 'Criar Disparo'
+description: 'Crie um novo disparo em massa'
+openapi: 'POST /dispatches'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/dispatches \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Campanha Julho",
+    "channel": "whatsapp",
+    "message": "Olá! Temos uma promoção especial.",
+    "agentId": "agent_abc123"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Nome da campanha |
+| `channel` | string |  | Canal (`whatsapp`, `telegram`, `email`) |
+| `message` | string |  | Texto da mensagem |
+| `agentId` | string |  | ID do agente para processar respostas |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "dispatch_abc123",
+    "name": "Campanha Julho",
+    "channel": "whatsapp",
+    "status": "draft",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```

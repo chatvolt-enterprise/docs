@@ -1,0 +1,28 @@
+---
+title: 'Popular Fila do Disparo'
+description: 'Popule a fila de envio de um disparo'
+openapi: 'POST /dispatches/{id}/populate-queue'
+---
+
+Após configurar o disparo e adicionar contatos, use este endpoint para popular a fila de envio.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/dispatches/{dispatchId}/populate-queue \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "dispatch_abc123",
+    "queueSize": 150,
+    "status": "queued"
+  },
+  "success": true,
+  "error": null
+}
+```

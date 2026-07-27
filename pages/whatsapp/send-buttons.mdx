@@ -1,0 +1,43 @@
+---
+title: 'Enviar Botões Interativos'
+description: 'Envie mensagens com botões pelo WhatsApp'
+openapi: 'POST /messages/interactive/send-buttons'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "bodyText": "Escolha uma opção:",
+    "buttons": [
+      { "id": "btn_sim", "title": "Sim" },
+      { "id": "btn_nao", "title": "Não" }
+    ]
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `to` | string |  | Telefone do destinatário |
+| `bodyText` | string |  | Texto da mensagem |
+| `buttons` | array |  | Lista de botões (máx: 3) |
+| `footerText` | string |  | Texto do rodapé |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "wamid_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```

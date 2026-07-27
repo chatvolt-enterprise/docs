@@ -1,0 +1,57 @@
+---
+title: 'Quickstart'
+description: 'Faça sua primeira chamada à API em 5 minutos'
+---
+
+Vamos fazer uma consulta a um agente. Você vai precisar de:
+
+1. Uma **conta no Chatvolt** (crie em [app.chatvolt.ai](https://app.chatvolt.ai))
+2. Uma **chave de API** ([saiba como obter](/authentication))
+3. Um **agente criado** (crie em [app.chatvolt.ai/agents](https://app.chatvolt.ai/agents))
+
+## 1. Consultar um Agente
+
+Substitua `{agentId}` pelo ID do seu agente e `{apiKey}` pela sua chave:
+
+```bash
+curl -X POST https://api.chatvolt.ai/agents/{agentId}/query \
+  -H "Authorization: Bearer {apiKey}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Qual é o horário de funcionamento?",
+    "streaming": false
+  }'
+```
+
+**Resposta:**
+
+```json
+{
+  "data": {
+    "content": "Nosso horário de funcionamento é de segunda a sexta, das 9h às 18h.",
+    "conversationId": "conv_abc123"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## 2. Enviar Mensagem em uma Conversa
+
+Com o `conversationId` da resposta anterior, você pode continuar a conversa:
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversation/message/conv_abc123 \
+  -H "Authorization: Bearer {apiKey}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "E aos sábados?",
+    "type": "text"
+  }'
+```
+
+## 3. Próximos Passos
+
+- [Documentação completa de Agentes](/agents/reference)
+- [Gerenciar Conversas](/conversations/reference)
+- [Trabalhar com Contatos](/contacts/reference)

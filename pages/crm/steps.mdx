@@ -1,0 +1,69 @@
+---
+title: 'Etapas do CRM'
+description: 'Gerencie etapas (steps) do Flux CRM'
+openapi: 'GET /crm/step, POST /crm/step, POST /crm/step/move, POST /crm/step/conversation'
+---
+
+## Listar Etapas
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/step \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Criar Etapa
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scenarioId": 1,
+    "name": "Lead Qualificado",
+    "description": "Lead com potencial de compra",
+    "stepOrder": 2
+  }'
+```
+
+## Adicionar Conversa à Etapa
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step/conversation \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "stepId": 2
+  }'
+```
+
+## Mover Conversa entre Etapas
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step/move \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "fromStepId": 1,
+    "toStepId": 2
+  }'
+```
+
+## Resposta (Listar)
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "scenarioId": 1,
+      "name": "Lead Qualificado",
+      "description": "Lead com potencial",
+      "stepOrder": 2
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

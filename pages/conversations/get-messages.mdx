@@ -1,0 +1,44 @@
+---
+title: 'Listar Mensagens'
+description: 'Recupere as mensagens de uma conversa'
+openapi: 'GET /conversation/{conversationId}/messages/{count}'
+---
+
+Recupera o histórico de mensagens de uma conversa.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversation/{conversationId}/messages/50 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Parâmetros
+
+| Parâmetro | Local | Descrição |
+|-----------|-------|-----------|
+| `conversationId` | path | ID da conversa |
+| `count` | path | Número de mensagens a retornar (máx: 100) |
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "msg_001",
+      "role": "user",
+      "content": "Qual o horário?",
+      "createdAt": "2026-07-23T10:00:00Z"
+    },
+    {
+      "id": "msg_002",
+      "role": "assistant",
+      "content": "Funcionamos das 9h às 18h.",
+      "createdAt": "2026-07-23T10:00:01Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```

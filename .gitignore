@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.cache/
+dist/
+.env
+*.log
+.DS_Store
+.ralph/*.jsonl

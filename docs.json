@@ -1,0 +1,227 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "theme": "mint",
+  "name": "Chatvolt API",
+  "logo": {
+    "dark": "/logo/dark.png",
+    "light": "/logo/light.png"
+  },
+  "favicon": "/favicon.png",
+
+  "colors": {
+    "primary": "#6132A9",
+    "light": "#C69EFF",
+    "dark": "#6132A9"
+  },
+  "topbarLinks": [
+    {
+      "name": "Home",
+      "url": "https://chatvolt.ai/"
+    },
+    {
+      "name": "Dashboard",
+      "url": "https://app.chatvolt.ai/"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "API Keys",
+    "url": "https://app.chatvolt.ai/settings/api-keys"
+  },
+  "anchors": [
+    {
+      "name": "Comece Aqui",
+      "icon": "rocket",
+      "url": "pages/start/introduction"
+    },
+    {
+      "name": "Referência da API",
+      "icon": "rectangle-terminal",
+      "url": "pages/agents/reference"
+    },
+    {
+      "name": "Changelog",
+      "icon": "list-timeline",
+      "url": "pages/changelog/index"
+    },
+    {
+      "name": "support@chatvolt.ai",
+      "icon": "envelope",
+      "url": "mailto:support@chatvolt.ai"
+    }
+  ],
+  "navigation": {
+    "versions": [
+      {
+        "version": "v1",
+        "tag": "Current",
+        "tabs": [
+          {
+            "tab": "Comece Aqui",
+            "groups": [
+              {
+                "group": "Comece Aqui",
+                "pages": [
+                  "pages/start/introduction",
+                  "pages/start/quickstart",
+                  "pages/authentication",
+                  "pages/errors"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Agentes",
+                "pages": [
+                  "pages/agents/reference",
+                  "pages/agents/query",
+                  "pages/agents/create",
+                  "pages/agents/get",
+                  "pages/agents/update",
+                  "pages/agents/delete",
+                  "pages/agents/webhook",
+                  "pages/agents/blacklist",
+                  "pages/agents/whitelist",
+                  "pages/agents/templates"
+                ]
+              },
+              {
+                "group": "Conversas",
+                "pages": [
+                  "pages/conversations/reference",
+                  "pages/conversations/send-message",
+                  "pages/conversations/get-messages",
+                  "pages/conversations/get-by-id",
+                  "pages/conversations/delete",
+                  "pages/conversations/variables",
+                  "pages/conversations/tags",
+                  "pages/conversations/export",
+                  "pages/conversations/send-audio"
+                ]
+              },
+              {
+                "group": "Contatos",
+                "pages": [
+                  "pages/contacts/reference",
+                  "pages/contacts/create",
+                  "pages/contacts/get",
+                  "pages/contacts/variables"
+                ]
+              },
+              {
+                "group": "Datastores",
+                "pages": [
+                  "pages/datastores/reference",
+                  "pages/datastores/query",
+                  "pages/datastores/create",
+                  "pages/datastores/list",
+                  "pages/datastores/get",
+                  "pages/datastores/update",
+                  "pages/datastores/delete"
+                ]
+              },
+              {
+                "group": "Disparos (Dispatches)",
+                "pages": [
+                  "pages/dispatches/reference",
+                  "pages/dispatches/create",
+                  "pages/dispatches/list",
+                  "pages/dispatches/populate-queue"
+                ]
+              },
+              {
+                "group": "Artefatos",
+                "pages": [
+                  "pages/artifacts/reference",
+                  "pages/artifacts/search",
+                  "pages/artifacts/create",
+                  "pages/artifacts/list",
+                  "pages/artifacts/get",
+                  "pages/artifacts/update",
+                  "pages/artifacts/delete",
+                  "pages/artifacts/media",
+                  "pages/artifacts/categories"
+                ]
+              },
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "pages/whatsapp/reference",
+                  "pages/whatsapp/template-message",
+                  "pages/whatsapp/send-buttons",
+                  "pages/whatsapp/send-lists",
+                  "pages/whatsapp/send-cta",
+                  "pages/whatsapp/send-location"
+                ]
+              },
+              {
+                "group": "Flux CRM",
+                "pages": [
+                  "pages/crm/reference",
+                  "pages/crm/scenarios",
+                  "pages/crm/steps",
+                  "pages/crm/conversation-logs"
+                ]
+              },
+              {
+                "group": "Tags",
+                "pages": [
+                  "pages/tags/reference"
+                ]
+              },
+              {
+                "group": "Formulários",
+                "pages": [
+                  "pages/forms/reference"
+                ]
+              },
+              {
+                "group": "Integrações",
+                "pages": [
+                  "pages/integrations/reference"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "pages/webhooks/reference"
+                ]
+              },
+              {
+                "group": "OpenAPI",
+                "pages": [
+                  {
+                    "group": "Endpoints",
+                    "openapi": "openapi.yaml"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "pages": [
+              "pages/changelog/index"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "twitter": "https://twitter.com/chatvolt",
+    "instagram": "https://www.instagram.com/chatvolt",
+    "youtube": "http://www.youtube.com/channel/UCcykx3LviF5onaiM7_hKZNA?sub_confirmation=1",
+    "linkedin": "https://www.linkedin.com/company/chatvolt"
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
+  "seo": {
+    "indexHiddenPages": true
+  }
+}

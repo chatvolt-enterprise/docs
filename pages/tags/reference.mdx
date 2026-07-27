@@ -1,0 +1,59 @@
+---
+title: 'Tags'
+description: 'Gerencie tags para organizar conversas e contatos'
+openapi: 'GET /tags, POST /tags, POST /tags/delete-by-name, GET /tags/get-visible-tags'
+---
+
+Tags permitem categorizar conversas e contatos para filtragem e organização.
+
+## Endpoints
+
+| Método | Path | Descrição |
+|--------|------|-----------|
+| `GET` | `/tags` | Listar tags da organização |
+| `POST` | `/tags` | Criar tag |
+| `DELETE` | `/tags/delete-by-name` | Deletar tag por nome |
+| `GET` | `/tags/get-visible-tags` | Listar tags visíveis |
+
+## Listar Tags
+
+```bash
+curl -X GET https://api.chatvolt.ai/tags \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Criar Tag
+
+```bash
+curl -X POST https://api.chatvolt.ai/tags \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "urgente",
+    "color": "red"
+  }'
+```
+
+## Deletar Tag por Nome
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/tags/delete-by-name \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "urgente"
+  }'
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    { "id": "tag_abc123", "name": "urgente", "color": "red" },
+    { "id": "tag_def456", "name": "suporte", "color": "blue" }
+  ],
+  "success": true,
+  "error": null
+}
+```

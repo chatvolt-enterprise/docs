@@ -1,0 +1,48 @@
+---
+title: 'Enviar Template WhatsApp'
+description: 'Envie uma mensagem template pelo WhatsApp'
+openapi: 'POST /whatsapp/{phoneNumberId}/template-message'
+---
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "templateName": "boas_vindas",
+    "language": "pt_BR",
+    "components": [
+      {
+        "type": "body",
+        "parameters": [
+          { "type": "text", "text": "João" }
+        ]
+      }
+    ]
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `to` | string |  | Telefone do destinatário |
+| `templateName` | string |  | Nome do template aprovado |
+| `language` | string |  | Código do idioma (`pt_BR`, `en_US`) |
+| `components` | array |  | Parâmetros do template |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "wamid_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```

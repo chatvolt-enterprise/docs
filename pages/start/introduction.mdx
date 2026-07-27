@@ -1,0 +1,72 @@
+---
+title: 'Introdução'
+description: 'Bem-vindo à API do Chatvolt'
+---
+
+A API do Chatvolt permite que você integre seus sistemas com Agentes de IA, gerencie conversas, contatos, bases de conhecimento e muito mais.
+
+## URL Base
+
+```
+https://api.chatvolt.ai
+```
+
+## Formato das Requisições
+
+Todas as requisições devem usar o header `Content-Type: application/json`.
+
+```bash
+curl -X GET https://api.chatvolt.ai/agents \
+  -H "Authorization: Bearer SUA_CHAVE_API" \
+  -H "Content-Type: application/json"
+```
+
+## Formato das Respostas
+
+As respostas seguem o formato:
+
+```json
+{
+  "data": { ... },
+  "success": true,
+  "error": null
+}
+```
+
+Em caso de erro:
+
+```json
+{
+  "data": null,
+  "success": false,
+  "error": {
+    "message": "Descrição do erro",
+    "code": "ERROR_CODE"
+  }
+}
+```
+
+## Autenticação
+
+Todas as requisições exigem autenticação via **Bearer Token**. [Saiba como obter sua chave](/authentication).
+
+## Rate Limits
+
+A API possui limites de requisição para garantir estabilidade. [Veja detalhes](/errors).
+
+## Próximos Passos
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/pages/start/quickstart">
+    Faça sua primeira chamada em 5 minutos
+  </Card>
+  <Card title="Autenticação" icon="key" href="/pages/authentication">
+    Saiba como obter e usar sua chave de API
+  </Card>
+  <Card title="Agentes" icon="hat-wizard" href="/pages/agents/reference">
+    Consulte e gerencie seus agentes
+  </Card>
+  <Card title="Conversas" icon="comment" href="/pages/conversations/reference">
+    Envie e receba mensagens
+  </Card>
+</CardGroup>

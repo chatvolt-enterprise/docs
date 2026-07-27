@@ -1,0 +1,31 @@
+---
+title: 'Atualizar Datastore'
+description: 'Atualize as configurações de um datastore'
+openapi: 'PATCH /datastores/{id}'
+---
+
+## Request
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/datastores/{datastoreId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Base Atualizada",
+    "description": "Nova descrição"
+  }'
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "ds_abc123",
+    "name": "Base Atualizada",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
