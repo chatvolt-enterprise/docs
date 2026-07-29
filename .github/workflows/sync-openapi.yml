@@ -19,9 +19,9 @@ on:
   workflow_dispatch:
     inputs:
       api_url:
-        description: "Custom API base URL (default: https://chatvolt.ai)"
+        description: "Custom API base URL (default: https://app.chatvolt.ai)"
         required: false
-        default: "https://chatvolt.ai"
+        default: "https://app.chatvolt.ai"
 
 jobs:
   sync:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Fetch latest OpenAPI spec
         run: |
-          BASE="${{ github.event.inputs.api_url || 'https://chatvolt.ai' }}"
+          BASE="${{ github.event.inputs.api_url || 'https://app.chatvolt.ai' }}"
           echo "BASE=$BASE" >> $GITHUB_ENV
           curl -sSf "$BASE/openapi.yaml" -o openapi.yaml.new \
             || curl -sSf "$BASE/api/docs/openai.yaml" -o openapi.yaml.new \
