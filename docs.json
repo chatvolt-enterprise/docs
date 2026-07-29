@@ -2,6 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "theme": "mint",
   "name": "Chatvolt API",
+  "description": "Documentação oficial da API do Chatvolt — plataforma no-code para construir Agentes de IA com WhatsApp, Telegram, Instagram e mais.",
+
   "logo": {
     "dark": "/logo/dark.png",
     "light": "/logo/light.png"
@@ -13,6 +15,7 @@
     "light": "#C69EFF",
     "dark": "#6132A9"
   },
+
   "topbarLinks": [
     {
       "name": "Home",
@@ -27,6 +30,7 @@
     "name": "API Keys",
     "url": "https://app.chatvolt.ai/settings/api-keys"
   },
+
   "anchors": [
     {
       "name": "Comece Aqui",
@@ -44,11 +48,27 @@
       "url": "pages/changelog/index"
     },
     {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/chatvolt"
+    },
+    {
       "name": "support@chatvolt.ai",
       "icon": "envelope",
       "url": "mailto:support@chatvolt.ai"
     }
   ],
+
+  "search": {
+    "prompt": "Pesquise na documentação...",
+    "boost": {
+      "pages/start/quickstart.mdx": 2,
+      "pages/agents/query.mdx": 2,
+      "pages/authentication.mdx": 1.5,
+      "pages/start/introduction.mdx": 1.5
+    }
+  },
+
   "navigation": {
     "versions": [
       {
@@ -204,18 +224,31 @@
       }
     ]
   },
+
   "footerSocials": {
+    "discord": "https://discord.gg/chatvolt",
     "twitter": "https://twitter.com/chatvolt",
     "instagram": "https://www.instagram.com/chatvolt",
     "youtube": "http://www.youtube.com/channel/UCcykx3LviF5onaiM7_hKZNA?sub_confirmation=1",
     "linkedin": "https://www.linkedin.com/company/chatvolt"
   },
+
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true,
     "raiseIssue": true
   },
+
   "seo": {
-    "indexHiddenPages": true
+    "indexHiddenPages": true,
+    "title": "Chatvolt API — Documentação Oficial",
+    "description": "Documentação oficial da API do Chatvolt. Aprenda a integrar Agentes de IA, WhatsApp, Telegram, Instagram e automatizar conversas com nossa plataforma no-code.",
+    "ogImage": "/favicon.png"
+  },
+
+  "metadata": {
+    "title": "Chatvolt API — Documentação Oficial",
+    "description": "Documentação oficial da API do Chatvolt. Aprenda a integrar Agentes de IA, WhatsApp, Telegram, Instagram e automatizar conversas com nossa plataforma no-code.",
+    "keywords": "chatvolt, api, documentação, ia, agente, whatsapp, telegram, instagram, chatbot, no-code"
   }
 }
