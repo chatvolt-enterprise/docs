@@ -1,0 +1,39 @@
+---
+title: 'Atribuir Conversa'
+openapi: 'POST /conversations/{conversationId}/assign'
+---
+
+Atribui uma conversa a um usuário da organização.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/assign \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assigneeId": "usr_123456"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa a ser atribuída |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `assigneeId` | string |  | ID do usuário responsável |
+| `force` | boolean |  | Força a atribuição mesmo se já houver responsável |
+
+## Response
+
+```json
+{
+  "success": true,
+  "message": "Conversation assigned successfully."
+}
+```

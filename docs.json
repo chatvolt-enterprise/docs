@@ -115,7 +115,14 @@
                   "pages/conversations/get-messages",
                   "pages/conversations/get-by-id",
                   "pages/conversations/delete",
+                  "pages/conversations/assign",
+                  "pages/conversations/unassign",
+                  "pages/conversations/set-ai-enabled",
+                  "pages/conversations/set-priority",
+                  "pages/conversations/update-status",
+                  "pages/conversations/message-register",
                   "pages/conversations/variables",
+                  "pages/conversations/notes",
                   "pages/conversations/tags",
                   "pages/conversations/export",
                   "pages/conversations/send-audio"
@@ -170,10 +177,14 @@
                 "pages": [
                   "pages/whatsapp/reference",
                   "pages/whatsapp/template-message",
+                  "pages/whatsapp/list-templates",
+                  "pages/whatsapp/create-template",
                   "pages/whatsapp/send-buttons",
                   "pages/whatsapp/send-lists",
                   "pages/whatsapp/send-cta",
-                  "pages/whatsapp/send-location"
+                  "pages/whatsapp/send-location",
+                  "pages/whatsapp/send-contact",
+                  "pages/whatsapp/location-request"
                 ]
               },
               {
@@ -194,7 +205,11 @@
               {
                 "group": "Integrações",
                 "pages": [
-                  "pages/integrations/reference"
+                  "pages/integrations/reference",
+                  "pages/integrations/zapi",
+                  "pages/integrations/zapper",
+                  "pages/integrations/twilio",
+                  "pages/integrations/mercadolivre"
                 ]
               },
               {

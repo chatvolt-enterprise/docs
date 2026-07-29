@@ -1,0 +1,28 @@
+---
+title: 'Listar Templates Meta'
+openapi: 'GET /whatsapp/templates'
+---
+
+Lista todos os templates de mensagem da conta WhatsApp Business associada.
+
+## Request
+
+```bash
+curl https://api.chatvolt.ai/whatsapp/templates \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "templates": [
+    {
+      "id": "123456",
+      "name": "boas_vindas",
+      "status": "approved",
+      "category": "MARKETING"
+    }
+  ]
+}
+```

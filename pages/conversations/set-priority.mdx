@@ -1,0 +1,37 @@
+---
+title: 'Definir Prioridade'
+openapi: 'POST /conversations/{conversationId}/set-priority'
+---
+
+Define a prioridade de uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "priority": "high"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `priority` | string |  | Prioridade (`low`, `medium`, `high`) |
+
+## Response
+
+```json
+{
+  "success": true
+}
+```

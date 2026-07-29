@@ -1,0 +1,27 @@
+---
+title: 'Mercado Livre'
+openapi: 'GET /mercadolivre/get-products'
+---
+
+Obtém produtos do Mercado Livre integrados à plataforma.
+
+## Request
+
+```bash
+curl https://api.chatvolt.ai/mercadolivre/get-products \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Response
+
+```json
+{
+  "products": [
+    {
+      "id": "MLB123456",
+      "title": "Produto Exemplo",
+      "price": 99.90
+    }
+  ]
+}
+```

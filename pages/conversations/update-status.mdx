@@ -1,0 +1,37 @@
+---
+title: 'Atualizar Status'
+openapi: 'POST /conversations/{conversationId}/set-status'
+---
+
+Atualiza o status de uma conversa (aberta, resolvida, etc.).
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/set-status \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "resolved"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `status` | string |  | Novo status (`open`, `resolved`, `pending`) |
+
+## Response
+
+```json
+{
+  "success": true
+}
+```

@@ -1,0 +1,24 @@
+---
+title: 'Z-API'
+openapi: 'POST /zapi/{instanceId}/{contactPhone}/message'
+---
+
+Envia uma mensagem texto e/ou anexos via Z-API.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/zapi/inst_123/5511988887777/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Olá! Mensagem enviada via Z-API"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `instanceId` | ID da instância Z-API |
+| `contactPhone` | Telefone do destinatário |

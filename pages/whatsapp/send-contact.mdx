@@ -1,0 +1,30 @@
+---
+title: 'Enviar Contato'
+openapi: 'POST /messages/interactive/send-contact'
+---
+
+Envia um ou mais cartões de contato. Suportado em WhatsApp, Z-API e ZapperAPI.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/messages/interactive/send-contact \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511988887777",
+    "contacts": [
+      {
+        "name": "Suporte Chatvolt",
+        "phone": "5511999998888"
+      }
+    ]
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `to` | string | Telefone do destinatário |
+| `contacts` | array | Lista de contatos para enviar |

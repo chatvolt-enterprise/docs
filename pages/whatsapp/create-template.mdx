@@ -1,0 +1,29 @@
+---
+title: 'Criar Template Meta'
+openapi: 'POST /whatsapp/templates'
+---
+
+Cria um novo template de mensagem na conta WhatsApp Business.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/whatsapp/templates \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "boas_vindas",
+    "category": "MARKETING",
+    "components": [...]
+  }'
+```
+
+## Response
+
+```json
+{
+  "id": "123456",
+  "name": "boas_vindas",
+  "status": "pending"
+}
+```

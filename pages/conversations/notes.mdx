@@ -1,0 +1,41 @@
+---
+title: 'Notas da Conversa'
+---
+
+Gerencie notas associadas a uma conversa.
+
+## Listar Notas
+
+```bash
+curl https://api.chatvolt.ai/conversations/123/notes \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Criar Nota
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/notes \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Cliente precisa de acompanhamento semanal"
+  }'
+```
+
+## Atualizar Nota
+
+```bash
+curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Conteúdo atualizado da nota"
+  }'
+```
+
+## Deletar Nota
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/conversations/123/notes/note_456 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```

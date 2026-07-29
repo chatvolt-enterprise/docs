@@ -1,0 +1,23 @@
+---
+title: 'Zapper API'
+openapi: 'POST /zapper/instances/{id}/message'
+---
+
+Envia uma mensagem texto e/ou anexos via Zapper HUB.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/zapper/instances/inst_123/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Olá! Mensagem enviada via Zapper"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `id` | ID da instância Zapper |

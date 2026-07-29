@@ -1,0 +1,37 @@
+---
+title: 'Ativar/Desativar IA'
+openapi: 'POST /conversations/{conversationId}/set-ai-enabled'
+---
+
+Ativa ou desativa a resposta automática da IA em uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "aiEnabled": false
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `aiEnabled` | boolean |  | `true` para ativar, `false` para desativar |
+
+## Response
+
+```json
+{
+  "success": true
+}
+```
