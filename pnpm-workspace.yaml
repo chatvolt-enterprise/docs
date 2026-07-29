@@ -1,5 +1,2 @@
-onlyBuiltDependencies:
-  - '@scarf/scarf'
-  - keytar
-  - puppeteer
-  - sharp
+packages:
+  - "."
