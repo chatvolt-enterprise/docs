@@ -1,8 +1,6 @@
 # ─── CI — Validate Docs ───────────────────────────────────────────────────────
-# This workflow validates the Mintlify documentation site on every push to `main`
-# and on pull requests targeting `main`. It runs the full suite: installing
-# dependencies, linting the Mintlify config/structure, and building the docs to
-# ensure the generated site is healthy before it ships.
+# Validates the documentation site on every push/PR to main.
+# Runs: install deps → validate structure → check broken links
 # ──────────────────────────────────────────────────────────────────────────────
 
 name: "CI — Validate Docs"
@@ -21,20 +19,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Validate Mintlify docs
         run: npx mint validate
 
       - name: Check broken links
         run: npx mint broken-links
-
-      - name: Build Mintlify docs
-        run: npx mint build

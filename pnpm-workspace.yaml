@@ -1,0 +1,5 @@
+allowBuilds:
+  '@scarf/scarf': set this to true or false
+  keytar: set this to true or false
+  puppeteer: set this to true or false
+  sharp: set this to true or false

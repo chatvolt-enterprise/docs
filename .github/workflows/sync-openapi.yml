@@ -1,26 +1,27 @@
 # ─── Sync OpenAPI Spec ────────────────────────────────────────────────────────
-# Fetches the latest OpenAPI 3.0.1 spec from the dynamic endpoint at
-# api.chatvolt.ai and commits any changes to the local openapi.yaml.
-#
-# This replaces manual maintenance of 12 static YAMLs (~7,950 lines) with
-# a single auto-generated spec that reflects the actual API routes.
+# Fetches the latest OpenAPI spec from the configured API and commits any
+# changes to the local openapi.yaml.
 #
 # Runs:
-#   - Daily at 06:00 UTC (spec may drift as the dashboard evolves)
 #   - On every push to main (catches deploy-time changes)
-#   - Manually via workflow_dispatch (for immediate sync)
+#   - Daily at 06:00 UTC (fallback for missed pushes)
+#   - Manually via workflow_dispatch — supports custom api_url for testing
+#     against dev/staging environments (e.g. your Cloudflare tunnel)
 # ──────────────────────────────────────────────────────────────────────────────
 
 name: "Sync OpenAPI Spec"
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
   push:
     branches: [main]
-    paths:
-      - ".github/workflows/sync-openapi.yml"
+  schedule:
+    - cron: "0 6 * * *"
   workflow_dispatch:
+    inputs:
+      api_url:
+        description: "Custom API base URL (default: https://api.chatvolt.ai)"
+        required: false
+        default: "https://api.chatvolt.ai"
 
 jobs:
   sync:
@@ -32,12 +33,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch latest OpenAPI spec from api.chatvolt.ai
+      - name: Fetch latest OpenAPI spec
         run: |
-          # Try the direct API route first, then fall back to aliases
-          curl -sSf https://api.chatvolt.ai/api/docs/openai.yaml -o openapi.yaml.new \
-            || curl -sSf https://api.chatvolt.ai/openapi.yaml -o openapi.yaml.new \
-            || curl -sSf https://api.chatvolt.ai/docs/openai.yaml -o openapi.yaml.new
+          BASE="${{ github.event.inputs.api_url || 'https://api.chatvolt.ai' }}"
+          echo "BASE=$BASE" >> $GITHUB_ENV
+          curl -sSf "$BASE/api/docs/openai.yaml" -o openapi.yaml.new \
+            || curl -sSf "$BASE/openapi.yaml" -o openapi.yaml.new \
+            || curl -sSf "$BASE/docs/openai.yaml" -o openapi.yaml.new
 
       - name: Check for changes
         id: diff
@@ -56,5 +58,5 @@ jobs:
           git config user.name "chatvolt-bot"
           git config user.email "bot@chatvolt.ai"
           git add openapi.yaml
-          git commit -m "chore: sync OpenAPI spec from api.chatvolt.ai [skip ci]"
+          git commit -m "chore: sync OpenAPI spec from $BASE [skip ci]"
           git push
