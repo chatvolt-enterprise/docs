@@ -13,4 +13,4 @@ lint:
 broken-links:
 	npx mint broken-links
 
-.PHONY: start dev install lint
+.PHONY: start dev install lint broken-links
