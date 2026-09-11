@@ -49,6 +49,6 @@ curl -X POST https://api.chatvolt.ai/agents \
 ## Dicas
 
 - **Leve a chave da API no header `Authorization`** em todas as chamadas — sem ela a API retorna `401 Unauthorized`.
-- **`name` é obrigatório**; os demais campos têm padrão do plano. Crie primeiro com o mínimo e ajuste depois via `PATCH /agents/{id}`.
+- **`name` é opcional** — quando omitido, o Chatvolt gera um nome automaticamente. Crie primeiro com o mínimo e ajuste depois via `PATCH /agents/{id}`.
 - **`temperature` entre 0.0 e 1.0**: valores mais baixos deixam as respostas mais previsíveis; mais altos, mais criativas.
 - O `id` retornado (`agent_abc123`) é usado nos endpoints de conversa, query e atualização.

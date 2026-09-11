@@ -14,7 +14,7 @@ curl -X POST https://api.chatvolt.ai/agent-blacklist \
   -H "Content-Type: application/json" \
   -d '{
     "agentId": "agent_abc123",
-    "phoneNumber": "5511999999999",
+    "userIdentify": "5511999999999",
     "reason": "Spam"
   }'
 ```
@@ -23,8 +23,8 @@ curl -X POST https://api.chatvolt.ai/agent-blacklist \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `agentId` | string |  | ID do agente |
-| `phoneNumber` | string |  | Número a bloquear |
+| `agentId` | string | ✓ | ID do agente |
+| `userIdentify` | string | ✓ | Identificador a bloquear (telefone ou ID de usuário) |
 | `reason` | string |  | Motivo do bloqueio |
 
 ## Resposta
@@ -45,6 +45,6 @@ curl -X POST https://api.chatvolt.ai/agent-blacklist \
 
 ## Dicas
 
-- **Números bloqueados não conseguem mais interagir** com o agente — use para spam e abuso.
-- Telefone sempre com DDI+DDD (ex.: `5511999999999`), sem `+` nem espaços.
+- **Identificadores bloqueados não conseguem mais interagir** com o agente — use para spam e abuso.
+- O `userIdentify` aceita telefone com DDI+DDD (ex.: `5511999999999`) ou o ID de usuário no seu sistema, sem `+` nem espaços.
 - O bloqueio vale por agente: para bloquear em todos, adicione em cada agente ou centralize os contatos bloqueados na organização.

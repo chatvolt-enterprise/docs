@@ -9,9 +9,20 @@ Remove um número da whitelist de um agente, revogando o acesso ao WhatsApp.
 ## Request
 
 ```bash
-curl -X DELETE https://api.chatvolt.ai/agent-whitelist-whatsapp/{agentId} \
-  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+curl -X DELETE https://api.chatvolt.ai/agent-whitelist-whatsapp/{wlId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "whatsappNumber": "5511988887777"
+  }'
 ```
+
+### Parâmetros
+
+| Parâmetro | Local | Obrigatório | Descrição |
+|-----------|-------|:-----------:|-----------|
+| `id` | path | ✓ | ID do registro da whitelist (`wl_...`) |
+| `whatsappNumber` | body | ✓ | Número a revogar |
 
 ## Resposta
 
@@ -31,5 +42,5 @@ curl -X DELETE https://api.chatvolt.ai/agent-whitelist-whatsapp/{agentId} \
 ## Dicas
 
 - **A remoção é imediata** — o número deixa de falar com o agente na próxima mensagem.
+- O path usa o `id` do registro (`wl_...`) da listagem, e o corpo identifica o `whatsappNumber` a revogar.
 - Esvaziar a whitelist reabre o agente para todos os números (desliga o modo exclusivo).
-- Use o `id` (`wl_...`) da listagem para remover um registro específico com precisão.

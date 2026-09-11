@@ -14,7 +14,7 @@ curl -X POST https://api.chatvolt.ai/agent-whitelist-whatsapp \
   -H "Content-Type: application/json" \
   -d '{
     "agentId": "agent_abc123",
-    "phoneNumber": "5511988887777"
+    "whatsappNumber": "5511988887777"
   }'
 ```
 
@@ -22,8 +22,8 @@ curl -X POST https://api.chatvolt.ai/agent-whitelist-whatsapp \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `agentId` | string |  | ID do agente |
-| `phoneNumber` | string |  | Número a autorizar |
+| `agentId` | string | ✓ | ID do agente |
+| `whatsappNumber` | string | ✓ | Número a autorizar |
 
 ## Resposta
 
@@ -43,5 +43,5 @@ curl -X POST https://api.chatvolt.ai/agent-whitelist-whatsapp \
 ## Dicas
 
 - **Só números na whitelist conseguem falar com o agente** — use em atendimentos privados ou testes controlados.
-- Telefone com DDI+DDD (ex.: `5511988887777`), sem `+` — formato igual à blacklist.
+- `whatsappNumber` com DDI+DDD (ex.: `5511988887777`), sem `+` — formato igual à blacklist.
 - Fora da whitelist, as mensagens do número são ignoradas pelo agente.

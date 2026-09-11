@@ -9,9 +9,16 @@ Remove um identificador da blacklist de um agente, liberando novas interações.
 ## Request
 
 ```bash
-curl -X DELETE https://api.chatvolt.ai/agent-blacklist/{agentId} \
+curl -X DELETE 'https://api.chatvolt.ai/agent-blacklist/{agentId}?id=bl_abc123' \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+### Parâmetros
+
+| Parâmetro | Local | Obrigatório | Descrição |
+|-----------|-------|:-----------:|-----------|
+| `agentId` | path | ✓ | ID do agente |
+| `id` | query | ✓ | ID da entrada da blacklist (`bl_...`) a remover |
 
 ## Resposta
 
@@ -32,5 +39,5 @@ curl -X DELETE https://api.chatvolt.ai/agent-blacklist/{agentId} \
 ## Dicas
 
 - A remoção é imediata — o número volta a poder falar com o agente na próxima mensagem.
-- Use o `id` (`bl_...`) retornado na listagem como referência para saber qual registro está sendo removido.
-- Verifique o motivo (`reason`) antes de desbloquear, para não liberar um número ainda problemático.
+- **O `id` da query é obrigatório** e seleciona a entrada: use o `id` (`bl_...`) retornado na listagem.
+- O `agentId` no path não seleciona a entrada — ele identifica o agente, e o `id` qualifica o registro.

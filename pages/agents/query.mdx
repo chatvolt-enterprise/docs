@@ -135,5 +135,5 @@ await fetchEventSource(`https://api.chatvolt.ai/agents/${agentId}/query`, {
 - **Reutilize `conversationId`** para manter o contexto da conversa entre chamadas — sem ele, cada query cria uma conversa nova e o agente perde o histórico.
 - **Prefira `streaming: true`** para UX de chat em tempo real; use JSON (`streaming: false`) quando precisar processar a resposta completa de uma vez.
 - **Passe sempre um `contact` ou `contactId`** para conversas de atendimento — o agente identifica o cliente e retorna `sources` das respostas baseadas em conhecimento.
-- Use **`callbackURL`** em integrções assíncronas: o resultado chega via POST na URL quando o processamento terminar, sem ocupar a conexão.
+- Use **`callbackURL`** em integrações assíncronas: o resultado chega via POST na URL quando o processamento terminar, sem ocupar a conexão.
 - `402` significa limite de uso mensal do plano atingido — trate no cliente (ex.: bloquear nova query até o reset do ciclo).
