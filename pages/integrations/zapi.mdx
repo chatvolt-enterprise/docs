@@ -22,3 +22,9 @@ curl -X POST https://api.chatvolt.ai/zapi/inst_123/5511988887777/message \
 |-----------|-----------|
 | `instanceId` | ID da instância Z-API |
 | `contactPhone` | Telefone do destinatário |
+
+## Dicas
+
+- O `instanceId` (`inst_...`) é da **instância Z-API conectada na organização** — confira no painel da Z-API se ela está ativa.
+- Telefone com DDI+DDD sem `+` (ex.: `5511988887777`) — números em outro formato são rejeitados.
+- O WhatsApp oficial da Z-API exige número aprovado e template para o primeiro contato.

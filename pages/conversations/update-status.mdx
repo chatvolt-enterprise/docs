@@ -35,3 +35,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-status \
   "success": true
 }
 ```
+
+## Dicas
+
+- **`resolved` encerra a conversa** — ela sai da fila de atendimento ativa; consulte o formato completo via `GET /conversation/{conversationId}`.
+- Use `pending` para aguardar ação externa (ex.: o cliente responder) sem fechar o atendimento.
+- Status inválidos retornam erro de validação — confira os valores suportados antes de enviar.

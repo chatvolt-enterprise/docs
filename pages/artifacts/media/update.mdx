@@ -1,0 +1,46 @@
+---
+title: 'Atualizar Mídia'
+description: 'Altere os metadados de uma mídia vinculada a um artefato, como o texto alternativo, no Chatvolt.'
+openapi: 'PATCH /artifacts/media/{id}'
+---
+
+Atualiza metadados de uma mídia existente, como o `alt` (texto alternativo).
+
+## Request
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "alt": "Descrição da imagem"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `alt` | string |  | Texto alternativo da mídia |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "media_abc123",
+    "artifactId": "art_abc123",
+    "type": "image",
+    "url": "https://...",
+    "alt": "Descrição da imagem"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`PATCH` é parcial**: envie apenas os campos que quer alterar.
+- O `alt` melhora acessibilidade e permite o agente descrever imagens em respostas.
+- O `{id}` no path é o ID da mídia (`media_...`), retornado no upload ou na listagem.

@@ -28,6 +28,12 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
 | `buttons` | array |  | Lista de botões (máx: 3) |
 | `footerText` | string |  | Texto do rodapé |
 
+## Dicas
+
+- **Máximo de 3 botões** por mensagem, com até 20 caracteres de título.
+- Os `id`s dos botões são recebidos de volta quando o usuário toca — use para rotear a resposta no seu fluxo.
+- Botões interativos só funcionam em conversas iniciadas (não são válidos como primeira mensagem — use template).
+
 ## Resposta
 
 ```json

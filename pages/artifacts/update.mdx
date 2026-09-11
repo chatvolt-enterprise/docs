@@ -29,3 +29,9 @@ curl -X PUT https://api.chatvolt.ai/artifacts/{artifactId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **`PUT` substitui o artefato**: envie todos os campos que devem prevalecer (inclusive `content`, se for regenerar).
+- Ao trocar só o título ou a categoria, os campos não enviados são redefinidos — para mudança parcial prefira ler primeiro com `GET`.
+- Atualizar o `content` reindexa o artefato na busca; aguarde alguns segundos antes de consultar via `search`.

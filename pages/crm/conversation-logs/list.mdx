@@ -1,0 +1,38 @@
+---
+title: 'Listar Logs do CRM'
+description: 'Liste os logs de atividade do Flux CRM registrados para as conversas no Chatvolt.'
+openapi: 'GET /crm/conversationLog'
+---
+
+Lista os logs de atividade do CRM.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/conversationLog \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "log_abc123",
+      "conversationId": "conv_abc123",
+      "action": "lead_moved",
+      "description": "Lead movido para etapa Qualificado",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use a listagem como **trilha de auditoria** do funil — cada ação do CRM vira um log.
+- Filtre por `conversationId` na sua integração para montar a timeline de um lead.
+- Logs antigos devem ser preservados: não apague em fluxo normal.

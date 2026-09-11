@@ -1,0 +1,50 @@
+---
+title: 'Criar Log no CRM'
+description: 'Registre uma ação de atividade no Flux CRM associada a uma conversa no Chatvolt.'
+openapi: 'POST /crm/conversationLog'
+---
+
+Cria um log de atividade no CRM para uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/conversationLog \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "action": "lead_moved",
+    "description": "Lead movido para etapa Qualificado"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string |  | ID da conversa |
+| `action` | string |  | Ação registrada (ex.: `lead_moved`) |
+| `description` | string |  | Descrição do evento |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "conversationId": "conv_abc123",
+    "action": "lead_moved",
+    "description": "Lead movido para etapa Qualificado",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Crie logs no mesmo momento da ação** (via webhook ou no seu backend) para o histórico ficar fiel.
+- Use `action` como código estável (ex.: `lead_moved`, `stage_changed`) para facilitar relatórios.
+- O `conversationId` deve ser de uma conversa existente — valide antes de registrar.

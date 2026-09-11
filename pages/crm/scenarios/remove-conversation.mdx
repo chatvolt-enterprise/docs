@@ -1,0 +1,44 @@
+---
+title: 'Remover Conversa do Cenário'
+description: 'Desvincule uma conversa de um cenário (pipeline) do Flux CRM no Chatvolt.'
+openapi: 'DELETE /crm/scenario/{scenarioId}/conversation'
+---
+
+Remove uma conversa de um cenário do CRM.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/crm/scenario/{scenarioId}/conversation \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string |  | ID da conversa a remover |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "conversationId": "conv_abc123",
+    "scenarioId": 1,
+    "removed": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Remover do cenário não apaga a conversa** — apenas desvincula do pipeline.
+- Use ao encerrar o lead (perdido/descartado) para tirá-lo das métricas do funil.
+- Mover entre cenários: remova da origem e adicione ao destino via o endpoint de etapa.

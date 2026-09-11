@@ -29,3 +29,9 @@ curl -X GET https://api.chatvolt.ai/agents/{agentId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- O `{id}` aceita o ID (`agent_abc123`) ou o **handle** do agente (identificador único precedido de `@`, ex.: `@atendente`).
+- Use este endpoint para popular telas de configuração antes de montar formulários de edição.
+- A resposta inclui modelo, prompt, ferramentas e visibilidade — para mudanças pontuais, use `PATCH /agents/{id}` com apenas os campos alterados.

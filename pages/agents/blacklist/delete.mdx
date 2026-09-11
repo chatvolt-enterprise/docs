@@ -1,0 +1,36 @@
+---
+title: 'Remover da Blacklist'
+description: 'Desbloqueie um número de telefone ou ID de usuário de um agente no Chatvolt.'
+openapi: 'DELETE /agent-blacklist/{agentId}'
+---
+
+Remove um identificador da blacklist de um agente, liberando novas interações.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/agent-blacklist/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "bl_abc123",
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511999999999",
+    "reason": "Spam",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- A remoção é imediata — o número volta a poder falar com o agente na próxima mensagem.
+- Use o `id` (`bl_...`) retornado na listagem como referência para saber qual registro está sendo removido.
+- Verifique o motivo (`reason`) antes de desbloquear, para não liberar um número ainda problemático.

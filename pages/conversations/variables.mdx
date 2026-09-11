@@ -46,3 +46,9 @@ curl -X DELETE https://api.chatvolt.ai/variables/{conversationId}/nome_cliente \
 | `conversationId` | string |  | ID da conversa |
 | `varName` | string |  | Nome da variável (máx: 20 caracteres) |
 | `varValue` | string |  | Valor da variável (máx: 100 caracteres) |
+
+## Dicas
+
+- **Variáveis persistem na conversa** e podem ser lidas pelo agente nas respostas (ex.: nome do cliente, nº do pedido).
+- `varName` aceita até 20 caracteres; use snake_case (`nome_cliente`) para consistência.
+- A deleção (`DELETE /variables/{conversationId}/{varName}`) é útil para limpar dados sensíveis após o atendimento.

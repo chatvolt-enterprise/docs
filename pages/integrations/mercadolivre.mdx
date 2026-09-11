@@ -25,3 +25,9 @@ curl https://api.chatvolt.ai/mercadolivre/get-products \
   ]
 }
 ```
+
+## Dicas
+
+- A integração do Mercado Livre deve estar **conectada na organização** antes de chamar este endpoint.
+- Use o `id` do produto (ex.: `MLB123456`) como referência para enriquecer a base de conhecimento dos agentes.
+- A resposta não usa o envelope padrão (`data`/`success`) — é a resposta crua do Mercado Livre.

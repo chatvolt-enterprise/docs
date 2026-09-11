@@ -1,0 +1,38 @@
+---
+title: 'Listar Blacklist'
+description: 'Liste os números bloqueados de um agente no Chatvolt e acompanhe os motivos de cada bloqueio.'
+openapi: 'GET /agent-blacklist'
+---
+
+Lista os identificadores bloqueados de interagir com um agente.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/agent-blacklist \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "bl_abc123",
+      "agentId": "agent_abc123",
+      "phoneNumber": "5511999999999",
+      "reason": "Spam",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Consulte antes de iniciar campanhas para garantir que os contatos bloqueados não recebam mensagens.
+- O bloqueio vale por agente — a listagem traz os números de todos os agentes da organização.
+- Combine com a whitelist para controle fino: bloqueio sempre vence a autorização.

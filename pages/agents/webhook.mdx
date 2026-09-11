@@ -1,7 +1,7 @@
 ---
 title: 'Webhook do Agente'
 description: 'Configure a URL de webhook de um agente para receber eventos em tempo real sobre mensagens, conversas e mudanças de status via HTTP.'
-openapi: 'POST /agents/{id}/webhook'
+openapi: 'PATCH /agents/{id}/webhook'
 ---
 
 Configura uma URL para receber notificações de eventos do agente (nova mensagem, conversa criada, etc.).
@@ -36,3 +36,9 @@ curl -X PATCH https://api.chatvolt.ai/agents/{agentId}/webhook \
   "error": null
 }
 ```
+
+## Dicas
+
+- A URL precisa ser **HTTPS e acessível publicamente** — o Chatvolt envia os eventos do servidor, não do navegador.
+- Responda `200` rápido: se o endpoint demorar ou falhar, o Chatvolt fará novas tentativas.
+- Use uma URL única por serviço (ex.: `meusistema.com/webhook/agente-vendas`) para facilitar o rastreio nos logs.

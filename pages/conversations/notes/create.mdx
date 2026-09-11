@@ -1,0 +1,44 @@
+---
+title: 'Criar Nota'
+description: 'Adicione uma nota interna a uma conversa no Chatvolt para a equipe de atendimento.'
+openapi: 'POST /conversations/{conversationId}/notes'
+---
+
+Cria uma nota interna associada a uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/notes \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Cliente precisa de acompanhamento semanal"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `content` | string |  | Conteúdo da nota |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "note_456",
+    "content": "Cliente precisa de acompanhamento semanal",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use notas para **handoff entre atendentes**: resuma o que já foi feito antes de transferir a conversa.
+- O `content` não é visto pelo cliente — é só para a equipe.
+- Para registrar eventos de sistemas externos no histórico, use `message-register` com `type: "note"`.

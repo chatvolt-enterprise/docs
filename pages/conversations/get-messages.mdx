@@ -41,3 +41,9 @@ curl -X GET https://api.chatvolt.ai/conversation/{conversationId}/messages/50 \
   "error": null
 }
 ```
+
+## Dicas
+
+- `count` é o número de mensagens mais recentes retornadas, com **máximo de 100** por chamada.
+- Para conversas longas, faça chamadas paginadas (contagens menores) em vez de buscar tudo de uma vez.
+- Use `role` para diferenciar mensagens do usuário (`user`), do agente (`assistant`) e de sistema.

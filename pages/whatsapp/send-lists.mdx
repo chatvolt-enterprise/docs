@@ -34,6 +34,12 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-lists \
 | `buttonText` | string |  | Texto do botão da lista |
 | `sections` | array |  | Seções com opções |
 
+## Dicas
+
+- Cada seção aceita até **10 opções**; liste no máximo 2 seções por mensagem.
+- Os `id`s das linhas são retornados na resposta do usuário — use para mapear a escolha no seu sistema.
+- Listas são ideais para menus com muitas opções (catálogos, categorias) onde botões (máx. 3) ficam apertados.
+
 ## Resposta
 
 ```json

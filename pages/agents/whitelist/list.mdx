@@ -1,0 +1,37 @@
+---
+title: 'Obter Whitelist do Agente'
+description: 'Liste os números autorizados a interagir com um agente via WhatsApp através da whitelist do Chatvolt.'
+openapi: 'GET /agent-whitelist-whatsapp/{id}'
+---
+
+Retorna a whitelist de WhatsApp de um agente — os únicos números autorizados a falar com ele.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/agent-whitelist-whatsapp/{agentId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "wl_abc123",
+      "agentId": "agent_abc123",
+      "phoneNumber": "5511988887777",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Só números na whitelist conseguem falar com o agente** — use em atendimentos privados ou testes controlados.
+- O `{id}` no path aceita o ID do agente (`agent_abc123`) — a resposta traz todos os números autorizados.
+- Esvaziar a whitelist reabre o agente para todos; só liste quem deve ter acesso exclusivo.

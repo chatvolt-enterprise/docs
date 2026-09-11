@@ -1,0 +1,50 @@
+---
+title: 'Exportar Conversas em Lote'
+description: 'Exporte várias conversas do Chatvolt por período e status em JSON ou CSV para análise e backup.'
+openapi: 'GET /conversations/export'
+---
+
+Exporta conversas em lote com filtros de data e status.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/export \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "format": "json",
+    "dateFrom": "2026-01-01",
+    "dateTo": "2026-07-23",
+    "status": "closed"
+  }'
+```
+
+### Parâmetros (lote)
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `format` | string |  | `json` ou `csv` (padrão: json) |
+| `dateFrom` | string |  | Data inicial (ISO) |
+| `dateTo` | string |  | Data final (ISO) |
+| `status` | string |  | Filtrar por status |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "exportedCount": 42,
+    "format": "json",
+    "url": "https://..."
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Exporte com janela de datas** (`dateFrom`/`dateTo`) para gerar relatórios enxutos — exportar tudo é lento e pesado.
+- Use `format: "csv"` para importar em planilhas/BI; `json` preserva estrutura completa.
+- Cuidado com `status: "closed"`: confirme os valores de status suportados na API antes de filtrar.

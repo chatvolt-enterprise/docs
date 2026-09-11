@@ -1,13 +1,15 @@
 ---
 title: 'Criar Agente'
 description: 'Crie um novo agente de IA no Chatvolt configurando nome, modelo LLM, prompt de sistema, temperatura e ferramentas para uso via API.'
-openapi: 'POST /agents/create'
+openapi: 'POST /agents'
 ---
+
+Cria um novo agente na organização.
 
 ## Request
 
 ```bash
-curl -X POST https://api.chatvolt.ai/agents/create \
+curl -X POST https://api.chatvolt.ai/agents \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -22,7 +24,7 @@ curl -X POST https://api.chatvolt.ai/agents/create \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `name` | string |  | Nome do agente |
+| `name` | string | ✓ | Nome do agente |
 | `description` | string |  | Descrição |
 | `modelName` | string |  | Modelo de IA (padrão: configurado no plano) |
 | `temperature` | number |  | 0.0 a 1.0 |
@@ -43,3 +45,10 @@ curl -X POST https://api.chatvolt.ai/agents/create \
   "error": null
 }
 ```
+
+## Dicas
+
+- **Leve a chave da API no header `Authorization`** em todas as chamadas — sem ela a API retorna `401 Unauthorized`.
+- **`name` é obrigatório**; os demais campos têm padrão do plano. Crie primeiro com o mínimo e ajuste depois via `PATCH /agents/{id}`.
+- **`temperature` entre 0.0 e 1.0**: valores mais baixos deixam as respostas mais previsíveis; mais altos, mais criativas.
+- O `id` retornado (`agent_abc123`) é usado nos endpoints de conversa, query e atualização.

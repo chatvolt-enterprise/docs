@@ -1,0 +1,52 @@
+---
+title: 'Criar Etapa'
+description: 'Crie uma etapa (step) em um cenário do Flux CRM no Chatvolt.'
+openapi: 'POST /crm/step'
+---
+
+Cria uma nova etapa em um cenário do CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scenarioId": 1,
+    "name": "Lead Qualificado",
+    "description": "Lead com potencial de compra",
+    "stepOrder": 2
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `scenarioId` | number |  | ID do cenário |
+| `name` | string |  | Nome da etapa |
+| `description` | string |  | Descrição |
+| `stepOrder` | number |  | Ordem no funil |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": 1,
+    "scenarioId": 1,
+    "name": "Lead Qualificado",
+    "description": "Lead com potencial",
+    "stepOrder": 2
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`stepOrder` define a ordem no funil** — numere de forma contínua (1, 2, 3...) e ajuste com `move` quando precisar reordenar.
+- O `scenarioId` deve ser de um cenário existente (via `GET /crm/scenario`).
+- Crie as etapas em seguida à criação do cenário, enquanto a estrutura do pipeline está fresca.

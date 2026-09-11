@@ -28,3 +28,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-contact \
 |-------|------|-----------|
 | `to` | string | Telefone do destinatário |
 | `contacts` | array | Lista de contatos para enviar |
+
+## Dicas
+
+- Útil para compartilhar **contatos de atendimento** (suporte, financeiro) dentro da conversa.
+- Cada item da lista requer `name` e `phone` (com DDI, sem `+`).
+- O WhatsApp permite enviar 1 contato por mensagem em alguns planos — mantenha a lista pequena para compatibilidade.

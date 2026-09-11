@@ -1,0 +1,50 @@
+---
+title: 'Adicionar à Blacklist'
+description: 'Bloqueie um número de telefone ou ID de usuário para impedir que interaja com um agente no Chatvolt.'
+openapi: 'POST /agent-blacklist'
+---
+
+Adiciona um identificador à blacklist de um agente, bloqueando novas interações.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/agent-blacklist \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511999999999",
+    "reason": "Spam"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string |  | ID do agente |
+| `phoneNumber` | string |  | Número a bloquear |
+| `reason` | string |  | Motivo do bloqueio |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "bl_abc123",
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511999999999",
+    "reason": "Spam",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Números bloqueados não conseguem mais interagir** com o agente — use para spam e abuso.
+- Telefone sempre com DDI+DDD (ex.: `5511999999999`), sem `+` nem espaços.
+- O bloqueio vale por agente: para bloquear em todos, adicione em cada agente ou centralize os contatos bloqueados na organização.

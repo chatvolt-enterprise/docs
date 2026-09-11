@@ -22,3 +22,9 @@ curl -X POST https://api.chatvolt.ai/twilio/5511999998888/5511988887777/message 
 |-----------|-----------|
 | `ownerPhone` | Número de telefone do proprietário (Twilio) |
 | `contactPhone` | Telefone do destinatário |
+
+## Dicas
+
+- Números **com DDI e DDD** (ex.: `5511999998888`), sem `+` nem espaços.
+- O `ownerPhone` deve ser um número verificado na conta Twilio da organização.
+- SMS tem limite de caracteres (~160): mensagens maiores são divididas em múltiplas partes pela Twilio.

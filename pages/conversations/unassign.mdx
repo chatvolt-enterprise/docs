@@ -26,3 +26,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/unassign \
   "message": "Conversation unassigned."
 }
 ```
+
+## Dicas
+
+- Use após o atendente encerrar o turno — a conversa volta para a fila geral e pode ser pega por qualquer usuário.
+- Consulte quem está atribuído via `GET /conversation/{conversationId}` antes de remover.
+- Para trocar de responsável, não precisa remover: chame `assign` com o novo `assigneeId`.

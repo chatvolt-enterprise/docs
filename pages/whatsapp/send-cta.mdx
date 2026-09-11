@@ -26,6 +26,12 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-cta \
 | `ctaUrl` | string |  | URL do CTA |
 | `ctaText` | string |  | Texto do botão |
 
+## Dicas
+
+- O botão de chamada para ação abre a URL no navegador; use **HTTPS** e links móveis (deep links) quando possível.
+- Economize textos: `bodyText` curto + CTA tende a ter melhor taxa de conversão.
+- Continua sujeito às regras do WhatsApp — CTA para fora do WhatsApp só em conversas já iniciadas.
+
 ## Resposta
 
 ```json

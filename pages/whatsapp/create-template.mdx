@@ -27,3 +27,9 @@ curl -X POST https://api.chatvolt.ai/whatsapp/templates \
   "status": "pending"
 }
 ```
+
+## Dicas
+
+- **Templates passam por aprovação do WhatsApp** — o status fica `pending` e depois `approved`/`rejected`; consulte `GET /whatsapp/templates` para acompanhar.
+- Use `category` adequada (`MARKETING`, `UTILITY`, `AUTHENTICATION`) — influencia o tempo de aprovação e as regras de envio.
+- Só é possível enviar template **aprovado** como primeira mensagem para um contato.

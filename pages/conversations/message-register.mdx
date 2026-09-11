@@ -30,3 +30,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/message-register \
   "success": true
 }
 ```
+
+## Dicas
+
+- A mensagem **não é entregue** ao participante — serve para registrar contexto de sistemas externos (CRM, ERP) na conversa.
+- Use `type: "note"` para observações internas da equipe; ele aparece no histórico para os atendentes.
+- Combine com variáveis (`POST /variables`) para enriquecer a conversa com dados que o agente pode consultar depois.

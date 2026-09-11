@@ -1,0 +1,42 @@
+---
+title: 'Adicionar Tag à Conversa'
+description: 'Aplique uma tag a uma conversa no Chatvolt para segmentar e priorizar o atendimento.'
+openapi: 'POST /conversations/{conversationId}/tags'
+---
+
+Adiciona uma tag a uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/{conversationId}/tags \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tagName": "urgente"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `tagName` | string |  | Nome da tag a aplicar |
+
+## Resposta
+
+```json
+{
+  "data": [
+    { "id": "tag_abc123", "name": "urgente", "color": "red" }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Use nomes curtos e padronizados** (ex.: `urgente`, `reembolso`) para manter a triagem consistente.
+- A tag é aplicada na hora — a listagem retorna o conjunto atualizado com as cores.
+- Combine tags com prioridade (`set-priority`) para sinalizar conversas críticas de duas formas.

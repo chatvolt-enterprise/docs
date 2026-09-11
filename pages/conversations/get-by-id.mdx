@@ -30,3 +30,9 @@ curl -X GET https://api.chatvolt.ai/conversation/{conversationId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- Consulte este endpoint antes de montar a tela de detalhe do atendimento: ele traz canal, status, prioridade e `aiEnabled` num único request.
+- Use `agentId` e `contactId` retornados para navegar para as páginas do agente e do contato.
+- O `status` e o `priority` podem ser alterados depois via `set-status` e `set-priority`.

@@ -1,0 +1,38 @@
+---
+title: 'Listar Etapas do CRM'
+description: 'Liste as etapas (steps) de um cenário do Flux CRM no Chatvolt.'
+openapi: 'GET /crm/step'
+---
+
+Lista as etapas configuradas no CRM.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/step \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "scenarioId": 1,
+      "name": "Lead Qualificado",
+      "description": "Lead com potencial",
+      "stepOrder": 2
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`stepOrder` define a ordem no funil** — numere de forma contínua (1, 2, 3...).
+- Use a listagem para popular o seletor de etapa ao mover conversas (`move`).
+- Filtre por `scenarioId` na sua integração para montar o pipeline de um cenário específico.

@@ -28,3 +28,9 @@ curl -X GET https://api.chatvolt.ai/artifacts/{artifactId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- O `contentUrl` retornado dá acesso ao conteúdo — use-o para download ou preview no seu sistema.
+- Use este endpoint para validar se um artefato existe antes de referenciá-lo em respostas do agente.
+- Compare `updatedAt` com a sua última sincronização para detectar atualizações externas.

@@ -27,3 +27,9 @@ curl -X GET https://api.chatvolt.ai/datastores/list \
   "error": null
 }
 ```
+
+## Dicas
+
+- Use este endpoint para popular o seletor de datastores no seu app antes de vincular a um agente.
+- Monitore `documentCount` das bases para detectar bases vazias ou sincronizações travadas.
+- A resposta é resumida: detalhes completos de cada base vêm via `GET /datastores/{id}`.

@@ -24,3 +24,9 @@ curl -X DELETE https://api.chatvolt.ai/datastores/{datastoreId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **A deleção remove a base e seus índices** — agentes que usavam o datastore passam a responder apenas com o próprio conhecimento.
+- Verifique se algum agente ativo referencia o datastore antes de deletar.
+- A operação é irreversível; exporte os documentos antes se precisar de backup.

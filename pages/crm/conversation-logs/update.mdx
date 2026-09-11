@@ -1,0 +1,47 @@
+---
+title: 'Atualizar Log do CRM'
+description: 'Edite a descrição ou ação de um log de atividade do Flux CRM no Chatvolt.'
+openapi: 'PUT /crm/conversationLog/{logId}'
+---
+
+Atualiza os dados de um log existente do CRM.
+
+## Request
+
+```bash
+curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "description": "Descrição atualizada"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `action` | string |  | Nova ação registrada |
+| `description` | string |  | Nova descrição |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "conversationId": "conv_abc123",
+    "action": "lead_moved",
+    "description": "Descrição atualizada",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`PUT` substitui os campos enviados** — envie `action` e/ou `description` completos.
+- Use para corrigir erros de registro sem perder o histórico da conversa.
+- O `logId` não muda: referências em integrações permanecem válidas.

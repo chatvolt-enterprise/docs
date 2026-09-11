@@ -1,0 +1,33 @@
+---
+title: 'Deletar Categoria'
+description: 'Remova uma categoria de artefatos no Chatvolt.'
+openapi: 'DELETE /artifact-categories/{id}'
+---
+
+Remove uma categoria da organização.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/artifact-categories/{categoryId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "cat_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Ao deletar uma categoria, os artefatos dela ficam sem categoria** — reatribua antes via `PUT /artifacts/{id}`.
+- Categorias com artefatos não são removidas silenciosamente: confira o retorno para saber se houve proteção.
+- Considere apenas renomear (`PUT`) em vez de deletar quando a categoria ainda é usada em filtros.

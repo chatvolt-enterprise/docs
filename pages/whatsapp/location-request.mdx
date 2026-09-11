@@ -23,3 +23,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/location-request \
 |-------|------|-----------|
 | `to` | string | Telefone do destinatário |
 | `bodyText` | string | Texto da mensagem |
+
+## Dicas
+
+- O destinatário recebe um botão para compartilhar a localização — use para logística (encontrar lojas, entregas).
+- O `to` precisa de DDI+DDD sem `+` (ex.: `5511988887777`).
+- Combine com o endpoint de recebimento de mensagens para capturar a localização enviada pelo usuário.

@@ -37,3 +37,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/assign \
   "message": "Conversation assigned successfully."
 }
 ```
+
+## Dicas
+
+- O `assigneeId` deve ser um **usuário da sua organização** — use o ID `usr_...` retornado na listagem de usuários.
+- Passe `force: true` para trocar o responsável mesmo quando a conversa já tem um atendente atribuído.
+- Combine com `unassign` para fluxos de reatribuição entre equipes.

@@ -1,0 +1,45 @@
+---
+title: 'Upload de Mídia'
+description: 'Envie um arquivo de mídia e vincule a um artefato no Chatvolt.'
+openapi: 'POST /artifacts/media/upload'
+---
+
+Faz upload de um arquivo de mídia e associa a um artefato.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifacts/media/upload \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@documento.pdf" \
+  -F "artifactId=art_abc123"
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `file` | arquivo |  | Arquivo a enviar (multipart) |
+| `artifactId` | string |  | ID do artefato ao qual vincular |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "media_abc123",
+    "artifactId": "art_abc123",
+    "type": "pdf",
+    "url": "https://..."
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Upload é multipart (`-F`)**: envie o arquivo real, não base64 — evita estourar limites de corpo.
+- Use `artifactId` para vincular a mídia ao artefato na hora do upload.
+- Atualize o `alt` depois via `PATCH /artifacts/media/{id}` para acessibilidade e para o agente descrever imagens.

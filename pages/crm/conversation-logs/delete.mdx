@@ -1,0 +1,33 @@
+---
+title: 'Deletar Log do CRM'
+description: 'Remova um log de atividade do Flux CRM no Chatvolt.'
+openapi: 'DELETE /crm/conversationLog/{logId}'
+---
+
+Remove um log de atividade do CRM.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/crm/conversationLog/{logId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Logs antigos não devem ser apagados em fluxo normal** — eles são a trilha de auditoria do funil.
+- Use a deleção apenas para corrigir registros criados por engano.
+- Se o log está errado mas o evento aconteceu, prefira atualizar (`PUT`).

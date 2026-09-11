@@ -1,0 +1,44 @@
+---
+title: 'Atualizar Nota'
+description: 'Edite o conteúdo de uma nota interna de conversa no Chatvolt.'
+openapi: 'PUT /conversations/{conversationId}/notes/{noteId}'
+---
+
+Atualiza o conteúdo de uma nota existente.
+
+## Request
+
+```bash
+curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Conteúdo atualizado da nota"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `content` | string |  | Novo conteúdo da nota |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "note_456",
+    "content": "Conteúdo atualizado da nota",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`PUT` substitui o conteúdo** — envie o texto completo da nota.
+- Notas corrigidas mantêm o mesmo `id`, facilitando a referência em integrações.
+- Prefira atualizar a deletar: o histórico da equipe fica mais rastreável.

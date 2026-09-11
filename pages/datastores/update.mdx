@@ -28,3 +28,9 @@ curl -X PATCH https://api.chatvolt.ai/datastores/{datastoreId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **`PATCH` é parcial**: envie só os campos que mudam; os demais são preservados.
+- Renomear a base não afeta os índices nem os agentes conectados.
+- Se a base está em processo de indexação, a atualização de metadados é imediata e segura.

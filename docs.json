@@ -102,8 +102,12 @@
                   "pages/agents/update",
                   "pages/agents/delete",
                   "pages/agents/webhook",
-                  "pages/agents/blacklist",
-                  "pages/agents/whitelist",
+                  "pages/agents/blacklist/list",
+                  "pages/agents/blacklist/create",
+                  "pages/agents/blacklist/delete",
+                  "pages/agents/whitelist/list",
+                  "pages/agents/whitelist/create",
+                  "pages/agents/whitelist/delete",
                   "pages/agents/templates"
                 ]
               },
@@ -122,9 +126,15 @@
                   "pages/conversations/update-status",
                   "pages/conversations/message-register",
                   "pages/conversations/variables",
-                  "pages/conversations/notes",
-                  "pages/conversations/tags",
-                  "pages/conversations/export",
+                  "pages/conversations/notes/list",
+                  "pages/conversations/notes/create",
+                  "pages/conversations/notes/update",
+                  "pages/conversations/notes/delete",
+                  "pages/conversations/tags/list",
+                  "pages/conversations/tags/add",
+                  "pages/conversations/export/one",
+                  "pages/conversations/export/batch",
+                  "pages/conversations/export/history",
                   "pages/conversations/send-audio"
                 ]
               },
@@ -168,8 +178,15 @@
                   "pages/artifacts/get",
                   "pages/artifacts/update",
                   "pages/artifacts/delete",
-                  "pages/artifacts/media",
-                  "pages/artifacts/categories"
+                  "pages/artifacts/media/list",
+                  "pages/artifacts/media/upload",
+                  "pages/artifacts/media/update",
+                  "pages/artifacts/media/delete",
+                  "pages/artifacts/categories/list",
+                  "pages/artifacts/categories/create",
+                  "pages/artifacts/categories/get",
+                  "pages/artifacts/categories/update",
+                  "pages/artifacts/categories/delete"
                 ]
               },
               {
@@ -191,9 +208,19 @@
                 "group": "Flux CRM",
                 "pages": [
                   "pages/crm/reference",
-                  "pages/crm/scenarios",
-                  "pages/crm/steps",
-                  "pages/crm/conversation-logs"
+                  "pages/crm/scenarios/list",
+                  "pages/crm/scenarios/create",
+                  "pages/crm/scenarios/conversations",
+                  "pages/crm/scenarios/remove-conversation",
+                  "pages/crm/steps/list",
+                  "pages/crm/steps/create",
+                  "pages/crm/steps/add-conversation",
+                  "pages/crm/steps/move",
+                  "pages/crm/conversation-logs/list",
+                  "pages/crm/conversation-logs/create",
+                  "pages/crm/conversation-logs/get",
+                  "pages/crm/conversation-logs/update",
+                  "pages/crm/conversation-logs/delete"
                 ]
               },
               {

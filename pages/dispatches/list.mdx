@@ -1,6 +1,7 @@
 ---
 title: 'Listar Disparos'
 description: 'Liste todos os disparos em massa cadastrados na sua organização, com status de envio, canal utilizado, agendamento e métricas de entrega.'
+openapi: 'GET /dispatches'
 ---
 
 ## Request
@@ -29,3 +30,9 @@ curl -X GET https://api.chatvolt.ai/dispatches \
   "error": null
 }
 ```
+
+## Dicas
+
+- Use `sentCount`/`totalContacts` para acompanhar o progresso de disparos em andamento.
+- Filtre por status (`draft`, `queued`, `sent`) para separar campanhas concluídas das que precisam de ação.
+- A listagem retorna o resumo das campanhas; detalhes de cada envio vêm nos endpoints específicos de dispatch.

@@ -1,0 +1,36 @@
+---
+title: 'Obter Log do CRM'
+description: 'Consulte os detalhes de um log de atividade do Flux CRM pelo ID no Chatvolt.'
+openapi: 'GET /crm/conversationLog/{logId}'
+---
+
+Retorna os detalhes de um log específico do CRM.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/conversationLog/{logId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "conversationId": "conv_abc123",
+    "action": "lead_moved",
+    "description": "Lead movido para etapa Qualificado",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use para detalhar um evento específico na timeline de um lead.
+- O `logId` (`log_...`) vem da listagem ou da resposta de criação.
+- Se precisar corrigir a descrição, use `PUT /crm/conversationLog/{logId}`.

@@ -1,0 +1,46 @@
+---
+title: 'Criar Categoria'
+description: 'Crie uma categoria para organizar artefatos no Chatvolt.'
+openapi: 'POST /artifact-categories'
+---
+
+Cria uma categoria para agrupar artefatos por tema.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/artifact-categories \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Relatórios",
+    "description": "Relatórios mensais e trimestrais"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Nome da categoria |
+| `description` | string |  | Descrição |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "cat_abc123",
+    "name": "Relatórios",
+    "description": "Relatórios mensais e trimestrais"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Crie as categorias **antes dos artefatos** para associar o `categoryId` na criação.
+- Use nomes estáveis e descritivos — a categoria aparece nos filtros e na busca.
+- Para renomear depois, use `PUT /artifact-categories/{id}` sem recriar.

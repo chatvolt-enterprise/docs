@@ -1,0 +1,33 @@
+---
+title: 'Deletar Mídia'
+description: 'Remova um arquivo de mídia vinculado a um artefato no Chatvolt.'
+openapi: 'DELETE /artifacts/media/{id}'
+---
+
+Remove uma mídia vinculada a um artefato.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/artifacts/media/{mediaId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "media_abc123",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **A deleção é permanente** — o arquivo sai do artefato e não pode ser recuperado.
+- Remova mídias órfãs (sem `artifactId` válido) para liberar armazenamento.
+- Se o artefato ainda precisa da mídia, prefira desvincular e reenviar via upload.

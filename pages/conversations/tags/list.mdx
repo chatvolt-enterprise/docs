@@ -1,0 +1,32 @@
+---
+title: 'Listar Tags da Conversa'
+description: 'Liste as tags aplicadas a uma conversa no Chatvolt para segmentação e triagem do atendimento.'
+openapi: 'GET /conversations/{conversationId}/tags'
+---
+
+Lista as tags associadas a uma conversa.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/{conversationId}/tags \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    { "id": "tag_abc123", "name": "urgente", "color": "red" }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- As tags retornadas vêm com a `color` exibida no dashboard — use para reproduzir a mesma visualização.
+- Tags ajudam a **triar a fila de atendimento** em conjunto com as prioridades.
+- Consulte antes de adicionar para evitar tags duplicadas na mesma conversa.

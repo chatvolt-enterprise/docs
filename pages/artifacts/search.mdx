@@ -1,28 +1,31 @@
 ---
 title: 'Buscar Artefatos'
 description: 'Pesquise artefatos por texto livre e filtros de categoria, retornando itens relevantes por semelhança para uso rápido pelos agentes.'
-openapi: 'POST /artifacts/search'
+openapi: 'GET /artifacts/search'
 ---
 
 ## Request
 
 ```bash
-curl -X POST https://api.chatvolt.ai/artifacts/search \
-  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "relatório mensal",
-    "limit": 10
-  }'
+curl -X GET 'https://api.chatvolt.ai/artifacts/search?q=relat%C3%B3rio%20mensal&limit=10' \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
 
-### Parâmetros
+### Parâmetros de Query
 
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|:-----------:|-----------|
-| `query` | string |  | Texto da busca |
-| `limit` | number |  | Máx. de resultados (padrão: 10) |
-| `categoryId` | string |  | Filtrar por categoria |
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `q` | string |  | Termo de busca por nome, descrição ou categoria |
+| `ids` | string |  | Lista de IDs específicos (ex.: `id1,id2`) |
+| `categoryIds` | string |  | Lista de IDs de categoria (inclui sub-categorias) |
+| `mediaTypes` | string |  | Filtrar por tipos de mídia (ex.: `IMAGE,VIDEO`) |
+| `limit` | number |  | Máx. de resultados (padrão: 20) |
+
+## Dicas
+
+- Busca semântica por `q` retorna os artefatos mais relevantes — não precisa do termo exato.
+- Use `ids` para buscar um conjunto específico de artefatos numa única chamada.
+- Se o agente não encontra um artefato, confira os `mediaTypes` (a busca ignora tipos fora do filtro).
 
 ## Resposta
 

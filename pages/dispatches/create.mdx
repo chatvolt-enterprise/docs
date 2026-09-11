@@ -41,3 +41,9 @@ curl -X POST https://api.chatvolt.ai/dispatches \
   "error": null
 }
 ```
+
+## Dicas
+
+- O disparo nasce em **`draft`** — adicione os contatos e depois popule a fila com `populate-queue` para iniciar.
+- `channel` define o canal do envio; confirme que a integração do canal (Z-API, Twilio, etc.) está configurada na organização.
+- Com `agentId`, o agente processa respostas dos destinatários automaticamente.

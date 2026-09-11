@@ -33,6 +33,13 @@ curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
 | `language` | string |  | Código do idioma (`pt_BR`, `en_US`) |
 | `components` | array |  | Parâmetros do template |
 
+## Dicas
+
+- **O `templateName` precisa estar aprovado** no WhatsApp (consulte `GET /whatsapp/templates`) antes do envio.
+- `language` deve casar com o idioma do template aprovado (ex.: `pt_BR`).
+- Os `parameters` do body são posicionais: um por variável `{{"{{1}}"}}` do template, na ordem.
+- Este é o caminho certo para **primeira mensagem** ao contato — mensagens livres só valem após o usuário responder.
+
 ## Resposta
 
 ```json

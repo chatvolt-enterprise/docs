@@ -1,0 +1,38 @@
+---
+title: 'Histórico de Conversas'
+description: 'Consulte o histórico completo de conversas do Chatvolt para auditoria e análise de atendimento.'
+openapi: 'GET /conversations/history'
+---
+
+Retorna o histórico de conversas da organização.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/history \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "conv_abc123",
+      "channel": "whatsapp",
+      "status": "closed",
+      "createdAt": "2026-07-23T10:00:00Z",
+      "updatedAt": "2026-07-23T12:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- O histórico é útil para **auditoria** e para alimentar analytics de atendimento.
+- A resposta é paginada — acompanhe `updatedAt` para sincronizações incrementais.
+- Para exportar conteúdos das mensagens, use o export de conversa específica ou em lote.

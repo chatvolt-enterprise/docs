@@ -1,0 +1,38 @@
+---
+title: 'Listar Mídias'
+description: 'Liste os arquivos de mídia vinculados aos artefatos no Chatvolt.'
+openapi: 'GET /artifacts/media'
+---
+
+Lista as mídias vinculadas aos artefatos da organização.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifacts/media \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "media_abc123",
+      "artifactId": "art_abc123",
+      "type": "image",
+      "url": "https://...",
+      "alt": "Descrição da imagem"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use para auditar quais artefatos têm mídia e quais estão sem `alt` (acessibilidade).
+- A listagem ajuda a localizar mídias órfãs antes de deletar artefatos.
+- Filtre pelo `artifactId` na sua integração para montar a galeria de um artefato específico.

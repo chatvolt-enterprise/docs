@@ -35,3 +35,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
   "success": true
 }
 ```
+
+## Dicas
+
+- Use prioridades para **SLA de atendimento**: filtre a fila por `high` e atenda primeiro as conversas críticas.
+- Ao resolver uma conversa, o status deixa de ser `active` — combina com `set-status` para fechar o fluxo completo.
+- Valores válidos: `low`, `medium` e `high`; o padrão é `normal` na criação.

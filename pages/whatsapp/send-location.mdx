@@ -29,3 +29,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/location-request \
     "bodyText": "Compartilhe sua localização"
   }'
 ```
+
+## Dicas
+
+- `latitude`/`longitude` usam **formato decimal** (ex.: `-23.5505` para São Paulo).
+- Adicione `name` e `address` para o pin aparecer com contexto no WhatsApp.
+- Para pedir a localização do usuário, use `location-request` (página separada), não este endpoint.

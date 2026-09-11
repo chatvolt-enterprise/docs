@@ -1,0 +1,49 @@
+---
+title: 'Mover Conversa entre Etapas'
+description: 'Mova uma conversa de uma etapa para outra no funil do Flux CRM no Chatvolt.'
+openapi: 'POST /crm/step/move'
+---
+
+Move uma conversa entre etapas do mesmo cenário no CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step/move \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "fromStepId": 1,
+    "toStepId": 2
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string |  | ID da conversa |
+| `fromStepId` | number |  | Etapa atual |
+| `toStepId` | number |  | Etapa de destino |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "conversationId": "conv_abc123",
+    "fromStepId": 1,
+    "toStepId": 2,
+    "moved": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`move` move a conversa entre etapas**: use `toStepId` do destino e o `fromStepId` atual para rastrear o fluxo.
+- As etapas precisam ser do **mesmo cenário** — mover entre cenários exige remover e adicionar a conversa.
+- Registre um log (`POST /crm/conversationLog` com `action: "lead_moved"`) para manter a auditoria do funil.

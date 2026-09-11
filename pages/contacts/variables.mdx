@@ -29,3 +29,9 @@ curl -X POST https://api.chatvolt.ai/contacts/variables \
 curl -X GET https://api.chatvolt.ai/contacts/available-variables \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+## Dicas
+
+- **Variáveis de contato são persistidas** e podem ser usadas nos templates de mensagem e nas respostas do agente.
+- Use chaves estáveis (ex.: `cargo`, `plano`) — renomear uma chave perde o histórico do valor anterior.
+- A listagem de variáveis disponíveis mostra as chaves padrão do sistema; as customizadas criadas via POST aparecem junto.

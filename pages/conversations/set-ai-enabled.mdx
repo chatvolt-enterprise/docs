@@ -35,3 +35,9 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
   "success": true
 }
 ```
+
+## Dicas
+
+- **`aiEnabled: false` pausa a resposta automática** — o atendente humano assume; reative com `true` quando quiser devolver a conversa para a IA.
+- Verifique o flag atual com `GET /conversation/{conversationId}` antes de alternar, para evitar chamadas desnecessárias.
+- Use em fluxos de escalation: ao transferir para humano, desative a IA para ela não responder no meio do atendimento.

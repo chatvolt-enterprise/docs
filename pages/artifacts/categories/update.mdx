@@ -1,0 +1,45 @@
+---
+title: 'Atualizar Categoria'
+description: 'Renomeie ou altere a descrição de uma categoria de artefatos no Chatvolt.'
+openapi: 'PUT /artifact-categories/{id}'
+---
+
+Atualiza os dados de uma categoria existente.
+
+## Request
+
+```bash
+curl -X PUT https://api.chatvolt.ai/artifact-categories/{categoryId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Relatórios Anuais"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Novo nome da categoria |
+| `description` | string |  | Nova descrição |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "cat_abc123",
+    "name": "Relatórios Anuais",
+    "description": "Relatórios mensais e trimestrais"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`PUT` substitui os campos enviados** — envie `name` e/ou `description` completos.
+- Renomear a categoria não move os artefatos: eles continuam associados pelo `categoryId`.
+- Atualizações refletem imediatamente na busca por `categoryIds`.
