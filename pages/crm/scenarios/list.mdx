@@ -1,0 +1,37 @@
+---
+title: 'Listar Cenários'
+description: 'Liste os cenários (pipelines) do Flux CRM configurados no Chatvolt.'
+openapi: 'GET /crm/scenario'
+---
+
+Lista os cenários (funis de vendas) do CRM.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/scenario \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Funil de Vendas",
+      "description": "Pipeline principal",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Cenários são funis de vendas** com etapas (`steps`) — associe conversas ao cenário para acompanhar cada lead.
+- Use a listagem para popular o seletor de pipeline em relatórios e telas de configuração.
+- Use um cenário por pipeline (ex.: Vendas, Sucesso, Suporte) para não misturar métricas.

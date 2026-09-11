@@ -27,3 +27,9 @@ curl -X GET https://api.chatvolt.ai/datastores/{datastoreId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- O `documentCount` mostra quantos documentos estão indexados — use para monitorar a saúde da base.
+- Consulte antes de rodar queries para confirmar que o datastore existe e está populado.
+- Compare `updatedAt` com o último sync para saber se a indexação terminou de processar.

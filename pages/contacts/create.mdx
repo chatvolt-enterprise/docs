@@ -41,3 +41,9 @@ curl -X POST https://api.chatvolt.ai/contacts \
   "error": null
 }
 ```
+
+## Dicas
+
+- **`phone` com DDI sem `+`** (ex.: `5511988887777`) — é o formato usado para casar com conversas do WhatsApp.
+- O `contactId` retornado pode ser passado em `POST /agents/{id}/query` para identificar o cliente no atendimento.
+- Contatos são deduplicados por e-mail/telefone: se já existir, a resposta retorna o contato existente com os dados atualizados.

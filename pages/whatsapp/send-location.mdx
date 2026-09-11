@@ -1,31 +1,53 @@
 ---
 title: 'Enviar Localização'
+description: 'Envie uma localização (pin) numa conversa do WhatsApp via Chatvolt.'
 openapi: 'POST /messages/interactive/send-location'
 ---
 
-## Enviar Localização
+Envia uma localização geográfica dentro de uma conversa.
+
+## Request
 
 ```bash
 curl -X POST https://api.chatvolt.ai/messages/interactive/send-location \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "latitude": -23.5505,
-    "longitude": -46.6333,
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "latitude": "-23.5505",
+    "longitude": "-46.6333",
     "name": "Escritório Chatvolt",
     "address": "São Paulo, SP"
   }'
 ```
 
-## Solicitar Localização
+### Parâmetros
 
-```bash
-curl -X POST https://api.chatvolt.ai/messages/interactive/location-request \
-  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "5511988887777",
-    "bodyText": "Compartilhe sua localização"
-  }'
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `latitude` | string | ✓ | Latitude em formato decimal |
+| `longitude` | string | ✓ | Longitude em formato decimal |
+| `name` | string | ✓ | Nome do local |
+| `address` | string | ✓ | Endereço exibido no pin |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "wamid_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
 ```
+
+## Dicas
+
+- `latitude`/`longitude` são **strings no formato decimal** (ex.: `"-23.5505"`).
+- Envie `name` e `address` para o pin aparecer com contexto no WhatsApp.
+- Para pedir a localização do usuário, use `location-request` (página separada), não este endpoint.

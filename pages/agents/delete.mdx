@@ -24,3 +24,9 @@ curl -X DELETE https://api.chatvolt.ai/agents/{agentId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **A deleção é permanente e irreversível** — não há como recuperar conversas, knowledge base ou configurações depois dela.
+- Use o endpoint somente em fluxos de confirmação explícita (ex.: digitar o nome do agente) para evitar exclusões acidentais.
+- O `agentId` no path pode ser o ID (`agent_abc123`) ou o handle do agente (ex.: `@meu-agente`).

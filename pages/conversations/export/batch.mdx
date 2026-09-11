@@ -1,0 +1,36 @@
+---
+title: 'Exportar Conversas em Lote'
+description: 'Exporte várias conversas do Chatvolt por período e status em JSON ou CSV para análise e backup.'
+openapi: 'GET /conversations/export'
+---
+
+Exporta conversas em lote com filtros de data e status.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/export \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+O `GET /conversations/export` exporta as conversas do período configurado na plataforma — **não aceita corpo nem parâmetros de query** no contrato atual.
+
+## Resposta
+
+```json
+{
+  "data": {
+    "exportedCount": 42,
+    "format": "json",
+    "url": "https://..."
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **O endpoint não tem filtros no corpo** — a janela e o formato são definidos na plataforma (dashboard) ou em futuras versões do contrato.
+- Para exportar uma conversa específica, use `GET /conversations/{conversationId}/export`.
+- O histórico completo fica em `GET /conversations/history` (página própria).

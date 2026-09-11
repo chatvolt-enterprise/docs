@@ -34,3 +34,9 @@ curl -X DELETE https://api.chatvolt.ai/artifacts \
   "error": null
 }
 ```
+
+## Dicas
+
+- **A deleção é permanente** — o artefato sai da sua base de conhecimento e não pode ser recuperado.
+- A deleção em lote aceita até uma lista de `ids` numa única chamada — prefira-a para limpezas grandes.
+- Verifique se o artefato está referenciado por algum agente antes de deletar, para não quebrar respostas com `sources` antigas.

@@ -1,0 +1,47 @@
+---
+title: 'Criar Cenário'
+description: 'Crie um cenário (pipeline) no Flux CRM do Chatvolt para organizar conversas por etapas.'
+openapi: 'POST /crm/scenario'
+---
+
+Cria um novo cenário (funil de vendas) no CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/scenario \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Funil de Vendas",
+    "description": "Pipeline principal"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Nome do cenário |
+| `description` | string |  | Descrição do pipeline |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Funil de Vendas",
+    "description": "Pipeline principal",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Crie as etapas (`steps`) depois do cenário** — elas precisam do `scenarioId` retornado.
+- Use um cenário por pipeline (ex.: Vendas, Sucesso, Suporte) para não misturar métricas.
+- Para adicionar conversa a uma etapa, combine com o endpoint `move` do CRM.

@@ -1,0 +1,51 @@
+---
+title: 'Mover Conversa entre Etapas'
+description: 'Mova uma conversa de uma etapa para outra no funil do Flux CRM no Chatvolt.'
+openapi: 'POST /crm/step/move'
+---
+
+Move uma conversa entre etapas do mesmo cenário no CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step/move \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "scenarioId": "scn_abc123",
+    "destStepId": "stp_abc123"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string | ✓ | ID da conversa |
+| `scenarioId` | string |  | ID do cenário |
+| `destStepId` | string |  | Etapa de destino (ID CUID) |
+| `destStepIndex` | integer |  | Posição de destino (alternativo ao `destStepId`) |
+| `shouldSendInitialMessage` | boolean |  | Envia a mensagem inicial da etapa |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "conversationId": "conv_abc123",
+    "fromStepId": 1,
+    "toStepId": 2,
+    "moved": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`conversationId` é obrigatório**; o destino é `destStepId` (CUID) ou `destStepIndex` — não existem `fromStepId`/`toStepId` no contrato.
+- Use `shouldSendInitialMessage: true` quando a etapa de destino tiver mensagem inicial.
+- Registre um log (`POST /crm/conversationLog`) depois do move para manter a auditoria do funil.

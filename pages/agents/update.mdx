@@ -39,3 +39,9 @@ curl -X PATCH https://api.chatvolt.ai/agents/{agentId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **`PATCH` é parcial**: envie apenas os campos que quer alterar — os demais permanecem intactos.
+- Use `visibility: "public"` com cuidado: agentes públicos podem ser invocados sem autenticação externa pelo embed.
+- Ajuste `temperature` em passos pequenos (0.1) e teste as respostas — mudanças bruscas mudam o tom do atendimento.

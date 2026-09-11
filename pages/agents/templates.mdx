@@ -38,3 +38,9 @@ O `organizationId` no path deve corresponder ao da sua chave de API.
   "error": null
 }
 ```
+
+## Dicas
+
+- O `organizationId` deve pertencer **à mesma organização da sua chave de API** — caso contrário o retorno será vazio ou `404`.
+- Templates são apenas ponto de partida: use o `id` retornado como referência e crie o agente real via `POST /agents` com as configurações que desejar.
+- Se o agente tiver ferramentas ou knowledge base específica, cadastre depois da criação — templates trazem só a configuração base.

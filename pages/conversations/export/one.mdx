@@ -1,0 +1,46 @@
+---
+title: 'Exportar Conversa Específica'
+description: 'Exporte uma única conversa do Chatvolt em formato estruturado para análise, auditoria ou backup.'
+openapi: 'GET /conversations/{conversationId}/export'
+---
+
+Exporta uma conversa individual com todo o histórico de mensagens.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/conversations/{conversationId}/export \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa a exportar |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "conv_abc123",
+    "channel": "whatsapp",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Qual o horário?",
+        "createdAt": "2026-07-23T10:00:00Z"
+      }
+    ]
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use para auditoria de um atendimento específico (reclamações, disputas, compliance).
+- O `conversationId` vem de `GET /conversation/{conversationId}` ou da resposta de envio de mensagem.
+- Para exportar várias conversas de uma vez, use o export em lote.

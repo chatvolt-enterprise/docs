@@ -1,0 +1,38 @@
+---
+title: 'Listar Conversas do Cenário'
+description: 'Liste as conversas associadas a um cenário (pipeline) do Flux CRM no Chatvolt.'
+openapi: 'GET /crm/scenario/{scenarioId}/conversation'
+---
+
+Lista as conversas vinculadas a um cenário do CRM.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/crm/scenario/{scenarioId}/conversation \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "conv_abc123",
+      "scenarioId": 1,
+      "stepId": 2,
+      "contactId": "contact_456",
+      "status": "active"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use para montar a visão do funil: que conversas estão em cada etapa do cenário.
+- A resposta traz o `stepId` atual — combine com `GET /crm/step` para resolver nomes das etapas.
+- O `scenarioId` vem de `GET /crm/scenario` (listagem de cenários).

@@ -29,3 +29,9 @@ curl -X POST https://api.chatvolt.ai/datastores \
   "error": null
 }
 ```
+
+## Dicas
+
+- **Crie o datastore antes de indexar documentos** — o `id` retornado (`ds_...`) é usado nos endpoints de índice e query.
+- Dê nomes descritivos: o `name` aparece nos relatórios e na tela de configuração dos agentes.
+- Conecte o datastore a um agente depois para que ele use a base nas respostas.

@@ -24,3 +24,9 @@ curl -X DELETE https://api.chatvolt.ai/conversation/{conversationId} \
   "error": null
 }
 ```
+
+## Dicas
+
+- **A deleção é permanente** — mensagens, anexos e histórico da conversa somem sem recuperação.
+- Confirme em duas etapas no seu fluxo (ex.: input com "DELETAR") antes de chamar o endpoint.
+- Prefira arquivar ou resolver (`POST set-status` com `resolved`) quando precisar apenas tirar a conversa da fila de atendimento.

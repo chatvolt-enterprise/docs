@@ -1,0 +1,53 @@
+---
+title: 'Criar Template'
+description: 'Crie um template de mensagem do WhatsApp para envio aprovado pela Meta.'
+openapi: 'POST /whatsapp/templates'
+---
+
+Cria um template de mensagem do WhatsApp. O template passa por aprovação da Meta antes de poder ser enviado.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/whatsapp/templates \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agentId": "agent_abc123",
+    "name": "boas_vindas",
+    "category": "MARKETING",
+    "language": "pt_BR",
+    "components": [
+      {
+        "type": "BODY",
+        "text": "Olá {{1}}! Seja bem-vindo."
+      }
+    ]
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string | ✓ | ID do agente dono do template |
+| `name` | string | ✓ | Nome do template |
+| `category` | string | ✓ | `MARKETING`, `UTILITY` ou `AUTHENTICATION` |
+| `language` | string | ✓ | Código do idioma (ex.: `pt_BR`) |
+| `components` | array | ✓ | Componentes do template (body, header...) |
+
+## Response
+
+```json
+{
+  "id": "123456",
+  "name": "boas_vindas",
+  "status": "pending"
+}
+```
+
+## Dicas
+
+- **Templates passam por aprovação do WhatsApp** — o status fica `pending` e depois `approved`/`rejected`; consulte `GET /whatsapp/templates` para acompanhar.
+- **`agentId`, `language` e `components` são obrigatórios** — o exemplo acima os inclui todos.
+- Só é possível enviar template **aprovado** como primeira mensagem para um contato.

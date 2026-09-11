@@ -25,6 +25,21 @@ Acesse `http://localhost:3000`
 
 O deploy é automático via integração Mintlify ao fazer push na branch `main`.
 
+## Sincronização da OpenAPI Spec
+
+O arquivo `openapi.yaml` é sincronizado automaticamente a partir do endpoint dinâmico
+em `api.chatvolt.ai` através do workflow `.github/workflows/sync-openapi.yml`:
+
+- **Diariamente** às 06:00 UTC (cron)
+- **Manual** via `workflow_dispatch` no GitHub Actions
+- **Ao alterar** o workflow de sync
+
+O workflow captura a spec mais recente e faz commit automático se houver diferenças.
+
+> **Nota:** O endpoint dinâmico gera a especificação OpenAPI 3.0.1 completa da API
+> a partir do código do dashboard (`apps/dashboard/pages/api/docs/openai.yaml.ts`),
+> substituindo a manutenção manual dos YAMLs estáticos.
+
 ## Estrutura
 
 ```

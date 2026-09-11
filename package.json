@@ -1,0 +1,18 @@
+{
+  "name": "chatvolt-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "mint dev",
+    "build": "mint build",
+    "preview": "mint preview",
+    "lint": "mint validate",
+    "broken-links": "mint broken-links"
+  },
+  "devDependencies": {
+    "mint": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20.17.0"
+  }
+}

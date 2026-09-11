@@ -1,0 +1,56 @@
+---
+title: 'Criar Etapa'
+description: 'Crie uma etapa (step) em um cenário do Flux CRM no Chatvolt.'
+openapi: 'POST /crm/step'
+---
+
+Cria uma nova etapa em um cenário do CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scenarioId": "scn_abc123",
+    "name": "Lead Qualificado",
+    "trigger": "conversation_created"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `scenarioId` | string | ✓ | ID do cenário (CUID, ex.: `scn_...`) |
+| `name` | string | ✓ | Nome da etapa |
+| `agentId` | string |  | Agente responsável pela etapa |
+| `trigger` | string |  | Gatilho da etapa (ex.: `conversation_created`) |
+| `prompt` | string |  | Instrução de processamento da etapa |
+| `initialMessage` | string |  | Mensagem inicial ao entrar na etapa |
+| `defaultStatus` | string |  | `RESOLVED`, `UNRESOLVED` ou `HUMAN_REQUESTED` |
+| `defaultPriority` | string |  | `LOW`, `MEDIUM` ou `HIGH` |
+| `stepOrder` | string |  | Ordem no funil (quando suportado pelo fluxo) |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "stp_abc123",
+    "scenarioId": "scn_abc123",
+    "name": "Lead Qualificado",
+    "trigger": "conversation_created",
+    "stepOrder": 2
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`scenarioId` é um CUID string** (ex.: `scn_...`), não um número — chegue via `GET /crm/scenario`.
+- **`name` é obrigatório**; os campos de comportamento (`trigger`, `prompt`, `initialMessage`) definem o que a etapa faz.
+- Crie as etapas em seguida à criação do cenário, enquanto a estrutura do pipeline está fresca.

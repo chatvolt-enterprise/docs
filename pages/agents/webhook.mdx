@@ -1,27 +1,25 @@
 ---
 title: 'Webhook do Agente'
-description: 'Configure a URL de webhook de um agente para receber eventos em tempo real sobre mensagens, conversas e mudanças de status via HTTP.'
-openapi: 'POST /agents/{id}/webhook'
+description: 'Ative ou desative o webhook de um serviço (WhatsApp, Telegram, Z-API, Instagram) de um agente no Chatvolt.'
+openapi: 'PATCH /agents/{id}/webhook'
 ---
 
-Configura uma URL para receber notificações de eventos do agente (nova mensagem, conversa criada, etc.).
+Ativa ou desativa o webhook de um serviço de mensageria associado ao agente. Este endpoint é um **toggle de status** — não configura URLs.
 
 ## Request
 
 ```bash
-curl -X PATCH https://api.chatvolt.ai/agents/{agentId}/webhook \
-  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "webhookUrl": "https://meusistema.com/webhook"
-  }'
+curl -X PATCH 'https://api.chatvolt.ai/agents/{agentId}/webhook?type=whatsapp&enabled=true' \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
 
-### Parâmetros
+### Parâmetros de Query
 
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|:-----------:|-----------|
-| `webhookUrl` | string |  | URL para receber os eventos |
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `id` | string | ✓ | ID do agente (path) |
+| `type` | string | ✓ | Serviço: `whatsapp`, `telegram`, `zapi` ou `instagram` |
+| `enabled` | boolean | ✓ | `true` para ativar, `false` para desativar |
 
 ## Resposta
 
@@ -29,10 +27,17 @@ curl -X PATCH https://api.chatvolt.ai/agents/{agentId}/webhook \
 {
   "data": {
     "id": "agent_abc123",
-    "webhookUrl": "https://meusistema.com/webhook",
+    "webhookType": "whatsapp",
+    "webhookEnabled": true,
     "updatedAt": "2026-07-23T14:00:00Z"
   },
   "success": true,
   "error": null
 }
 ```
+
+## Dicas
+
+- **O contrato é um toggle**: parámetros `type` + `enabled` na query — o endpoint não aceita body.
+- `enabled: true` para o serviço passam a enviar eventos ao webhook configurado na plataforma; `false` interrompe.
+- Para `instagram`, ativar o webhook também controla `answerDms` e `answerComments` do agente.

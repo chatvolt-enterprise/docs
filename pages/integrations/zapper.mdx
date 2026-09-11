@@ -1,0 +1,29 @@
+---
+title: 'Zapper API'
+openapi: 'POST /zapper/instances/{id}/message'
+---
+
+Envia uma mensagem texto e/ou anexos via Zapper HUB.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/zapper/instances/inst_123/message \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Olá! Mensagem enviada via Zapper"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `id` | ID da instância Zapper |
+
+## Dicas
+
+- O `id` da instância Zapper aparece no painel da integração; use o mesmo ID usado nos fluxos do dashboard.
+- A instância precisa estar **conectada e ativa** — instâncias expiradas retornam erro de autenticação do canal.
+- O corpo aceita o texto da mensagem (`message`); formatos ricos (botões, listas) usam os endpoints dedicados do WhatsApp.

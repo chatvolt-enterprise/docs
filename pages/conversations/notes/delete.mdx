@@ -1,0 +1,33 @@
+---
+title: 'Deletar Nota'
+description: 'Remova uma nota interna de conversa no Chatvolt.'
+openapi: 'DELETE /conversations/{conversationId}/notes/{noteId}'
+---
+
+Remove uma nota interna de uma conversa.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/conversations/123/notes/note_456 \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "note_456",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **A deleção é permanente** — a nota some do histórico da conversa.
+- Use para limpar notas desatualizadas ou com informações sensíveis.
+- Em fluxo normal, prefira atualizar (`PUT`) a deletar para preservar o contexto da equipe.

@@ -1,0 +1,43 @@
+---
+title: 'Definir Prioridade'
+openapi: 'POST /conversations/{conversationId}/set-priority'
+---
+
+Define a prioridade de uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "priority": "HIGH"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `priority` | string | ✓ | Prioridade: `LOW`, `MEDIUM` ou `HIGH` (maiúsculas) |
+
+## Response
+
+```json
+{
+  "success": true
+}
+```
+
+## Dicas
+
+- **Os valores são maiúsculos**: `LOW`, `MEDIUM` ou `HIGH` — minúsculas falham na validação.
+- Use prioridades para **SLA de atendimento**: filtre a fila por `HIGH` e atenda primeiro as conversas críticas.
+- Ao resolver uma conversa, o status deixa de ser `active` — combina com `set-status` para fechar o fluxo completo.

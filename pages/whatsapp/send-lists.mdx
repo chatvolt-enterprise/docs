@@ -1,7 +1,10 @@
 ---
-title: 'Enviar Lista Interativa'
+title: 'Enviar Listas'
+description: 'Envie uma mensagem interativa com lista de opções (menu) no WhatsApp via Chatvolt.'
 openapi: 'POST /messages/interactive/send-lists'
 ---
+
+Envia uma mensagem interativa com um menu de opções agrupadas em seções.
 
 ## Request
 
@@ -10,18 +13,11 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-lists \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "bodyText": "Escolha um produto:",
-    "buttonText": "Ver opções",
-    "sections": [
-      {
-        "title": "Produtos",
-        "rows": [
-          { "id": "prod_1", "title": "Produto A", "description": "R$ 49,90" },
-          { "id": "prod_2", "title": "Produto B", "description": "R$ 99,90" }
-        ]
-      }
-    ]
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "body_text": "Escolha um produto:",
+    "button_text": "Ver opções",
+    "list_title": "Nossos produtos"
   }'
 ```
 
@@ -29,10 +25,12 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-lists \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `to` | string |  | Telefone do destinatário |
-| `bodyText` | string |  | Texto da mensagem |
-| `buttonText` | string |  | Texto do botão da lista |
-| `sections` | array |  | Seções com opções |
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `body_text` | string | ✓ | Texto da mensagem (snake_case) |
+| `button_text` | string | ✓ | Texto do botão da lista |
+| `list_title` | string |  | Título do menu |
+| `header_text` / `footer_text` | string |  | Cabeçalho / rodapé |
 
 ## Resposta
 
@@ -46,3 +44,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-lists \
   "error": null
 }
 ```
+
+## Dicas
+
+- O contrato usa `body_text`, `button_text` e `list_title` (snake_case) — não `sections`/`rows`.
+- Listas são ideais para menus com muitas opções onde botões (máx. 3) ficam apertados.
+- As opções configuradas no template/dashboard da integração são exibidas ao abrir o menu.

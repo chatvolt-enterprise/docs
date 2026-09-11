@@ -1,31 +1,54 @@
 ---
-title: 'Obter Contato'
-description: 'Recupere os detalhes de um contato pelo ID no Chatvolt, incluindo nome, telefone, e-mail, variáveis customizadas e histórico de interações.'
-openapi: 'GET /contacts/{id}'
+title: 'Listar Contatos'
+description: 'Liste os contatos da organização com paginação e filtros por busca, tags, status de conversa, agente e cenário CRM.'
+openapi: 'GET /contacts'
 ---
+
+Lista contatos com filtros e paginação. Para localizar um contato específico, use `search` com e-mail, telefone ou nome.
 
 ## Request
 
 ```bash
-curl -X GET https://api.chatvolt.ai/contacts/{contactId} \
+curl -X GET 'https://api.chatvolt.ai/contacts?search=joao%40exemplo.com&limit=10' \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+### Parâmetros de Query
+
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `offset` | number |  | Registros a pular para paginação (padrão: 0) |
+| `limit` | number |  | Máx. de registros por página (padrão: 100) |
+| `search` | string |  | Busca por e-mail, telefone, nome ou sobrenome |
+| `tags` | array |  | Lista de tags para filtrar |
+| `agent` | string |  | Filtrar por ID do agente |
+| `conversationStatus` | string |  | Filtrar por status da conversa (`RESOLVED`, `UNRESOLVED`, `HUMAN_REQUESTED`) |
+| `crmScenario` | string |  | Filtrar por ID do cenário CRM |
+| `crmStep` | string |  | Filtrar por ID da etapa CRM |
 
 ## Resposta
 
 ```json
 {
-  "data": {
-    "id": "contact_abc123",
-    "email": "joao@exemplo.com",
-    "name": "João Silva",
-    "phone": "5511988887777",
-    "organizationName": "Empresa XYZ",
-    "notes": "Cliente desde 2025",
-    "createdAt": "2026-07-23T10:00:00Z",
-    "updatedAt": "2026-07-23T12:00:00Z"
-  },
-  "success": true,
-  "error": null
+  "contacts": [
+    {
+      "id": "contact_abc123",
+      "email": "joao@exemplo.com",
+      "name": "João Silva",
+      "phone": "5511988887777",
+      "organizationName": "Empresa XYZ",
+      "notes": "Cliente desde 2025",
+      "createdAt": "2026-07-23T10:00:00Z",
+      "updatedAt": "2026-07-23T12:00:00Z"
+    }
+  ],
+  "count": 42
 }
 ```
+
+## Dicas
+
+- **Use `search` para localizar um contato** por e-mail, telefone ou nome — é o caminho mais rápido sem ter um ID em mãos.
+- **Pagine com `limit`/`offset`**: a resposta traz `count` (total) e `contacts` (página atual) — máximo de 100 por página.
+- Combine filtros (tags + agente + status de conversa) para montar listas de segmentação para disparos e relatórios.
+- Para criar ou atualizar um contato, use `POST /contacts` (atualiza quando o `id` vai no corpo).

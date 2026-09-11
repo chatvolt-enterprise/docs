@@ -1,0 +1,36 @@
+---
+title: 'Listar Categorias'
+description: 'Liste as categorias de artefatos disponíveis na organização do Chatvolt.'
+openapi: 'GET /artifact-categories'
+---
+
+Lista as categorias usadas para organizar os artefatos da organização.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifact-categories \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "cat_abc123",
+      "name": "Relatórios",
+      "description": "Relatórios mensais e trimestrais"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use esta listagem para popular o seletor de categorias antes de criar artefatos (`POST /artifacts`).
+- Nomes estáveis (ex.: "Relatórios") evitam que filtros existentes quebrem.
+- `categoryIds` nas buscas (search) inclui sub-categorias automaticamente.

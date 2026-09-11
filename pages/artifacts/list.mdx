@@ -1,6 +1,7 @@
 ---
 title: 'Listar Artefatos'
 description: 'Liste todos os artefatos da sua organização com paginação e filtros para localizar rapidamente conteúdos usados pelos seus agentes.'
+openapi: 'GET /artifacts'
 ---
 
 ## Request
@@ -27,3 +28,9 @@ curl -X GET https://api.chatvolt.ai/artifacts \
   "error": null
 }
 ```
+
+## Dicas
+
+- Use a paginação (`limit`/`offset`) para listas grandes — não traga todos os artefatos de uma vez.
+- Para buscas por texto ou filtros avançados, use `GET /artifacts/search` com os parâmetros de query.
+- Considere cachear a listagem por alguns minutos se os artefatos mudam pouco, reduzindo chamadas à API.

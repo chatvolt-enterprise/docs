@@ -1,7 +1,10 @@
 ---
-title: 'Enviar Template WhatsApp'
+title: 'Enviar Mensagem de Template'
+description: 'Envie um template do WhatsApp aprovado como primeira mensagem de uma conversa do Chatvolt.'
 openapi: 'POST /whatsapp/{phoneNumberId}/template-message'
 ---
+
+Envia uma mensagem usando um template aprovado do WhatsApp. É o caminho obrigatório para **primeira mensagem** a um contato.
 
 ## Request
 
@@ -11,16 +14,10 @@ curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
   -H "Content-Type: application/json" \
   -d '{
     "to": "5511988887777",
+    "text": "Olá, {{1}}! Seja bem-vindo ao nosso atendimento.",
+    "agentId": "agent_abc123",
     "templateName": "boas_vindas",
-    "language": "pt_BR",
-    "components": [
-      {
-        "type": "body",
-        "parameters": [
-          { "type": "text", "text": "João" }
-        ]
-      }
-    ]
+    "templateLangCode": "pt_BR"
   }'
 ```
 
@@ -28,10 +25,20 @@ curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `to` | string |  | Telefone do destinatário |
-| `templateName` | string |  | Nome do template aprovado |
-| `language` | string |  | Código do idioma (`pt_BR`, `en_US`) |
-| `components` | array |  | Parâmetros do template |
+| `to` | string | ✓ | Telefone do destinatário (DDI+DDD) |
+| `text` | string | ✓ | Texto com variáveis posicionais (`{{1}}`) |
+| `agentId` | string | ✓ | ID do agente responsável |
+| `templateName` | string | ✓ | Nome do template aprovado |
+| `templateLangCode` | string | ✓ | Código do idioma (ex.: `pt_BR`) |
+| `defaultStatus` | string |  | `RESOLVED`, `UNRESOLVED` ou `HUMAN_REQUESTED` |
+| `buttons` | array |  | Botões do template (URL etc.) |
+
+## Dicas
+
+- **O campo de idioma é `templateLangCode`** (não `language`) — confira o contrato antes de enviar.
+- **O `templateName` precisa estar aprovado** no WhatsApp (consulte `GET /whatsapp/templates`) antes do envio.
+- As variáveis do `text` são posicionais: `{{1}}`, `{{2}}...` preenchidas na ordem do template aprovado.
+- Este é o caminho certo para **primeira mensagem** ao contato — mensagens livres só valem após o usuário responder.
 
 ## Resposta
 

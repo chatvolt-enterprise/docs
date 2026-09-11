@@ -1,0 +1,53 @@
+---
+title: 'Criar Log no CRM'
+description: 'Registre uma ação de atividade no Flux CRM associada a uma conversa no Chatvolt.'
+openapi: 'POST /crm/conversationLog'
+---
+
+Cria um log de atividade no CRM para uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/conversationLog \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "scenarioId": "scn_abc123",
+    "stepId": "stp_abc123",
+    "status": "active"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string | ✓ | ID da conversa |
+| `scenarioId` | string | ✓ | ID do cenário |
+| `stepId` | string | ✓ | ID da etapa |
+| `status` | string | ✓ | `inactive`, `active` ou `error` |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "conversationId": "conv_abc123",
+    "scenarioId": "scn_abc123",
+    "stepId": "stp_abc123",
+    "status": "active",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Os campos obrigatórios são** `conversationId`, `scenarioId`, `stepId` e `status` — sem eles o log é rejeitado.
+- Use `status` do contrato (`inactive`/`active`/`error`) — não há campos `action`/`description` neste schema.
+- **Crie logs no mesmo momento da ação** (via webhook ou no seu backend) para o histórico ficar fiel.

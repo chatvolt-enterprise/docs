@@ -1,0 +1,48 @@
+---
+title: 'Atualizar Mídia'
+description: 'Altere os metadados de uma mídia vinculada a um artefato, como o texto alternativo, no Chatvolt.'
+openapi: 'PATCH /artifacts/media/{id}'
+---
+
+Atualiza metadados de uma mídia existente, como o `alt` (texto alternativo).
+
+## Request
+
+```bash
+curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "altDescription": "Descrição da imagem"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `name` | string |  | Novo nome do arquivo |
+| `altDescription` | string |  | Texto alternativo da mídia |
+| `isActive` | boolean |  | Ativa/desativa a mídia |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "media_abc123",
+    "name": "imagem-produto.png",
+    "mediaType": "image",
+    "s3Url": "https://...",
+    "altDescription": "Descrição da imagem"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`PATCH` é parcial**: envie apenas os campos que quer alterar.
+- O campo é **`altDescription`** (não `alt`) — é o nome do contrato do schema de mídia.
+- O `altDescription` melhora acessibilidade e permite o agente descrever imagens em respostas.

@@ -1,0 +1,46 @@
+---
+title: 'Remover da Whitelist'
+description: 'Revogue a autorização de um número de telefone de um agente no WhatsApp do Chatvolt.'
+openapi: 'DELETE /agent-whitelist-whatsapp/{id}'
+---
+
+Remove um número da whitelist de um agente, revogando o acesso ao WhatsApp.
+
+## Request
+
+```bash
+curl -X DELETE https://api.chatvolt.ai/agent-whitelist-whatsapp/{wlId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "whatsappNumber": "5511988887777"
+  }'
+```
+
+### Parâmetros
+
+| Parâmetro | Local | Obrigatório | Descrição |
+|-----------|-------|:-----------:|-----------|
+| `id` | path | ✓ | ID do registro da whitelist (`wl_...`) |
+| `whatsappNumber` | body | ✓ | Número a revogar |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "wl_abc123",
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511988887777",
+    "deleted": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **A remoção é imediata** — o número deixa de falar com o agente na próxima mensagem.
+- O path usa o `id` do registro (`wl_...`) da listagem, e o corpo identifica o `whatsappNumber` a revogar.
+- Esvaziar a whitelist reabre o agente para todos os números (desliga o modo exclusivo).

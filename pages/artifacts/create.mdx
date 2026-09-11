@@ -41,3 +41,9 @@ curl -X POST https://api.chatvolt.ai/artifacts \
   "error": null
 }
 ```
+
+## Dicas
+
+- Envie `content` em **base64** — o endpoint decodifica e armazena o arquivo.
+- Associe um `categoryId` válido para manter a organização; categorias são criadas via `POST /artifact-categories`.
+- Para arquivos grandes (vídeos/áudios), prefira o upload de mídia dedicado em vez de base64 no corpo.

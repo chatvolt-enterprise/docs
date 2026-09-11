@@ -1,0 +1,45 @@
+---
+title: 'Atualizar Log do CRM'
+description: 'Edite a descrição ou ação de um log de atividade do Flux CRM no Chatvolt.'
+openapi: 'PUT /crm/conversationLog/{logId}'
+---
+
+Atualiza os dados de um log existente do CRM.
+
+## Request
+
+```bash
+curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "active"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `status` | string |  | Novo status: `inactive`, `active` ou `error` |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "log_abc123",
+    "conversationId": "conv_abc123",
+    "status": "active",
+    "updatedAt": "2026-07-23T14:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **O único campo atualizável no contrato é `status`** — logs não editam `action`/`description`.
+- Use para marcar um log como `error` quando o processamento da ação falhou.
+- O `logId` não muda: referências em integrações permanecem válidas.

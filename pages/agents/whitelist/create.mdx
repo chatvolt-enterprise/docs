@@ -1,0 +1,47 @@
+---
+title: 'Adicionar à Whitelist'
+description: 'Autorize um número de telefone a interagir com um agente via WhatsApp no Chatvolt.'
+openapi: 'POST /agent-whitelist-whatsapp'
+---
+
+Adiciona um número à whitelist de WhatsApp de um agente, autorizando o contato.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/agent-whitelist-whatsapp \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agentId": "agent_abc123",
+    "whatsappNumber": "5511988887777"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string | ✓ | ID do agente |
+| `whatsappNumber` | string | ✓ | Número a autorizar |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "wl_abc123",
+    "agentId": "agent_abc123",
+    "phoneNumber": "5511988887777",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Só números na whitelist conseguem falar com o agente** — use em atendimentos privados ou testes controlados.
+- `whatsappNumber` com DDI+DDD (ex.: `5511988887777`), sem `+` — formato igual à blacklist.
+- Fora da whitelist, as mensagens do número são ignoradas pelo agente.

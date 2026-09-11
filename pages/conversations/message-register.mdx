@@ -1,0 +1,44 @@
+---
+title: 'Registrar Mensagem no Contexto'
+openapi: 'POST /conversations/{conversationId}/message-register'
+---
+
+Registra uma mensagem no contexto da conversa sem enviá-la ao participante. Útil para eventos de sistemas externos.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/message-register \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Cliente solicitou reembolso via e-mail",
+    "from": "agent"
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `message` | string | ✓ | Conteúdo a registrar no contexto |
+| `from` | string |  | Remetente do registro: `human` ou `agent` |
+## Response
+
+```json
+{
+  "success": true
+}
+```
+
+## Dicas
+
+- A mensagem **não é entregue** ao participante — serve para registrar contexto de sistemas externos (CRM, ERP) na conversa.
+- `from: "human"` marca o registro como intervenção humana; `from: "agent"` como ação do bot.
+- Combine com variáveis (`POST /variables`) para enriquecer a conversa com dados que o agente pode consultar depois.

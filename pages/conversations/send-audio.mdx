@@ -35,3 +35,9 @@ curl -X POST https://api.chatvolt.ai/conversations/{conversationId}/send-audio \
   "error": null
 }
 ```
+
+## Dicas
+
+- O `audioUrl` precisa ser uma **URL pública acessível pelo Chatvolt** (o servidor baixa o arquivo, não o navegador).
+- Envie `duration` em segundos para o canal exibir o tempo correto do áudio.
+- Formatos aceitos variam por canal — para WhatsApp, prefira `.mp3` ou `.ogg`; evite arquivos acima de 16MB.

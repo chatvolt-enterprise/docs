@@ -1,7 +1,10 @@
 ---
 title: 'Enviar CTA'
+description: 'Envie uma mensagem interativa com botão de chamada para ação (URL) no WhatsApp via Chatvolt.'
 openapi: 'POST /messages/interactive/send-cta'
 ---
+
+Envia uma mensagem com um botão que abre uma URL (call to action).
 
 ## Request
 
@@ -10,10 +13,11 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-cta \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "bodyText": "Acesse nosso site!",
-    "ctaUrl": "https://chatvolt.ai",
-    "ctaText": "Saiba mais"
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "body_text": "Acesse nosso site!",
+    "button_display_text": "Saiba mais",
+    "button_url": "https://chatvolt.ai"
   }'
 ```
 
@@ -21,10 +25,12 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-cta \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `to` | string |  | Telefone do destinatário |
-| `bodyText` | string |  | Texto da mensagem |
-| `ctaUrl` | string |  | URL do CTA |
-| `ctaText` | string |  | Texto do botão |
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `body_text` | string | ✓ | Texto da mensagem (snake_case) |
+| `button_display_text` | string | ✓ | Texto do botão |
+| `button_url` | string | ✓ | URL do CTA (HTTPS) |
+| `header_text` / `footer_text` | string |  | Cabeçalho / rodapé |
 
 ## Resposta
 
@@ -38,3 +44,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-cta \
   "error": null
 }
 ```
+
+## Dicas
+
+- Os campos do contrato são `button_display_text` e `button_url` (snake_case).
+- Use **HTTPS** e links móveis (deep links) quando possível.
+- CTA para fora do WhatsApp só em conversas já iniciadas.

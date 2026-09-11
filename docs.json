@@ -2,6 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "theme": "mint",
   "name": "Chatvolt API",
+  "description": "Documentação oficial da API do Chatvolt — plataforma no-code para construir Agentes de IA com WhatsApp, Telegram, Instagram e mais.",
+
   "logo": {
     "dark": "/logo/dark.png",
     "light": "/logo/light.png"
@@ -13,6 +15,7 @@
     "light": "#C69EFF",
     "dark": "#6132A9"
   },
+
   "topbarLinks": [
     {
       "name": "Home",
@@ -27,6 +30,7 @@
     "name": "API Keys",
     "url": "https://app.chatvolt.ai/settings/api-keys"
   },
+
   "anchors": [
     {
       "name": "Comece Aqui",
@@ -44,186 +48,249 @@
       "url": "pages/changelog/index"
     },
     {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/chatvolt"
+    },
+    {
       "name": "support@chatvolt.ai",
       "icon": "envelope",
       "url": "mailto:support@chatvolt.ai"
     }
   ],
+
+  "search": {
+    "prompt": "Pesquise na documentação...",
+    "boost": {
+      "pages/start/quickstart.mdx": 2,
+      "pages/agents/query.mdx": 2,
+      "pages/authentication.mdx": 1.5,
+      "pages/start/introduction.mdx": 1.5
+    }
+  },
+
   "navigation": {
-    "languages": [
+    "versions": [
       {
-        "language": "en"
-      },
-      {
-        "language": "pt-BR",
-        "versions": [
+        "version": "v1",
+        "tag": "Current",
+        "tabs": [
           {
-            "version": "v1",
-            "tag": "Current",
-            "tabs": [
+            "tab": "Comece Aqui",
+            "groups": [
               {
-                "tab": "Comece Aqui",
-                "groups": [
-                  {
-                    "group": "Comece Aqui",
-                    "pages": [
-                      "pages/start/introduction",
-                      "pages/start/quickstart",
-                      "pages/authentication",
-                      "pages/errors"
-                    ]
-                  }
-                ]
-              },
-              {
-                "tab": "API Reference",
-                "groups": [
-                  {
-                    "group": "Agentes",
-                    "pages": [
-                      "pages/agents/reference",
-                      "pages/agents/query",
-                      "pages/agents/create",
-                      "pages/agents/get",
-                      "pages/agents/update",
-                      "pages/agents/delete",
-                      "pages/agents/webhook",
-                      "pages/agents/blacklist",
-                      "pages/agents/whitelist",
-                      "pages/agents/templates"
-                    ]
-                  },
-                  {
-                    "group": "Conversas",
-                    "pages": [
-                      "pages/conversations/reference",
-                      "pages/conversations/send-message",
-                      "pages/conversations/get-messages",
-                      "pages/conversations/get-by-id",
-                      "pages/conversations/delete",
-                      "pages/conversations/variables",
-                      "pages/conversations/tags",
-                      "pages/conversations/export",
-                      "pages/conversations/send-audio"
-                    ]
-                  },
-                  {
-                    "group": "Contatos",
-                    "pages": [
-                      "pages/contacts/reference",
-                      "pages/contacts/create",
-                      "pages/contacts/get",
-                      "pages/contacts/variables"
-                    ]
-                  },
-                  {
-                    "group": "Datastores",
-                    "pages": [
-                      "pages/datastores/reference",
-                      "pages/datastores/query",
-                      "pages/datastores/create",
-                      "pages/datastores/list",
-                      "pages/datastores/get",
-                      "pages/datastores/update",
-                      "pages/datastores/delete"
-                    ]
-                  },
-                  {
-                    "group": "Disparos (Dispatches)",
-                    "pages": [
-                      "pages/dispatches/reference",
-                      "pages/dispatches/create",
-                      "pages/dispatches/list",
-                      "pages/dispatches/populate-queue"
-                    ]
-                  },
-                  {
-                    "group": "Artefatos",
-                    "pages": [
-                      "pages/artifacts/reference",
-                      "pages/artifacts/search",
-                      "pages/artifacts/create",
-                      "pages/artifacts/list",
-                      "pages/artifacts/get",
-                      "pages/artifacts/update",
-                      "pages/artifacts/delete",
-                      "pages/artifacts/media",
-                      "pages/artifacts/categories"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp",
-                    "pages": [
-                      "pages/whatsapp/reference",
-                      "pages/whatsapp/template-message",
-                      "pages/whatsapp/send-buttons",
-                      "pages/whatsapp/send-lists",
-                      "pages/whatsapp/send-cta",
-                      "pages/whatsapp/send-location"
-                    ]
-                  },
-                  {
-                    "group": "Flux CRM",
-                    "pages": [
-                      "pages/crm/reference",
-                      "pages/crm/scenarios",
-                      "pages/crm/steps",
-                      "pages/crm/conversation-logs"
-                    ]
-                  },
-                  {
-                    "group": "Tags",
-                    "pages": [
-                      "pages/tags/reference"
-                    ]
-                  },
-                  {
-                    "group": "Integrações",
-                    "pages": [
-                      "pages/integrations/reference"
-                    ]
-                  },
-                  {
-                    "group": "Webhooks",
-                    "pages": [
-                      "pages/webhooks/reference"
-                    ]
-                  },
-                  {
-                    "group": "OpenAPI",
-                    "pages": [
-                      {
-                        "group": "Endpoints",
-                        "openapi": "openapi.yaml"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "tab": "Changelog",
+                "group": "Comece Aqui",
                 "pages": [
-                  "pages/changelog/index"
+                  "pages/start/introduction",
+                  "pages/start/quickstart",
+                  "pages/authentication",
+                  "pages/errors"
                 ]
               }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Agentes",
+                "pages": [
+                  "pages/agents/reference",
+                  "pages/agents/query",
+                  "pages/agents/create",
+                  "pages/agents/get",
+                  "pages/agents/update",
+                  "pages/agents/delete",
+                  "pages/agents/webhook",
+                  "pages/agents/blacklist/list",
+                  "pages/agents/blacklist/create",
+                  "pages/agents/blacklist/delete",
+                  "pages/agents/whitelist/list",
+                  "pages/agents/whitelist/create",
+                  "pages/agents/whitelist/delete",
+                  "pages/agents/templates"
+                ]
+              },
+              {
+                "group": "Conversas",
+                "pages": [
+                  "pages/conversations/reference",
+                  "pages/conversations/send-message",
+                  "pages/conversations/get-messages",
+                  "pages/conversations/get-by-id",
+                  "pages/conversations/delete",
+                  "pages/conversations/assign",
+                  "pages/conversations/unassign",
+                  "pages/conversations/set-ai-enabled",
+                  "pages/conversations/set-priority",
+                  "pages/conversations/update-status",
+                  "pages/conversations/message-register",
+                  "pages/conversations/variables",
+                  "pages/conversations/notes/list",
+                  "pages/conversations/notes/create",
+                  "pages/conversations/notes/update",
+                  "pages/conversations/notes/delete",
+                  "pages/conversations/tags/list",
+                  "pages/conversations/tags/add",
+                  "pages/conversations/export/one",
+                  "pages/conversations/export/batch",
+                  "pages/conversations/export/history",
+                  "pages/conversations/send-audio"
+                ]
+              },
+              {
+                "group": "Contatos",
+                "pages": [
+                  "pages/contacts/reference",
+                  "pages/contacts/create",
+                  "pages/contacts/get",
+                  "pages/contacts/variables"
+                ]
+              },
+              {
+                "group": "Datastores",
+                "pages": [
+                  "pages/datastores/reference",
+                  "pages/datastores/query",
+                  "pages/datastores/create",
+                  "pages/datastores/list",
+                  "pages/datastores/get",
+                  "pages/datastores/update",
+                  "pages/datastores/delete"
+                ]
+              },
+              {
+                "group": "Disparos (Dispatches)",
+                "pages": [
+                  "pages/dispatches/reference",
+                  "pages/dispatches/create",
+                  "pages/dispatches/list",
+                  "pages/dispatches/populate-queue"
+                ]
+              },
+              {
+                "group": "Artefatos",
+                "pages": [
+                  "pages/artifacts/reference",
+                  "pages/artifacts/search",
+                  "pages/artifacts/create",
+                  "pages/artifacts/list",
+                  "pages/artifacts/get",
+                  "pages/artifacts/update",
+                  "pages/artifacts/delete",
+                  "pages/artifacts/media/list",
+                  "pages/artifacts/media/upload",
+                  "pages/artifacts/media/update",
+                  "pages/artifacts/media/delete",
+                  "pages/artifacts/categories/list",
+                  "pages/artifacts/categories/create",
+                  "pages/artifacts/categories/get",
+                  "pages/artifacts/categories/update",
+                  "pages/artifacts/categories/delete"
+                ]
+              },
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "pages/whatsapp/reference",
+                  "pages/whatsapp/template-message",
+                  "pages/whatsapp/list-templates",
+                  "pages/whatsapp/create-template",
+                  "pages/whatsapp/send-buttons",
+                  "pages/whatsapp/send-lists",
+                  "pages/whatsapp/send-cta",
+                  "pages/whatsapp/send-location",
+                  "pages/whatsapp/send-contact",
+                  "pages/whatsapp/location-request"
+                ]
+              },
+              {
+                "group": "Flux CRM",
+                "pages": [
+                  "pages/crm/reference",
+                  "pages/crm/scenarios/list",
+                  "pages/crm/scenarios/create",
+                  "pages/crm/scenarios/conversations",
+                  "pages/crm/scenarios/remove-conversation",
+                  "pages/crm/steps/list",
+                  "pages/crm/steps/create",
+                  "pages/crm/steps/add-conversation",
+                  "pages/crm/steps/move",
+                  "pages/crm/conversation-logs/list",
+                  "pages/crm/conversation-logs/create",
+                  "pages/crm/conversation-logs/get",
+                  "pages/crm/conversation-logs/update",
+                  "pages/crm/conversation-logs/delete"
+                ]
+              },
+              {
+                "group": "Tags",
+                "pages": [
+                  "pages/tags/reference"
+                ]
+              },
+              {
+                "group": "Integrações",
+                "pages": [
+                  "pages/integrations/reference",
+                  "pages/integrations/zapi",
+                  "pages/integrations/zapper",
+                  "pages/integrations/twilio",
+                  "pages/integrations/mercadolivre"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "pages/webhooks/reference"
+                ]
+              },
+              {
+                "group": "OpenAPI",
+                "pages": [
+                  {
+                    "group": "Endpoints",
+                    "openapi": "openapi.yaml"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "pages": [
+              "pages/changelog/index"
             ]
           }
         ]
       }
     ]
   },
+
   "footerSocials": {
+    "discord": "https://discord.gg/chatvolt",
     "twitter": "https://twitter.com/chatvolt",
     "instagram": "https://www.instagram.com/chatvolt",
     "youtube": "http://www.youtube.com/channel/UCcykx3LviF5onaiM7_hKZNA?sub_confirmation=1",
     "linkedin": "https://www.linkedin.com/company/chatvolt"
   },
+
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true,
     "raiseIssue": true
   },
+
   "seo": {
-    "indexHiddenPages": true
+    "indexHiddenPages": true,
+    "title": "Chatvolt API — Documentação Oficial",
+    "description": "Documentação oficial da API do Chatvolt. Aprenda a integrar Agentes de IA, WhatsApp, Telegram, Instagram e automatizar conversas com nossa plataforma no-code.",
+    "ogImage": "/favicon.png"
+  },
+
+  "metadata": {
+    "title": "Chatvolt API — Documentação Oficial",
+    "description": "Documentação oficial da API do Chatvolt. Aprenda a integrar Agentes de IA, WhatsApp, Telegram, Instagram e automatizar conversas com nossa plataforma no-code.",
+    "keywords": "chatvolt, api, documentação, ia, agente, whatsapp, telegram, instagram, chatbot, no-code"
   }
 }

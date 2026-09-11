@@ -1,0 +1,47 @@
+---
+title: 'Criar Nota'
+description: 'Adicione uma nota interna a uma conversa no Chatvolt para a equipe de atendimento.'
+openapi: 'POST /conversations/{conversationId}/notes'
+---
+
+Cria uma nota interna associada a uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/notes \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "note": "Cliente precisa de acompanhamento semanal"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `note` | string | ✓ | Conteúdo da nota |
+| `isPrivate` | boolean |  | Nota privada (visível só para o autor) |
+| `isJustify` | boolean |  | Marca como justificativa |
+| `notificationDateTime` | string |  | Lembrete (ISO) |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "note_456",
+    "note": "Cliente precisa de acompanhamento semanal",
+    "createdAt": "2026-07-23T10:00:00Z"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- O campo do contrato é **`note`** (não `content`) e é obrigatório.
+- Use notas para **handoff entre atendentes**: resuma o que já foi feito antes de transferir a conversa.
+- O `note` não é visto pelo cliente — é só para a equipe.

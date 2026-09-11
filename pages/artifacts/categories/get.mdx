@@ -1,0 +1,34 @@
+---
+title: 'Obter Categoria'
+description: 'Consulte os detalhes de uma categoria de artefatos pelo ID no Chatvolt.'
+openapi: 'GET /artifact-categories/{id}'
+---
+
+Retorna os detalhes de uma categoria específica.
+
+## Request
+
+```bash
+curl -X GET https://api.chatvolt.ai/artifact-categories/{categoryId} \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": {
+    "id": "cat_abc123",
+    "name": "Relatórios",
+    "description": "Relatórios mensais e trimestrais"
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Use para validar que uma categoria existe antes de atribuí-la a um artefato.
+- O `id` vem de `GET /artifact-categories` (listagem) ou da resposta de criação.
+- Campos como `description` ajudam a equipe a entender o propósito da categoria.

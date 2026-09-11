@@ -42,3 +42,9 @@ curl -X POST https://api.chatvolt.ai/datastores/{datastoreId}/query \
   "error": null
 }
 ```
+
+## Dicas
+
+- **`topK` controla quantos trechos retornam** — para respostas do agente, 3 a 5 costumam bastar.
+- Use `filter` para restringir a busca (ex.: por categoria ou data) e melhorar a precisão.
+- Este endpoint é RAG puro: retorna trechos da base, sem gerar texto. Para resposta completa, use `POST /agents/{id}/query` com o datastore conectado.

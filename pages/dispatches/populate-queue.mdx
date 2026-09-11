@@ -25,3 +25,9 @@ curl -X POST https://api.chatvolt.ai/dispatches/{dispatchId}/populate-queue \
   "error": null
 }
 ```
+
+## Dicas
+
+- **Só use após adicionar os contatos** ao disparo — a fila é montada a partir deles.
+- O `queueSize` retornado mostra quantos envios serão feitos; confira antes de disparar em massa.
+- Depois de `queued`, o envio roda em background — acompanhe o progresso via `GET /dispatches`.

@@ -1,0 +1,64 @@
+# ─── Sync OpenAPI Spec ────────────────────────────────────────────────────────
+# Fetches the latest OpenAPI spec from the configured API and commits any
+# changes to the local openapi.yaml.
+#
+# Runs:
+#   - On every push to main (catches deploy-time changes)
+#   - Daily at 06:00 UTC (fallback for missed pushes)
+#   - Manually via workflow_dispatch — supports custom api_url for testing
+#     against dev/staging environments (e.g. your Cloudflare tunnel)
+# ──────────────────────────────────────────────────────────────────────────────
+
+name: "Sync OpenAPI Spec"
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: "Custom API base URL (default: https://app.chatvolt.ai)"
+        required: false
+        default: "https://app.chatvolt.ai"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch latest OpenAPI spec
+        env:
+          API_URL: ${{ github.event.inputs.api_url || 'https://app.chatvolt.ai' }}
+        run: |
+          BASE="${API_URL}"
+          echo "BASE=$BASE" >> $GITHUB_ENV
+          curl -sSf "$BASE/openapi.yaml" -o openapi.yaml.new \
+            || curl -sSf "$BASE/api/docs/openai.yaml" -o openapi.yaml.new \
+            || curl -sSf "$BASE/docs/openai.yaml" -o openapi.yaml.new
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if [ ! -f openapi.yaml ] || ! diff -q openapi.yaml openapi.yaml.new > /dev/null 2>&1; then
+            mv openapi.yaml.new openapi.yaml
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            rm openapi.yaml.new
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if changed
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "chatvolt-bot"
+          git config user.email "bot@chatvolt.ai"
+          git add openapi.yaml
+          git commit -m "chore: sync OpenAPI spec from $BASE [skip ci]"
+          git push

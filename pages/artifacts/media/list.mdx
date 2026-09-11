@@ -1,0 +1,46 @@
+---
+title: 'Listar Mídias'
+description: 'Liste os arquivos de mídia vinculados aos artefatos no Chatvolt.'
+openapi: 'GET /artifacts/media'
+---
+
+Lista as mídias vinculadas aos artefatos da organização.
+
+## Request
+
+```bash
+curl -X GET 'https://api.chatvolt.ai/artifacts/media?artifact_id=art_abc123' \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+### Parâmetros de Query
+
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `artifact_id` | string |  | ID do artefato para listar mídias (recomendado) |
+| `q` | string |  | Termo de busca |
+| `type` | string |  | Filtrar por tipo de mídia |
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "media_abc123",
+      "name": "imagem-produto.png",
+      "mediaType": "image",
+      "s3Url": "https://...",
+      "altDescription": "Descrição da imagem"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- Sem `artifact_id`, a listagem retorna mídias de todos os artefatos — filtre para manter a resposta enxuta.
+- Os campos da resposta seguem o schema `ArtifactMedia`: `name`, `mediaType`, `s3Url`, `altDescription`.
+- Use `q` para buscar por nome durante a listagem.

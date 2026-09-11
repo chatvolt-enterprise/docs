@@ -1,0 +1,43 @@
+---
+title: 'Ativar/Desativar IA'
+openapi: 'POST /conversations/{conversationId}/set-ai-enabled'
+---
+
+Ativa ou desativa a resposta automática da IA em uma conversa.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "enabled": false
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa |
+
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `enabled` | boolean | ✓ | `true` para ativar, `false` para desativar |
+
+## Response
+
+```json
+{
+  "success": true
+}
+```
+
+## Dicas
+
+- **`enabled: false` pausa a resposta automática** — o atendente humano assume; reative com `true` quando quiser devolver a conversa para a IA.
+- O campo do contrato é `enabled` (não `aiEnabled`) e é obrigatório.
+- Use em fluxos de escalation: ao transferir para humano, desative a IA para ela não responder no meio do atendimento.

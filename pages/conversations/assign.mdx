@@ -1,0 +1,50 @@
+---
+title: 'Atribuir Conversa'
+openapi: 'POST /conversations/{conversationId}/assign'
+---
+
+Atribui uma conversa a um usuário da organização.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/conversations/123/assign \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "atendente@empresa.com",
+    "force": true
+  }'
+```
+
+### Parâmetros de Path
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `conversationId` | ID da conversa a ser atribuída |
+
+### Parâmetros do Body
+
+O contrato aceita **um (e apenas um)** destes identificadores do responsável:
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `email` | string | oneOf | E-mail do usuário responsável |
+| `id` | string | oneOf | ID do usuário (`usr_...`) |
+| `membershipId` | string | oneOf | ID do membership do usuário |
+| `force` | boolean |  | Força a atribuição mesmo se já houver responsável |
+
+## Response
+
+```json
+{
+  "success": true,
+  "message": "Conversation assigned successfully."
+}
+```
+
+## Dicas
+
+- Envie **exatamente um** dos identificadores (`email`, `id` ou `membershipId`) — o contrato é `oneOf`.
+- Passe `force: true` para trocar o responsável mesmo quando a conversa já tem um atendente atribuído.
+- Combine com `unassign` para fluxos de reatribuição entre equipes.

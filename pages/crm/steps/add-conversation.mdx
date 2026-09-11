@@ -1,0 +1,48 @@
+---
+title: 'Adicionar Conversa à Etapa'
+description: 'Vincule uma conversa a uma etapa do Flux CRM no Chatvolt.'
+openapi: 'POST /crm/step/conversation'
+---
+
+Adiciona uma conversa a uma etapa do CRM.
+
+## Request
+
+```bash
+curl -X POST https://api.chatvolt.ai/crm/step/conversation \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversationId": "conv_abc123",
+    "stepId": "stp_abc123"
+  }'
+```
+
+### Parâmetros
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `conversationId` | string | ✓ | ID da conversa |
+| `scenarioId` | string |  | ID do cenário |
+| `stepId` | string |  | ID da etapa de destino (CUID) |
+| `stepIndex` | integer |  | Posição no funil (alternativo ao `stepId`) |
+
+## Resposta
+
+```json
+{
+  "data": {
+    "conversationId": "conv_abc123",
+    "stepId": 2,
+    "added": true
+  },
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **`conversationId` é obrigatório**; `stepId` é um **CUID string** (`stp_...`), não um número.
+- Use para **entrada de leads no funil**: assim que a conversa começa, vincula à primeira etapa.
+- Para mudar de etapa depois, use `move` (que atualiza a posição no funil).

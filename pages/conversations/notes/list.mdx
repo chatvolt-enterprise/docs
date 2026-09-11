@@ -1,0 +1,36 @@
+---
+title: 'Listar Notas'
+description: 'Liste as notas internas associadas a uma conversa no Chatvolt.'
+openapi: 'GET /conversations/{conversationId}/notes'
+---
+
+Lista as notas internas de uma conversa.
+
+## Request
+
+```bash
+curl https://api.chatvolt.ai/conversations/123/notes \
+  -H "Authorization: Bearer $CHATVOLT_API_KEY"
+```
+
+## Resposta
+
+```json
+{
+  "data": [
+    {
+      "id": "note_456",
+      "content": "Cliente precisa de acompanhamento semanal",
+      "createdAt": "2026-07-23T10:00:00Z"
+    }
+  ],
+  "success": true,
+  "error": null
+}
+```
+
+## Dicas
+
+- **Notas são internas da equipe** — não são enviadas ao cliente e não entram no contexto do agente.
+- Use a listagem para recuperar o histórico de handoff entre atendentes.
+- Notas criadas via `message-register` com `type: "note"` também aparecem no contexto da conversa.
