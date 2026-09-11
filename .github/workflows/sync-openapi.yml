@@ -34,8 +34,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fetch latest OpenAPI spec
+        env:
+          API_URL: ${{ github.event.inputs.api_url || 'https://app.chatvolt.ai' }}
         run: |
-          BASE="${{ github.event.inputs.api_url || 'https://app.chatvolt.ai' }}"
+          BASE="${API_URL}"
           echo "BASE=$BASE" >> $GITHUB_ENV
           curl -sSf "$BASE/openapi.yaml" -o openapi.yaml.new \
             || curl -sSf "$BASE/api/docs/openai.yaml" -o openapi.yaml.new \
