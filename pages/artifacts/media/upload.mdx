@@ -13,15 +13,18 @@ curl -X POST https://api.chatvolt.ai/artifacts/media/upload \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: multipart/form-data" \
   -F "file=@documento.pdf" \
-  -F "artifactId=art_abc123"
+  -F "artifact_id=art_abc123" \
+  -F "name=documento.pdf"
 ```
 
 ### Parâmetros
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `file` | arquivo |  | Arquivo a enviar (multipart) |
-| `artifactId` | string |  | ID do artefato ao qual vincular |
+| `file` | arquivo | ✓ | Arquivo a enviar (multipart) |
+| `artifact_id` | string | ✓ | ID do artefato ao qual vincular |
+| `name` | string | ✓ | Nome do arquivo |
+| `alt_description` | string |  | Texto alternativo |
 
 ## Resposta
 
@@ -29,9 +32,10 @@ curl -X POST https://api.chatvolt.ai/artifacts/media/upload \
 {
   "data": {
     "id": "media_abc123",
-    "artifactId": "art_abc123",
-    "type": "pdf",
-    "url": "https://..."
+    "name": "documento.pdf",
+    "mediaType": "pdf",
+    "s3Url": "https://...",
+    "altDescription": null
   },
   "success": true,
   "error": null
@@ -41,5 +45,5 @@ curl -X POST https://api.chatvolt.ai/artifacts/media/upload \
 ## Dicas
 
 - **Upload é multipart (`-F`)**: envie o arquivo real, não base64 — evita estourar limites de corpo.
-- Use `artifactId` para vincular a mídia ao artefato na hora do upload.
-- Atualize o `alt` depois via `PATCH /artifacts/media/{id}` para acessibilidade e para o agente descrever imagens.
+- Os campos obrigatórios são `artifact_id` (snake_case) e `name`, além do próprio `file`.
+- Atualize o `alt_description` depois via `PATCH /artifacts/media/{id}` para acessibilidade e para o agente descrever imagens.

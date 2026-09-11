@@ -8,9 +8,15 @@ Lista todos os templates de mensagem da conta WhatsApp Business associada.
 ## Request
 
 ```bash
-curl https://api.chatvolt.ai/whatsapp/templates \
+curl -X GET 'https://api.chatvolt.ai/whatsapp/templates?agentId=agent_abc123' \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+### Parâmetros de Query
+
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `agentId` | string |  | ID do agente dono dos templates |
 
 ## Response
 
@@ -29,6 +35,6 @@ curl https://api.chatvolt.ai/whatsapp/templates \
 
 ## Dicas
 
+- **`agentId` na query** seleciona os templates do agente — o contrato exige esse parâmetro.
 - Use o `status` para mostrar na sua UI se o template já pode ser enviado (`approved`).
 - O nome retornado (`boas_vindas`) é usado em `POST /whatsapp/{phoneNumberId}/template-message`.
-- Templates rejeitados podem ser editados e reenviados pela API de criação.

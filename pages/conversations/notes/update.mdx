@@ -13,7 +13,7 @@ curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "content": "Conteúdo atualizado da nota"
+    "note": "Conteúdo atualizado da nota"
   }'
 ```
 
@@ -21,7 +21,9 @@ curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `content` | string |  | Novo conteúdo da nota |
+| `note` | string |  | Novo conteúdo da nota |
+| `isPrivate` | boolean |  | Nota privada |
+| `notificationDateTime` | string |  | Lembrete (ISO) |
 
 ## Resposta
 
@@ -29,7 +31,7 @@ curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
 {
   "data": {
     "id": "note_456",
-    "content": "Conteúdo atualizado da nota",
+    "note": "Conteúdo atualizado da nota",
     "updatedAt": "2026-07-23T14:00:00Z"
   },
   "success": true,
@@ -39,6 +41,6 @@ curl -X PUT https://api.chatvolt.ai/conversations/123/notes/note_456 \
 
 ## Dicas
 
-- **`PUT` substitui o conteúdo** — envie o texto completo da nota.
+- **`PUT` substitui o conteúdo** — o campo do contrato é `note`, envie o texto completo.
 - Notas corrigidas mantêm o mesmo `id`, facilitando a referência em integrações.
 - Prefira atualizar a deletar: o histórico da equipe fica mais rastreável.

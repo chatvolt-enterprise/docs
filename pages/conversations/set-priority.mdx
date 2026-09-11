@@ -12,7 +12,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "priority": "high"
+    "priority": "HIGH"
   }'
 ```
 
@@ -26,7 +26,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `priority` | string |  | Prioridade (`low`, `medium`, `high`) |
+| `priority` | string | ✓ | Prioridade: `LOW`, `MEDIUM` ou `HIGH` (maiúsculas) |
 
 ## Response
 
@@ -38,6 +38,6 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-priority \
 
 ## Dicas
 
-- Use prioridades para **SLA de atendimento**: filtre a fila por `high` e atenda primeiro as conversas críticas.
+- **Os valores são maiúsculos**: `LOW`, `MEDIUM` ou `HIGH` — minúsculas falham na validação.
+- Use prioridades para **SLA de atendimento**: filtre a fila por `HIGH` e atenda primeiro as conversas críticas.
 - Ao resolver uma conversa, o status deixa de ser `active` — combina com `set-status` para fechar o fluxo completo.
-- Valores válidos: `low`, `medium` e `high`; o padrão é `normal` na criação.

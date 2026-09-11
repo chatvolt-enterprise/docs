@@ -1,9 +1,10 @@
 ---
 title: 'Solicitar Localização'
+description: 'Envie um pedido de localização interativo no WhatsApp para um contato de uma conversa do Chatvolt.'
 openapi: 'POST /messages/interactive/location-request'
 ---
 
-Envia uma mensagem solicitando que o usuário compartilhe sua localização atual. WhatsApp apenas.
+Envia uma mensagem interativa pedindo a localização do usuário dentro de uma conversa.
 
 ## Request
 
@@ -12,20 +13,23 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/location-request \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "bodyText": "Compartilhe sua localização para encontrarmos a loja mais próxima"
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "body_text": "Compartilhe sua localização para encontrarmos a loja mais próxima"
   }'
 ```
 
 ### Parâmetros
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `to` | string | Telefone do destinatário |
-| `bodyText` | string | Texto da mensagem |
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `body_text` | string | ✓ | Texto da mensagem (snake_case) |
+| `header_text` | string |  | Texto do cabeçalho |
 
 ## Dicas
 
 - O destinatário recebe um botão para compartilhar a localização — use para logística (encontrar lojas, entregas).
-- O `to` precisa de DDI+DDD sem `+` (ex.: `5511988887777`).
+- Os nomes dos campos seguem o contrato: `body_text`, `header_text` (snake_case).
 - Combine com o endpoint de recebimento de mensagens para capturar a localização enviada pelo usuário.

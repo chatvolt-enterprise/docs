@@ -8,9 +8,20 @@ Obtém produtos do Mercado Livre integrados à plataforma.
 ## Request
 
 ```bash
-curl https://api.chatvolt.ai/mercadolivre/get-products \
+curl -X GET 'https://api.chatvolt.ai/mercadolivre/get-products?agentId=agent_abc123' \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+### Parâmetros de Query
+
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `agentId` | string |  | ID do agente com o Mercado Livre conectado |
+| `query` | string |  | Termo de busca de produtos |
+| `threshold` | number |  | Limite mínimo de relevância |
+| `maxResults` | number |  | Máx. de resultados |
+| `sortByRelevance` | boolean |  | Ordenar por relevância |
+| `typoTolerance` | boolean |  | Tolerar erros de digitação |
 
 ## Response
 
@@ -28,6 +39,6 @@ curl https://api.chatvolt.ai/mercadolivre/get-products \
 
 ## Dicas
 
-- A integração do Mercado Livre deve estar **conectada na organização** antes de chamar este endpoint.
-- Use o `id` do produto (ex.: `MLB123456`) como referência para enriquecer a base de conhecimento dos agentes.
+- O **`agentId` na query** identifica o agente com a integração conectada — sem ele o endpoint não sabe de qual conta buscar.
+- Use a integração do Mercado Livre **conectada na organização** antes de chamar este endpoint.
 - A resposta não usa o envelope padrão (`data`/`success`) — é a resposta crua do Mercado Livre.

@@ -1,9 +1,10 @@
 ---
 title: 'Enviar Contato'
+description: 'Compartilhe um contato de WhatsApp dentro de uma conversa do Chatvolt.'
 openapi: 'POST /messages/interactive/send-contact'
 ---
 
-Envia um ou mais cartões de contato. Suportado em WhatsApp, Z-API e ZapperAPI.
+Envia um cartão de contato interativo dentro de uma conversa.
 
 ## Request
 
@@ -12,25 +13,22 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-contact \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "contacts": [
-      {
-        "name": "Suporte Chatvolt",
-        "phone": "5511999998888"
-      }
-    ]
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "name_formatted_name": "Suporte Chatvolt"
   }'
 ```
 
 ### Parâmetros
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `to` | string | Telefone do destinatário |
-| `contacts` | array | Lista de contatos para enviar |
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `name_formatted_name` | string | ✓ | Nome exibido no cartão (snake_case) |
 
 ## Dicas
 
 - Útil para compartilhar **contatos de atendimento** (suporte, financeiro) dentro da conversa.
-- Cada item da lista requer `name` e `phone` (com DDI, sem `+`).
-- O WhatsApp permite enviar 1 contato por mensagem em alguns planos — mantenha a lista pequena para compatibilidade.
+- O campo obrigatório do contrato é `name_formatted_name` — o número vinculado vem da configuração da integração.
+- O envio acontece na conversa identificada por `conversationId`, não por um `to` livre.

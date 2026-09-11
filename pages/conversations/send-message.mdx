@@ -13,7 +13,8 @@ curl -X POST https://api.chatvolt.ai/conversation/message/whatsapp/5511988887777
   -H "Content-Type: application/json" \
   -d '{
     "message": "Olá! Como posso ajudar?",
-    "type": "text"
+    "agentId": "agent_abc123",
+    "channel": "whatsapp"
   }'
 ```
 
@@ -28,9 +29,12 @@ curl -X POST https://api.chatvolt.ai/conversation/message/whatsapp/5511988887777
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `message` | string |  | Conteúdo da mensagem |
-| `type` | string |  | Tipo da mensagem (`text`, `image`, `file`). Padrão: `text` |
+| `message` | string | ✓ | Conteúdo da mensagem |
 | `agentId` | string |  | ID do agente para processar a resposta |
+| `channel` | string |  | Canal (`website`, `dashboard`, `whatsapp`, `zapi`, `telegram`, `instagramDm`) |
+| `attachments` | array |  | Anexos da mensagem |
+| `visitorId` | string |  | ID do visitante |
+| `contactId` | string |  | ID de contato existente |
 
 ## Resposta
 
@@ -49,5 +53,5 @@ curl -X POST https://api.chatvolt.ai/conversation/message/whatsapp/5511988887777
 ## Dicas
 
 - O path usa `{channel}/{value}`: para WhatsApp o `value` é o **DDI+DDD+número** (ex.: `5511988887777`), sem `+` nem espaços.
+- **Não existe `type` no body** — o canal vai no path; `channel` opcional reforça a origem da mensagem.
 - Passe `agentId` quando quiser que o agente processe a resposta automaticamente após o envio.
-- O `conversationId` retornado permite seguir a conversa pelos endpoints de mensagens e status.

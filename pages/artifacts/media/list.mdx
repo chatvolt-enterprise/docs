@@ -9,9 +9,17 @@ Lista as mídias vinculadas aos artefatos da organização.
 ## Request
 
 ```bash
-curl -X GET https://api.chatvolt.ai/artifacts/media \
+curl -X GET 'https://api.chatvolt.ai/artifacts/media?artifact_id=art_abc123' \
   -H "Authorization: Bearer $CHATVOLT_API_KEY"
 ```
+
+### Parâmetros de Query
+
+| Parâmetro | Tipo | Obrigatório | Descrição |
+|-----------|------|:-----------:|-----------|
+| `artifact_id` | string |  | ID do artefato para listar mídias (recomendado) |
+| `q` | string |  | Termo de busca |
+| `type` | string |  | Filtrar por tipo de mídia |
 
 ## Resposta
 
@@ -20,10 +28,10 @@ curl -X GET https://api.chatvolt.ai/artifacts/media \
   "data": [
     {
       "id": "media_abc123",
-      "artifactId": "art_abc123",
-      "type": "image",
-      "url": "https://...",
-      "alt": "Descrição da imagem"
+      "name": "imagem-produto.png",
+      "mediaType": "image",
+      "s3Url": "https://...",
+      "altDescription": "Descrição da imagem"
     }
   ],
   "success": true,
@@ -33,6 +41,6 @@ curl -X GET https://api.chatvolt.ai/artifacts/media \
 
 ## Dicas
 
-- Use para auditar quais artefatos têm mídia e quais estão sem `alt` (acessibilidade).
-- A listagem ajuda a localizar mídias órfãs antes de deletar artefatos.
-- Filtre pelo `artifactId` na sua integração para montar a galeria de um artefato específico.
+- Sem `artifact_id`, a listagem retorna mídias de todos os artefatos — filtre para manter a resposta enxuta.
+- Os campos da resposta seguem o schema `ArtifactMedia`: `name`, `mediaType`, `s3Url`, `altDescription`.
+- Use `q` para buscar por nome durante a listagem.

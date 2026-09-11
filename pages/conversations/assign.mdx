@@ -12,7 +12,8 @@ curl -X POST https://api.chatvolt.ai/conversations/123/assign \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "assigneeId": "usr_123456"
+    "email": "atendente@empresa.com",
+    "force": true
   }'
 ```
 
@@ -24,9 +25,13 @@ curl -X POST https://api.chatvolt.ai/conversations/123/assign \
 
 ### Parâmetros do Body
 
+O contrato aceita **um (e apenas um)** destes identificadores do responsável:
+
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `assigneeId` | string |  | ID do usuário responsável |
+| `email` | string | oneOf | E-mail do usuário responsável |
+| `id` | string | oneOf | ID do usuário (`usr_...`) |
+| `membershipId` | string | oneOf | ID do membership do usuário |
 | `force` | boolean |  | Força a atribuição mesmo se já houver responsável |
 
 ## Response
@@ -40,6 +45,6 @@ curl -X POST https://api.chatvolt.ai/conversations/123/assign \
 
 ## Dicas
 
-- O `assigneeId` deve ser um **usuário da sua organização** — use o ID `usr_...` retornado na listagem de usuários.
+- Envie **exatamente um** dos identificadores (`email`, `id` ou `membershipId`) — o contrato é `oneOf`.
 - Passe `force: true` para trocar o responsável mesmo quando a conversa já tem um atendente atribuído.
 - Combine com `unassign` para fluxos de reatribuição entre equipes.

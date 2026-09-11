@@ -1,7 +1,10 @@
 ---
-title: 'Enviar Botões Interativos'
+title: 'Enviar Botões'
+description: 'Envie uma mensagem interativa com botões de resposta rápida no WhatsApp via Chatvolt.'
 openapi: 'POST /messages/interactive/send-buttons'
 ---
+
+Envia uma mensagem interativa com até 3 botões de resposta.
 
 ## Request
 
@@ -10,12 +13,11 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": "5511988887777",
-    "bodyText": "Escolha uma opção:",
-    "buttons": [
-      { "id": "btn_sim", "title": "Sim" },
-      { "id": "btn_nao", "title": "Não" }
-    ]
+    "agentId": "agent_abc123",
+    "conversationId": "conv_abc123",
+    "body_text": "Escolha uma opção:",
+    "button_1_id": "btn_sim",
+    "button_1_title": "Sim"
   }'
 ```
 
@@ -23,16 +25,15 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `to` | string |  | Telefone do destinatário |
-| `bodyText` | string |  | Texto da mensagem |
-| `buttons` | array |  | Lista de botões (máx: 3) |
-| `footerText` | string |  | Texto do rodapé |
-
-## Dicas
-
-- **Máximo de 3 botões** por mensagem, com até 20 caracteres de título.
-- Os `id`s dos botões são recebidos de volta quando o usuário toca — use para rotear a resposta no seu fluxo.
-- Botões interativos só funcionam em conversas iniciadas (não são válidos como primeira mensagem — use template).
+| `agentId` | string | ✓ | ID do agente responsável |
+| `conversationId` | string | ✓ | ID da conversa |
+| `body_text` | string | ✓ | Texto da mensagem (snake_case) |
+| `header_text` | string |  | Cabeçalho |
+| `footer_text` | string |  | Rodapé |
+| `button_1_id` | string | ✓ | ID do 1º botão (retornado na resposta do usuário) |
+| `button_1_title` | string | ✓ | Título do 1º botão |
+| `button_2_id` / `button_2_title` | string |  | 2º botão (opcional) |
+| `button_3_id` / `button_3_title` | string |  | 3º botão (opcional) |
 
 ## Resposta
 
@@ -46,3 +47,9 @@ curl -X POST https://api.chatvolt.ai/messages/interactive/send-buttons \
   "error": null
 }
 ```
+
+## Dicas
+
+- **Máximo de 3 botões** por mensagem — o contrato usa `button_1_*`, `button_2_*`, `button_3_*`.
+- Os `id`s dos botões são recebidos de volta quando o usuário toca — use para rotear a resposta no seu fluxo.
+- Botões interativos só funcionam em conversas iniciadas (não são válidos como primeira mensagem — use template).

@@ -12,7 +12,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-status \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "status": "resolved"
+    "status": "RESOLVED"
   }'
 ```
 
@@ -26,7 +26,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-status \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `status` | string |  | Novo status (`open`, `resolved`, `pending`) |
+| `status` | string | ✓ | Novo status: `RESOLVED`, `UNRESOLVED` ou `HUMAN_REQUESTED` |
 
 ## Response
 
@@ -38,6 +38,6 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-status \
 
 ## Dicas
 
-- **`resolved` encerra a conversa** — ela sai da fila de atendimento ativa; consulte o formato completo via `GET /conversation/{conversationId}`.
-- Use `pending` para aguardar ação externa (ex.: o cliente responder) sem fechar o atendimento.
-- Status inválidos retornam erro de validação — confira os valores suportados antes de enviar.
+- **Os valores são maiúsculos**: `RESOLVED`, `UNRESOLVED` ou `HUMAN_REQUESTED` — minúsculas falham na validação.
+- **`RESOLVED` encerra a conversa** — ela sai da fila de atendimento ativa; consulte o formato completo via `GET /conversation/{conversationId}`.
+- Use `UNRESOLVED` para reabrir e `HUMAN_REQUESTED` para pedir intervenção humana.

@@ -13,7 +13,7 @@ curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "description": "Descrição atualizada"
+    "status": "active"
   }'
 ```
 
@@ -21,8 +21,7 @@ curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `action` | string |  | Nova ação registrada |
-| `description` | string |  | Nova descrição |
+| `status` | string |  | Novo status: `inactive`, `active` ou `error` |
 
 ## Resposta
 
@@ -31,8 +30,7 @@ curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
   "data": {
     "id": "log_abc123",
     "conversationId": "conv_abc123",
-    "action": "lead_moved",
-    "description": "Descrição atualizada",
+    "status": "active",
     "updatedAt": "2026-07-23T14:00:00Z"
   },
   "success": true,
@@ -42,6 +40,6 @@ curl -X PUT https://api.chatvolt.ai/crm/conversationLog/{logId} \
 
 ## Dicas
 
-- **`PUT` substitui os campos enviados** — envie `action` e/ou `description` completos.
-- Use para corrigir erros de registro sem perder o histórico da conversa.
+- **O único campo atualizável no contrato é `status`** — logs não editam `action`/`description`.
+- Use para marcar um log como `error` quando o processamento da ação falhou.
 - O `logId` não muda: referências em integrações permanecem válidas.

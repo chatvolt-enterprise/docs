@@ -13,10 +13,9 @@ curl -X POST https://api.chatvolt.ai/crm/step \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "scenarioId": 1,
+    "scenarioId": "scn_abc123",
     "name": "Lead Qualificado",
-    "description": "Lead com potencial de compra",
-    "stepOrder": 2
+    "trigger": "conversation_created"
   }'
 ```
 
@@ -24,20 +23,25 @@ curl -X POST https://api.chatvolt.ai/crm/step \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `scenarioId` | number |  | ID do cenário |
-| `name` | string |  | Nome da etapa |
-| `description` | string |  | Descrição |
-| `stepOrder` | number |  | Ordem no funil |
+| `scenarioId` | string | ✓ | ID do cenário (CUID, ex.: `scn_...`) |
+| `name` | string | ✓ | Nome da etapa |
+| `agentId` | string |  | Agente responsável pela etapa |
+| `trigger` | string |  | Gatilho da etapa (ex.: `conversation_created`) |
+| `prompt` | string |  | Instrução de processamento da etapa |
+| `initialMessage` | string |  | Mensagem inicial ao entrar na etapa |
+| `defaultStatus` | string |  | `RESOLVED`, `UNRESOLVED` ou `HUMAN_REQUESTED` |
+| `defaultPriority` | string |  | `LOW`, `MEDIUM` ou `HIGH` |
+| `stepOrder` | string |  | Ordem no funil (quando suportado pelo fluxo) |
 
 ## Resposta
 
 ```json
 {
   "data": {
-    "id": 1,
-    "scenarioId": 1,
+    "id": "stp_abc123",
+    "scenarioId": "scn_abc123",
     "name": "Lead Qualificado",
-    "description": "Lead com potencial",
+    "trigger": "conversation_created",
     "stepOrder": 2
   },
   "success": true,
@@ -47,6 +51,6 @@ curl -X POST https://api.chatvolt.ai/crm/step \
 
 ## Dicas
 
-- **`stepOrder` define a ordem no funil** — numere de forma contínua (1, 2, 3...) e ajuste com `move` quando precisar reordenar.
-- O `scenarioId` deve ser de um cenário existente (via `GET /crm/scenario`).
+- **`scenarioId` é um CUID string** (ex.: `scn_...`), não um número — chegue via `GET /crm/scenario`.
+- **`name` é obrigatório**; os campos de comportamento (`trigger`, `prompt`, `initialMessage`) definem o que a etapa faz.
 - Crie as etapas em seguida à criação do cenário, enquanto a estrutura do pipeline está fresca.

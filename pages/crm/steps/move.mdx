@@ -14,8 +14,8 @@ curl -X POST https://api.chatvolt.ai/crm/step/move \
   -H "Content-Type: application/json" \
   -d '{
     "conversationId": "conv_abc123",
-    "fromStepId": 1,
-    "toStepId": 2
+    "scenarioId": "scn_abc123",
+    "destStepId": "stp_abc123"
   }'
 ```
 
@@ -23,9 +23,11 @@ curl -X POST https://api.chatvolt.ai/crm/step/move \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `conversationId` | string |  | ID da conversa |
-| `fromStepId` | number |  | Etapa atual |
-| `toStepId` | number |  | Etapa de destino |
+| `conversationId` | string | ✓ | ID da conversa |
+| `scenarioId` | string |  | ID do cenário |
+| `destStepId` | string |  | Etapa de destino (ID CUID) |
+| `destStepIndex` | integer |  | Posição de destino (alternativo ao `destStepId`) |
+| `shouldSendInitialMessage` | boolean |  | Envia a mensagem inicial da etapa |
 
 ## Resposta
 
@@ -44,6 +46,6 @@ curl -X POST https://api.chatvolt.ai/crm/step/move \
 
 ## Dicas
 
-- **`move` move a conversa entre etapas**: use `toStepId` do destino e o `fromStepId` atual para rastrear o fluxo.
-- As etapas precisam ser do **mesmo cenário** — mover entre cenários exige remover e adicionar a conversa.
-- Registre um log (`POST /crm/conversationLog` com `action: "lead_moved"`) para manter a auditoria do funil.
+- **`conversationId` é obrigatório**; o destino é `destStepId` (CUID) ou `destStepIndex` — não existem `fromStepId`/`toStepId` no contrato.
+- Use `shouldSendInitialMessage: true` quando a etapa de destino tiver mensagem inicial.
+- Registre um log (`POST /crm/conversationLog`) depois do move para manter a auditoria do funil.

@@ -12,7 +12,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "aiEnabled": false
+    "enabled": false
   }'
 ```
 
@@ -26,7 +26,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `aiEnabled` | boolean |  | `true` para ativar, `false` para desativar |
+| `enabled` | boolean | ✓ | `true` para ativar, `false` para desativar |
 
 ## Response
 
@@ -38,6 +38,6 @@ curl -X POST https://api.chatvolt.ai/conversations/123/set-ai-enabled \
 
 ## Dicas
 
-- **`aiEnabled: false` pausa a resposta automática** — o atendente humano assume; reative com `true` quando quiser devolver a conversa para a IA.
-- Verifique o flag atual com `GET /conversation/{conversationId}` antes de alternar, para evitar chamadas desnecessárias.
+- **`enabled: false` pausa a resposta automática** — o atendente humano assume; reative com `true` quando quiser devolver a conversa para a IA.
+- O campo do contrato é `enabled` (não `aiEnabled`) e é obrigatório.
 - Use em fluxos de escalation: ao transferir para humano, desative a IA para ela não responder no meio do atendimento.

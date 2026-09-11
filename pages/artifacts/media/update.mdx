@@ -13,7 +13,7 @@ curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
   -H "Authorization: Bearer $CHATVOLT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "alt": "Descrição da imagem"
+    "altDescription": "Descrição da imagem"
   }'
 ```
 
@@ -21,7 +21,9 @@ curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
 
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-| `alt` | string |  | Texto alternativo da mídia |
+| `name` | string |  | Novo nome do arquivo |
+| `altDescription` | string |  | Texto alternativo da mídia |
+| `isActive` | boolean |  | Ativa/desativa a mídia |
 
 ## Resposta
 
@@ -29,10 +31,10 @@ curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
 {
   "data": {
     "id": "media_abc123",
-    "artifactId": "art_abc123",
-    "type": "image",
-    "url": "https://...",
-    "alt": "Descrição da imagem"
+    "name": "imagem-produto.png",
+    "mediaType": "image",
+    "s3Url": "https://...",
+    "altDescription": "Descrição da imagem"
   },
   "success": true,
   "error": null
@@ -42,5 +44,5 @@ curl -X PATCH https://api.chatvolt.ai/artifacts/media/{mediaId} \
 ## Dicas
 
 - **`PATCH` é parcial**: envie apenas os campos que quer alterar.
-- O `alt` melhora acessibilidade e permite o agente descrever imagens em respostas.
-- O `{id}` no path é o ID da mídia (`media_...`), retornado no upload ou na listagem.
+- O campo é **`altDescription`** (não `alt`) — é o nome do contrato do schema de mídia.
+- O `altDescription` melhora acessibilidade e permite o agente descrever imagens em respostas.

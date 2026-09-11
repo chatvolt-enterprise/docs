@@ -13,7 +13,7 @@ curl -X POST https://api.chatvolt.ai/conversations/123/message-register \
   -H "Content-Type: application/json" \
   -d '{
     "message": "Cliente solicitou reembolso via e-mail",
-    "type": "note"
+    "from": "agent"
   }'
 ```
 
@@ -23,6 +23,12 @@ curl -X POST https://api.chatvolt.ai/conversations/123/message-register \
 |-----------|-----------|
 | `conversationId` | ID da conversa |
 
+### Parâmetros do Body
+
+| Campo | Tipo | Obrigatório | Descrição |
+|-------|------|:-----------:|-----------|
+| `message` | string | ✓ | Conteúdo a registrar no contexto |
+| `from` | string |  | Remetente do registro: `human` ou `agent` |
 ## Response
 
 ```json
@@ -34,5 +40,5 @@ curl -X POST https://api.chatvolt.ai/conversations/123/message-register \
 ## Dicas
 
 - A mensagem **não é entregue** ao participante — serve para registrar contexto de sistemas externos (CRM, ERP) na conversa.
-- Use `type: "note"` para observações internas da equipe; ele aparece no histórico para os atendentes.
+- `from: "human"` marca o registro como intervenção humana; `from: "agent"` como ação do bot.
 - Combine com variáveis (`POST /variables`) para enriquecer a conversa com dados que o agente pode consultar depois.
