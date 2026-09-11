@@ -39,3 +39,16 @@ curl -X POST https://api.chatvolt.ai/whatsapp/{phoneNumberId}/template-message \
 - **O `templateName` precisa estar aprovado** no WhatsApp (consulte `GET /whatsapp/templates`) antes do envio.
 - As variáveis do `text` são posicionais: `{{1}}`, `{{2}}...` preenchidas na ordem do template aprovado.
 - Este é o caminho certo para **primeira mensagem** ao contato — mensagens livres só valem após o usuário responder.
+
+## Resposta
+
+```json
+{
+  "data": {
+    "messageId": "wamid_abc123",
+    "status": "sent"
+  },
+  "success": true,
+  "error": null
+}
+```
