@@ -50,154 +50,162 @@
     }
   ],
   "navigation": {
-    "versions": [
+    "languages": [
       {
-        "version": "v1",
-        "tag": "Current",
-        "tabs": [
+        "language": "en"
+      },
+      {
+        "language": "pt-BR",
+        "versions": [
           {
-            "tab": "Comece Aqui",
-            "groups": [
+            "version": "v1",
+            "tag": "Current",
+            "tabs": [
               {
-                "group": "Comece Aqui",
-                "pages": [
-                  "pages/start/introduction",
-                  "pages/start/quickstart",
-                  "pages/authentication",
-                  "pages/errors"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Agentes",
-                "pages": [
-                  "pages/agents/reference",
-                  "pages/agents/query",
-                  "pages/agents/create",
-                  "pages/agents/get",
-                  "pages/agents/update",
-                  "pages/agents/delete",
-                  "pages/agents/webhook",
-                  "pages/agents/blacklist",
-                  "pages/agents/whitelist",
-                  "pages/agents/templates"
-                ]
-              },
-              {
-                "group": "Conversas",
-                "pages": [
-                  "pages/conversations/reference",
-                  "pages/conversations/send-message",
-                  "pages/conversations/get-messages",
-                  "pages/conversations/get-by-id",
-                  "pages/conversations/delete",
-                  "pages/conversations/variables",
-                  "pages/conversations/tags",
-                  "pages/conversations/export",
-                  "pages/conversations/send-audio"
-                ]
-              },
-              {
-                "group": "Contatos",
-                "pages": [
-                  "pages/contacts/reference",
-                  "pages/contacts/create",
-                  "pages/contacts/get",
-                  "pages/contacts/variables"
-                ]
-              },
-              {
-                "group": "Datastores",
-                "pages": [
-                  "pages/datastores/reference",
-                  "pages/datastores/query",
-                  "pages/datastores/create",
-                  "pages/datastores/list",
-                  "pages/datastores/get",
-                  "pages/datastores/update",
-                  "pages/datastores/delete"
-                ]
-              },
-              {
-                "group": "Disparos (Dispatches)",
-                "pages": [
-                  "pages/dispatches/reference",
-                  "pages/dispatches/create",
-                  "pages/dispatches/list",
-                  "pages/dispatches/populate-queue"
-                ]
-              },
-              {
-                "group": "Artefatos",
-                "pages": [
-                  "pages/artifacts/reference",
-                  "pages/artifacts/search",
-                  "pages/artifacts/create",
-                  "pages/artifacts/list",
-                  "pages/artifacts/get",
-                  "pages/artifacts/update",
-                  "pages/artifacts/delete",
-                  "pages/artifacts/media",
-                  "pages/artifacts/categories"
-                ]
-              },
-              {
-                "group": "WhatsApp",
-                "pages": [
-                  "pages/whatsapp/reference",
-                  "pages/whatsapp/template-message",
-                  "pages/whatsapp/send-buttons",
-                  "pages/whatsapp/send-lists",
-                  "pages/whatsapp/send-cta",
-                  "pages/whatsapp/send-location"
-                ]
-              },
-              {
-                "group": "Flux CRM",
-                "pages": [
-                  "pages/crm/reference",
-                  "pages/crm/scenarios",
-                  "pages/crm/steps",
-                  "pages/crm/conversation-logs"
-                ]
-              },
-              {
-                "group": "Tags",
-                "pages": [
-                  "pages/tags/reference"
-                ]
-              },
-              {
-                "group": "Integrações",
-                "pages": [
-                  "pages/integrations/reference"
-                ]
-              },
-              {
-                "group": "Webhooks",
-                "pages": [
-                  "pages/webhooks/reference"
-                ]
-              },
-              {
-                "group": "OpenAPI",
-                "pages": [
+                "tab": "Comece Aqui",
+                "groups": [
                   {
-                    "group": "Endpoints",
-                    "openapi": "openapi.yaml"
+                    "group": "Comece Aqui",
+                    "pages": [
+                      "pages/start/introduction",
+                      "pages/start/quickstart",
+                      "pages/authentication",
+                      "pages/errors"
+                    ]
                   }
                 ]
+              },
+              {
+                "tab": "API Reference",
+                "groups": [
+                  {
+                    "group": "Agentes",
+                    "pages": [
+                      "pages/agents/reference",
+                      "pages/agents/query",
+                      "pages/agents/create",
+                      "pages/agents/get",
+                      "pages/agents/update",
+                      "pages/agents/delete",
+                      "pages/agents/webhook",
+                      "pages/agents/blacklist",
+                      "pages/agents/whitelist",
+                      "pages/agents/templates"
+                    ]
+                  },
+                  {
+                    "group": "Conversas",
+                    "pages": [
+                      "pages/conversations/reference",
+                      "pages/conversations/send-message",
+                      "pages/conversations/get-messages",
+                      "pages/conversations/get-by-id",
+                      "pages/conversations/delete",
+                      "pages/conversations/variables",
+                      "pages/conversations/tags",
+                      "pages/conversations/export",
+                      "pages/conversations/send-audio"
+                    ]
+                  },
+                  {
+                    "group": "Contatos",
+                    "pages": [
+                      "pages/contacts/reference",
+                      "pages/contacts/create",
+                      "pages/contacts/get",
+                      "pages/contacts/variables"
+                    ]
+                  },
+                  {
+                    "group": "Datastores",
+                    "pages": [
+                      "pages/datastores/reference",
+                      "pages/datastores/query",
+                      "pages/datastores/create",
+                      "pages/datastores/list",
+                      "pages/datastores/get",
+                      "pages/datastores/update",
+                      "pages/datastores/delete"
+                    ]
+                  },
+                  {
+                    "group": "Disparos (Dispatches)",
+                    "pages": [
+                      "pages/dispatches/reference",
+                      "pages/dispatches/create",
+                      "pages/dispatches/list",
+                      "pages/dispatches/populate-queue"
+                    ]
+                  },
+                  {
+                    "group": "Artefatos",
+                    "pages": [
+                      "pages/artifacts/reference",
+                      "pages/artifacts/search",
+                      "pages/artifacts/create",
+                      "pages/artifacts/list",
+                      "pages/artifacts/get",
+                      "pages/artifacts/update",
+                      "pages/artifacts/delete",
+                      "pages/artifacts/media",
+                      "pages/artifacts/categories"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp",
+                    "pages": [
+                      "pages/whatsapp/reference",
+                      "pages/whatsapp/template-message",
+                      "pages/whatsapp/send-buttons",
+                      "pages/whatsapp/send-lists",
+                      "pages/whatsapp/send-cta",
+                      "pages/whatsapp/send-location"
+                    ]
+                  },
+                  {
+                    "group": "Flux CRM",
+                    "pages": [
+                      "pages/crm/reference",
+                      "pages/crm/scenarios",
+                      "pages/crm/steps",
+                      "pages/crm/conversation-logs"
+                    ]
+                  },
+                  {
+                    "group": "Tags",
+                    "pages": [
+                      "pages/tags/reference"
+                    ]
+                  },
+                  {
+                    "group": "Integrações",
+                    "pages": [
+                      "pages/integrations/reference"
+                    ]
+                  },
+                  {
+                    "group": "Webhooks",
+                    "pages": [
+                      "pages/webhooks/reference"
+                    ]
+                  },
+                  {
+                    "group": "OpenAPI",
+                    "pages": [
+                      {
+                        "group": "Endpoints",
+                        "openapi": "openapi.yaml"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tab": "Changelog",
+                "pages": [
+                  "pages/changelog/index"
+                ]
               }
-            ]
-          },
-          {
-            "tab": "Changelog",
-            "pages": [
-              "pages/changelog/index"
             ]
           }
         ]
